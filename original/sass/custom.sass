@@ -29,11 +29,14 @@
                 justify-content: center
                 align-items: center
 
+                p
+                    padding: 0 10px
+
                 .option
                     margin: 0px
                     margin-right: -1px
-                    height: 4px
-                    width: 20px
+                    height: 7px
+                    width: calC(10% - 20px)
                     border: 1px solid gray
                     cursor: pointer
                     background: lightgray
@@ -44,6 +47,10 @@
                     &:last-of-type
                         margin-right: 1px
                         border-radius: 0px 5px 5px 0px
+
+                    &.unchoosen,
+                    &.unchoosen ~ .option
+                        background: transparent
 
                     &.active ~ .option
                         background: transparent

@@ -26,10 +26,10 @@ html
 					- for(i=0; i<5; i++)
 						.swiper-slide
 							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
 								.option-box
 									p 非常不同意
-									span.option.active(data-value="quetion" + qCount + " - level1")
+									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
 									- for(v=2; v<10; v++)
 										span.option(data-value="quetion" + qCount + " - level" + v)
 									p 非常同意
@@ -37,7 +37,15 @@ html
 								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
 								.option-box
 									p 非常不同意
-									span.option.active(data-value="quetion" + qCount + " - level1")
+									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
+									- for(v=2; v<10; v++)
+										span.option(data-value="quetion" + qCount + " - level" + v)
+									p 非常同意
+							.q-card
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.option-box
+									p 非常不同意
+									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
 									- for(v=2; v<10; v++)
 										span.option(data-value="quetion" + qCount + " - level" + v)
 									p 非常同意
@@ -45,23 +53,15 @@ html
 								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
 								.option-box
 									p 非常不同意
-									span.option.active(data-value="quetion" + qCount + " - level1")
+									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
 									- for(v=2; v<10; v++)
 										span.option(data-value="quetion" + qCount + " - level" + v)
 									p 非常同意
 							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
 								.option-box
 									p 非常不同意
-									span.option.active(data-value="quetion" + qCount + " - level1")
-									- for(v=2; v<10; v++)
-										span.option(data-value="quetion" + qCount + " - level" + v)
-									p 非常同意
-							.q-card
-								.quetioin 問題 - #{qCount+=1}
-								.option-box
-									p 非常不同意
-									span.option.active(data-value="quetion" + qCount + " - level1")
+									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
 									- for(v=2; v<10; v++)
 										span.option(data-value="quetion" + qCount + " - level" + v)
 									p 非常同意
@@ -85,5 +85,6 @@ html
 			});
 
 			$('.option').on('click', function() {
+				$(this).siblings('.option').removeClass('unchoosen');
 				$(this).addClass('active').siblings('.option').removeClass('active');
 			});
