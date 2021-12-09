@@ -5,9 +5,85 @@ html
 		meta(property="og:title" content="XXX的測驗結果")
 		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
 		title chart test
-		script(src="./js/jquery.min.js")
+		script(src="./js/jquery/jquery.min.js")
+		script(src="./js/swiper/swiper.min.js")
+		link(rel="stylesheet", href="./styles/swiper/swiper.min.css")
+		link(rel="stylesheet", href="./styles/reset.css")
+		link(rel="stylesheet", href="./styles/custom.css")
+
 	body
 		.container
-			div
-				canvas#polarChart
+			.title-box
+				.title 測驗標題
+				.des 測驗簡介
+
+			.function-box
+				.swiper-pagination
+
+			.swiper.mySwiper
+				.swiper-wrapper
+					- var qCount = 0;
+					- for(i=0; i<5; i++)
+						.swiper-slide
+							.q-card
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.option-box
+									p 非常不同意
+									span.option.active(data-value="quetion" + qCount + " - level1")
+									- for(v=2; v<10; v++)
+										span.option(data-value="quetion" + qCount + " - level" + v)
+									p 非常同意
+							.q-card
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.option-box
+									p 非常不同意
+									span.option.active(data-value="quetion" + qCount + " - level1")
+									- for(v=2; v<10; v++)
+										span.option(data-value="quetion" + qCount + " - level" + v)
+									p 非常同意
+							.q-card
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.option-box
+									p 非常不同意
+									span.option.active(data-value="quetion" + qCount + " - level1")
+									- for(v=2; v<10; v++)
+										span.option(data-value="quetion" + qCount + " - level" + v)
+									p 非常同意
+							.q-card
+								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
+								.option-box
+									p 非常不同意
+									span.option.active(data-value="quetion" + qCount + " - level1")
+									- for(v=2; v<10; v++)
+										span.option(data-value="quetion" + qCount + " - level" + v)
+									p 非常同意
+							.q-card
+								.quetioin 問題 - #{qCount+=1}
+								.option-box
+									p 非常不同意
+									span.option.active(data-value="quetion" + qCount + " - level1")
+									- for(v=2; v<10; v++)
+										span.option(data-value="quetion" + qCount + " - level" + v)
+									p 非常同意
+
+				.swiper-button-next
+				.swiper-button-prev
+
+
 		script(src="./js/custom.js")
+		script.
+			var swiper = new Swiper(".mySwiper", {
+				slidePerView: '1',
+				pagination: {
+					el: ".swiper-pagination",
+					type: "progressbar",
+				},
+				navigation: {
+					nextEl: ".swiper-button-next",
+					prevEl: ".swiper-button-prev",
+				},
+			});
+
+			$('.option').on('click', function() {
+				$(this).addClass('active').siblings('.option').removeClass('active');
+			});
