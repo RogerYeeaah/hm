@@ -4,42 +4,88 @@
 @import mixins/_font
 @import mixins/_universal
 
+body
+    height: 100vh
+    background-image: linear-gradient(135deg, #d8caeb, #9ec5c7)
+
 .container
     margin: 0 auto
+    padding: 40px 0
     display: block
     width: 1120px
     max-width: calc(100% - 20px)
+
+.title-box
+    width: 100%
+    text-align: center
+
+    .title
+        font-size: 23px
+
+    .des
+        font-size: 18px
 
 .swiper
     position: relative
     overflow: hidden
 
     .swiper-wrapper
+        padding-bottom: 40px
         position: relative
 
     .swiper-slide
-        text-align: center
-
         .q-card
-            padding: 20px 0
+            margin-bottom: 20px
+            padding: 30px
+            background: rgba(white, 0.4)
+            border-radius: 15px
+            box-shadow: 0px 3px 10px -4px rgb(#6b90a9, 0.5)
+
+            .question
+                margin-bottom: 20px
+                display: flex
+                flex-wrap: wrap
+                width: 100%
+
+                .ques
+                    margin-bottom: 10px
+                    padding: 5px 15px 3px 15px
+                    margin-right: 10px
+                    display: inline
+                    color: white
+                    background: #4bbafb
+                    border-radius: 100px
+                    font-weight: bold
+
+                span
+                    width: 100%
 
             .option-box
                 padding: 3px 0
+                padding-bottom: 20px
+                position: relative
                 display: flex
                 justify-content: center
                 align-items: center
 
                 p
-                    padding: 0 10px
+                    position: absolute
+                    left: 0
+                    bottom: 0
+                    font-size: 14px
+
+                    &:last-child
+                        left: auto
+                        right: 0
 
                 .option
                     margin: 0px
                     margin-right: -1px
                     height: 7px
-                    width: calC(10% - 20px)
-                    border: 1px solid gray
+                    width: 10%
+                    border: 1px solid #85a9ad
                     cursor: pointer
-                    background: lightgray
+                    background: linear-gradient(0deg, #9ec5c7, #ccbddd)
 
                     &:first-of-type
                         border-radius: 5px 0px 0px 5px
@@ -55,13 +101,67 @@
                     &.active ~ .option
                         background: transparent
 
+    .swiper-next,
+    .swiper-prev
+        padding: 10px 0
+        position: absolute
+        right: 0
+        bottom: 0
+        border: 0
+        width: 120px
+        max-width: 33.33%
+        background: white
+        cursor: pointer
+        border-radius: 10px
+        transition: .3s ease
+        font-size: 16px
+        text-align: center
+        z-index: 1
+
+        &.swiper-button-disabled
+            opacity: 0
+            cursor: auto
+
+    .swiper-prev
+        right: auto
+        left: 0
+
 .function-box
-    margin: 20px 0
+    margin: 40px 0
     display: inline-block
     width: 100%
     position: relative
 
     .swiper-pagination-progressbar
-        height: 4px
+        height: 5px
         top: 0
         width: 100%
+        border-radius: 5px
+        background: rgba(black, 0.1)
+
+        .swiper-pagination-progressbar-fill
+            background-image: linear-gradient(to left, #967ad9 , #ae20ab) 
+            border-radius: 5px
+
+.submit-box
+    position: relative
+    top: -37px
+    width: 100%
+    text-align: center
+    opacity: 0
+    pointer-events: none
+    transition: .3s ease
+
+    &.show        
+        opacity: 1
+        pointer-events: auto
+
+    button
+        padding: 10px 0
+        background: white
+        width: 120px
+        max-width: 33.33%
+        border: 0
+        border-radius: 10px
+        font-size: 16px
+        cursor: pointer

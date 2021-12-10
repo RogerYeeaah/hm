@@ -22,53 +22,53 @@ html
 
 			.swiper.mySwiper
 				.swiper-wrapper
-					- var qCount = 0;
-					- for(i=0; i<5; i++)
-						.swiper-slide
-							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
-								.option-box
-									p 非常不同意
-									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
-									- for(v=2; v<10; v++)
-										span.option(data-value="quetion" + qCount + " - level" + v)
-									p 非常同意
-							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
-								.option-box
-									p 非常不同意
-									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
-									- for(v=2; v<10; v++)
-										span.option(data-value="quetion" + qCount + " - level" + v)
-									p 非常同意
-							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
-								.option-box
-									p 非常不同意
-									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
-									- for(v=2; v<10; v++)
-										span.option(data-value="quetion" + qCount + " - level" + v)
-									p 非常同意
-							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
-								.option-box
-									p 非常不同意
-									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
-									- for(v=2; v<10; v++)
-										span.option(data-value="quetion" + qCount + " - level" + v)
-									p 非常同意
-							.q-card
-								.quetioin 問題 - #{qCount+=1}: 問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容問題內容
-								.option-box
-									p 非常不同意
-									span.option.unchoosen(data-value="quetion" + qCount + " - level1")
-									- for(v=2; v<10; v++)
-										span.option(data-value="quetion" + qCount + " - level" + v)
-									p 非常同意
+					mixin list(items)
+						each item, index in items
+							- var qCount = 0;
+							.swiper-slide(class= (items.length === index + 1) ? 'last-one' : false )
+								.q-card
+									.question
+										.ques 問題 #{qCount+=1}: 
+										span= item.content[qCount-1].title
+									.option-box
+										p 非常不同意
+										span.option.unchoosen(id="Que" + qCount data-value="1")
+										- for(v=2; v<11; v++)
+											span.option(id="Que" + qCount data-value=v)
+										p 非常同意
+								.q-card
+									.question
+										.ques 問題 #{qCount+=1}: 
+										span= item.content[qCount-1].title
+									.option-box
+										p 非常不同意
+										span.option.unchoosen(id="Que" + qCount data-value="1")
+										- for(v=2; v<11; v++)
+											span.option(id="Que" + qCount data-value=v)
+										p 非常同意
+								.q-card
+									.question
+										.ques 問題 #{qCount+=1}: 
+										span= item.content[qCount-1].title
+									.option-box
+										p 非常不同意
+										span.option.unchoosen(id="Que" + qCount data-value="1")
+										- for(v=2; v<11; v++)
+											span.option(id="Que" + qCount data-value=v)
+										p 非常同意
 
-				.swiper-button-next
-				.swiper-button-prev
+					+list([
+						{No: '1', content:[{title: '問題內容1-1'},{title: '問題內容問題內容1-2'},{title: '問題內容問題內容問題內容1-3'},{title: '問題內容問題內容1-4'}]},
+						{No: '2', content:[{title: '問題內容2-1'},{title: '問題內容問題內容2-2'},{title: '問題內容問題內容問題內容2-3'},{title: '問題內容問題內容2-4'}] },
+						{No: '3', content:[{title: '問題內容3-1'},{title: '問題內容問題內容3-2'},{title: '問題內容問題內容問題內容3-3'},{title: '問題內容問題內容3-4'}]},
+						{No: '4', content:[{title: '問題內容4-1'},{title: '問題內容問題內容4-2'},{title: '問題內容問題內容問題內容4-3'},{title: '問題內容問題內容4-4'}]}
+					])
 
+				.swiper-next 下一頁
+				.swiper-prev 上一頁
+
+			.submit-box
+				button(type="submit" value="Submit") 送出
 
 		script(src="./js/custom.js")
 		script.
@@ -79,12 +79,20 @@ html
 					type: "progressbar",
 				},
 				navigation: {
-					nextEl: ".swiper-button-next",
-					prevEl: ".swiper-button-prev",
+					nextEl: ".swiper-next",
+					prevEl: ".swiper-prev",
 				},
 			});
 
 			$('.option').on('click', function() {
 				$(this).siblings('.option').removeClass('unchoosen');
 				$(this).addClass('active').siblings('.option').removeClass('active');
+			});
+
+			swiper.on('slideChangeTransitionEnd', function(){
+				if($('.swiper-slide-active').hasClass('last-one')) {
+					$('.submit-box').addClass('show');
+				} else {
+					$('.submit-box').removeClass('show');
+				}
 			});
