@@ -24,12 +24,11 @@ html
 				.swiper-wrapper
 					mixin list(items)
 						each item, index in items
-							- var qCount = 0;
+							- var qCount = 0
 							.swiper-slide(class= (items.length === index + 1) ? 'last-one' : false )
 								.q-card
 									.question
-										.ques 問題 #{qCount+=1}: 
-										span= item.content[qCount-1].title
+										span= item.content[qCount+=1].title
 									.option-box
 										p 非常不同意
 										span.option.unchoosen(id="Que" + qCount data-value="1")
@@ -38,8 +37,7 @@ html
 										p 非常同意
 								.q-card
 									.question
-										.ques 問題 #{qCount+=1}: 
-										span= item.content[qCount-1].title
+										span= item.content[qCount+=1].title
 									.option-box
 										p 非常不同意
 										span.option.unchoosen(id="Que" + qCount data-value="1")
@@ -48,8 +46,7 @@ html
 										p 非常同意
 								.q-card
 									.question
-										.ques 問題 #{qCount+=1}: 
-										span= item.content[qCount-1].title
+										span= item.content[qCount+=1].title
 									.option-box
 										p 非常不同意
 										span.option.unchoosen(id="Que" + qCount data-value="1")
