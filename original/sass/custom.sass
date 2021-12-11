@@ -82,7 +82,9 @@ body
 
             .scroll-box
                 padding: 0px 10px
-                height: calc(100vh - 350px)
+                margin: 0 1px
+                margin-bottom: 40px
+                height: calc(100vh - 356px)
                 overflow-y: scroll
 
                 &::-webkit-scrollbar
@@ -154,13 +156,13 @@ body
         .swiper-prev
             padding: 10px 0
             position: absolute
-            right: 0
+            left: 0
             bottom: 0
             border: 0
             width: 120px
             max-width: calc(33.33% - 30px/3)
-            background: white
             cursor: pointer
+            border: 1px solid #555
             border-radius: 10px
             transition: .3s ease
             font-size: 16px
@@ -172,9 +174,12 @@ body
                 opacity: 0
                 cursor: auto
 
-        .swiper-prev
-            right: auto
-            left: 0
+        .swiper-next
+            right: 0
+            left: auto
+            color: white
+            background: #ffcb52
+            border: 1px solid transparent
 
     .submit-box
         position: relative
@@ -191,7 +196,8 @@ body
 
         button
             padding: 10px 0
-            background: white
+            color: white
+            background: #1624db
             width: 120px
             max-width: calc(33.33% - 30px/3)
             border: 0
