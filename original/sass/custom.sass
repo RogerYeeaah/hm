@@ -4,164 +4,199 @@
 @import mixins/_font
 @import mixins/_universal
 
+*
+    font-family: Noto Sans TC
+
 body
-    height: 100vh
+    height: 100%
     background-image: linear-gradient(135deg, #d8caeb, #9ec5c7)
 
-.container
-    margin: 0 auto
-    padding: 40px 0
-    display: block
-    width: 1120px
-    max-width: calc(100% - 20px)
+.question-page
+    .container
+        margin: 40px auto
+        padding: 20px 0
+        display: block
+        width: 1120px
+        max-width: calc(100% - 40px)
+        height: calc(100vh - 80px)
+        background: rgba(white, 0.8)
+        border-radius: 30px
 
-.title-box
-    width: 100%
-    text-align: center
-
-    .title
-        font-size: 23px
-
-    .des
-        font-size: 18px
-
-.swiper
-    position: relative
-    overflow: hidden
-
-    .swiper-wrapper
-        padding-bottom: 40px
+    .function-box
+        margin: 0 auto
+        margin-bottom: 60px
+        display: block
         position: relative
+        height: 20px
+        width: calc(100% - 40px)
+        border-radius: 20px
 
-    .swiper-slide
-        .q-card
-            margin-bottom: 20px
-            padding: 30px
-            background: rgba(white, 0.5)
-            border-radius: 15px
-            box-shadow: 0px 3px 10px -4px rgb(#6b90a9, 0.5)
+        span.des
+            position: absolute
+            top: 25px
+            right: 0
+            font-size: 12px
 
-            .question
+        .swiper-pagination-progressbar
+            height: 20px
+            top: 0
+            width: 100%
+            border-radius: 20px
+            background: rgba(black, 0.1)
+            overflow: hidden
+
+            .swiper-pagination-progressbar-fill
+                background: transparent
+                background-image: linear-gradient(45deg, #1624db , #8368e6)
+
+    .swiper
+        margin: 0 20px
+        position: relative
+        overflow: hidden
+
+        .swiper-wrapper
+            padding-bottom: 40px
+            position: relative
+
+        .swiper-slide
+            .title-box
+                margin-bottom: 40px
+                text-align: left
+
+                .title
+                    position: relative
+                    color: #eba100
+                    font-size: 35px
+                    font-weight: 900
+
+                    button
+                        height: 20px
+                        width: 20px
+                        color: white
+                        background: lightgray
+                        border: 0
+                        border-radius: 100px
+
+                .tippy-content
+                    color: white !important
+
+            .scroll-box
+                padding: 0px 10px
                 margin-bottom: 20px
-                display: flex
-                flex-wrap: wrap
-                width: 100%
+                height: calc(100vh - 335px)
+                overflow-y: scroll
 
-                .ques
-                    margin-bottom: 10px
-                    padding: 5px 15px 3px 15px
-                    margin-right: 10px
-                    display: inline
-                    color: white
-                    background: #4bbafb
-                    border-radius: 100px
-                    font-weight: bold
+                &::-webkit-scrollbar
+                    width: 2px
 
-                span
+                &::-webkit-scrollbar-thumb
+                    background: #bababa
+                    border-radius: 20px
+
+            .q-card
+                margin-bottom: 40px
+
+                &:last-child
+                    margin-bottom: 0
+
+                .question
+                    margin-bottom: 20px
+                    display: flex
+                    flex-wrap: wrap
+                    color: #555
                     width: 100%
+                    font-weight: 300
+                    font-size: 15px
+                    line-height: 20px
 
-            .option-box
-                padding: 3px 0
-                padding-bottom: 20px
-                position: relative
-                display: flex
-                justify-content: center
-                align-items: center
+                .option-box
+                    padding: 3px 0
+                    padding-bottom: 20px
+                    position: relative
+                    display: flex
+                    justify-content: center
+                    align-items: center
 
-                p
-                    position: absolute
-                    left: 0
-                    bottom: 0
-                    font-size: 14px
+                    p
+                        position: absolute
+                        left: 0
+                        bottom: 0
+                        color: black
+                        font-size: 12px
+                        font-weight: 500
 
-                    &:last-child
-                        left: auto
-                        right: 0
+                        &:last-child
+                            left: auto
+                            right: 0
 
-                .option
-                    margin: 0px
-                    margin-right: -1px
-                    height: 7px
-                    width: 10%
-                    border: 1px solid #85a9ad
-                    cursor: pointer
-                    background: linear-gradient(0deg, #9ec5c7, #ccbddd)
+                    span.option
+                        margin: 0px 3px
+                        padding: 10px 0
+                        display: inline-block
+                        width: calc((100% - (9*6px))/10)
+                        cursor: pointer
+                        text-align: center
+                        font-size: 14px
+                        border-radius: 5px
+                        background-image: linear-gradient(45deg, #bababa , #d8d8d8)
 
-                    &:first-of-type
-                        border-radius: 5px 0px 0px 5px
+                        &:first-of-type
+                            margin-left: 0
 
-                    &:last-of-type
-                        margin-right: 1px
-                        border-radius: 0px 5px 5px 0px
+                        &:last-of-type
+                            margin-right: 0
 
-                    &.unchoosen,
-                    &.unchoosen ~ .option
-                        background: transparent
+                        &.active
+                            color: white
+                            background-image: linear-gradient(45deg, #1624db , #8368e6)
+                            font-weight: 100
 
-                    &.active ~ .option
-                        background: transparent
+        .swiper-next,
+        .swiper-prev
+            padding: 10px 0
+            position: absolute
+            right: 0
+            bottom: 0
+            border: 0
+            width: 120px
+            max-width: calc(33.33% - 30px/3)
+            background: white
+            cursor: pointer
+            border-radius: 10px
+            transition: .3s ease
+            font-size: 16px
+            line-height: 16px
+            text-align: center
+            z-index: 1
 
-    .swiper-next,
-    .swiper-prev
-        padding: 10px 0
-        position: absolute
-        right: 0
-        bottom: 0
-        border: 0
-        width: 120px
-        max-width: 33.33%
-        background: white
-        cursor: pointer
-        border-radius: 10px
-        transition: .3s ease
-        font-size: 16px
-        text-align: center
-        z-index: 1
+            &.swiper-button-disabled
+                opacity: 0
+                cursor: auto
 
-        &.swiper-button-disabled
-            opacity: 0
-            cursor: auto
+        .swiper-prev
+            right: auto
+            left: 0
 
-    .swiper-prev
-        right: auto
-        left: 0
-
-.function-box
-    margin: 40px 0
-    display: inline-block
-    width: 100%
-    position: relative
-
-    .swiper-pagination-progressbar
-        height: 5px
-        top: 0
+    .submit-box
+        position: relative
+        top: -36px
         width: 100%
-        border-radius: 5px
-        background: rgba(black, 0.1)
+        text-align: center
+        opacity: 0
+        pointer-events: none
+        transition: .3s ease
 
-        .swiper-pagination-progressbar-fill
-            background-image: linear-gradient(to left, #967ad9 , #ae20ab) 
-            border-radius: 5px
+        &.show    
+            opacity: 1
+            pointer-events: auto
 
-.submit-box
-    position: relative
-    top: -37px
-    width: 100%
-    text-align: center
-    opacity: 0
-    pointer-events: none
-    transition: .3s ease
-
-    &.show        
-        opacity: 1
-        pointer-events: auto
-
-    button
-        padding: 10px 0
-        background: white
-        width: 120px
-        max-width: 33.33%
-        border: 0
-        border-radius: 10px
-        font-size: 16px
-        cursor: pointer
+        button
+            padding: 10px 0
+            background: white
+            width: 120px
+            max-width: calc(33.33% - 30px/3)
+            border: 0
+            border-radius: 10px
+            font-size: 16px
+            line-height: 16px
+            cursor: pointer
