@@ -1,0 +1,91 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(property="og:title" content="XXX的測驗結果")
+		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
+		title NesswellnessWheel - Know about your self
+		
+		link(rel="stylesheet", href="./styles/reset.css")
+		link(rel="stylesheet", href="./styles/custom.css")
+		link(rel="stylesheet", href="./styles/jquery/jquery-ui.css")
+		
+		script(src="./scripts/jquery/jquery.min.js")
+		script(src="./scripts/jquery/jquery-ui.js")
+
+
+	body
+		.form
+			.container
+				.title-box.t-C
+					.title Info about you
+					.des leave your message
+				form
+					.col-1.m-B-40.flex
+						span.title Name
+						input#name(type="text" name="realname")
+					.col-1.m-B-40.flex
+						span.title Email
+						input#email(type="email" name="email")
+					.col-1.m-B-40.flex
+						span.title Birthday
+						input#datepicker(type="text" name="date")
+					.col-1.m-B-40.flex
+						span.title Gender
+						input#male(type="radio" name="gender")
+						label(for="male") Male
+						input#female(type="radio" name="gender")
+						label(for="female") Female
+						input#other(type="radio" name="gender")
+						label(for="other") Other
+
+					a(href="question_page.html") Submit
+
+		script.
+			$(document).ready(function() {
+				//- dtpk
+				$("#datepicker").datepicker({
+					dateFormat: 'yy/mm/dd',
+				});
+
+
+				//- 資料驗證
+				function checkName(control) {
+					if (control.value == "") {
+						validatePrompt(control, "請輸入名字");
+						return (false);
+					}
+					return (true);
+				}
+
+				function checkMail(control) {
+					if (control.value == "") {
+						validatePrompt(control, "請輸入名字");
+						return (false);
+					}
+					return (true);
+				}
+
+				function checkGender(control) {
+					for (i=0; i<control.length; i++)
+						if (control[i].checked)
+							return(true);
+					alert ("請輸入性別");
+					return (false);
+				}
+
+				function validateForm(form) {
+					if (!checkName(form.realname)) return;
+					if (!checkMail(form.email)) return;
+					if (!checkDate(form.date)) return;
+					if (!checkGender(form.gender)) return;
+					document.testform.submit();	// Submit form
+				}
+
+				function validatePrompt(control, promptStr) {
+					alert(promptStr);
+					control.focus();
+					return;
+				}
+			}) 

@@ -235,7 +235,6 @@ a
 
 .flex
     display: flex
-    flex-wrap: wrap
 
 .f-R
     justify-content: flex-end
@@ -263,26 +262,31 @@ a
     justify-content: space-between
 
 .relative
-    position: relative
+    position: relative !important
 
 .absolute
-    position: absolute
+    position: absolute !important
 
 .fixed
-    position: fixed
+    position: fixed !important
 
 
 // -------------- text --------------
 .t-C
-    text-align: center
+    text-align: center !important
 
 .t-R
-    text-align: right
+    text-align: right !important
 
 .t-L
-    text-align: left
+    text-align: left !important
 
 
 // -------------- Color ---------------
 $gold: #c2ab93
 $darkGold: #c69a6c
+
+
+// ------------- column ---------------
+.col-1
+    width: 100%

@@ -15,7 +15,7 @@ html
 		link(rel="stylesheet", href="./styles/reset.css")
 		link(rel="stylesheet", href="./styles/custom.css")
 
-	body
+	body.cate-01
 		.question-page
 			.container
 				.function-box
@@ -37,61 +37,62 @@ html
 												.question= item.content[qCount+=1].title
 												.option-box
 													p Rarely
-													- for(v=0; v<10; v++)
-														span.option(id="Que" + qCount data-value=v class= (v === 0 ? "unchoosen" : undefined)) #{v+1}
+													
+													- for(v=1; v<11; v++)
+														span.option(id="Que" + qCount data-value=v class= (v === 0 ? "unchoosen" : undefined)) #{v}
 													p Always
 
 						+list([
-							{cate: 'PHYSICAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'PHYSICAL', des: 'Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed.', content:[
 								{title: 'I get 7-­­9 hours of sleep each night and awake feeling refreshed and well-rested in the morning.'},
 								{title: 'I manage my weight and important health numbers (cholesterol, blood pressure, etc) in healthy ways.'},
 								{title: 'I exercise regularly.'},
 								{title: 'I maintain healthy eating patterns (fruits, vegetables, etc) and stay hydrated throughout the day.'},
 								{title: 'I explore my sexuality and understand my likes and dislikes.'}
 							]},
-							{cate: 'EMOTIONAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'EMOTIONAL', des: 'Emotional wellbeing is understanding, processing, and thoughtfully acting on your emotions. This valuable practice of self-awareness includes both celebrating happiness, hope, and joy, as well as accepting uncomfortable feelings, like, being sad, afraid, or angry. Key tools to develop include resilience, ways to cope with stress, responsibility for your actions, and good communication with yourself and others. ', content:[
 								{title: 'I find healthy ways to cope with stress (e.g. exercise, meditation, social support, self-care activities, etc.)'},
 								{title: 'I do not let my emotions get the better of me. I think before I act.'},
 								{title: 'I can express all ranges of feelings (i.e. hurt, sadness, fear, anger, joy, etc.) and manage emotion-related behaviors in a healthy way.'},
 								{title: 'I am flexible and able to adapt/adjust to life’s changes in a positive way.'},
 								{title: 'I am able to ask for assistance when I need it, either from friends and family, or professionals.'}
 							]},
-							{cate: 'INTELLECTUAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'INTELLECTUAL', des: 'Intellectual wellbeing is choosing opportunities to learn, be creative, be adaptive, solve problems, and overcome challenges. Think of it as exercising your mind by pursuing your interests, and working on skills you’d like to have.', content:[
 								{title: 'I seek personal growth by learning new skills.'},
 								{title: 'I listen to ideas different from my own and am open to different perspectives (race, sexual orientation, religion, culture)'},
 								{title: 'I look for ways to use my creativity and critical thinking skills.'},
 								{title: 'I am open to new ideas.'},
 								{title: 'I stay informed on current issues, events, ideas, and trends or learn about different topics that interest me through books, magazines, newspapers, interest, podcasts, documentaries, etc'}
 							]},
-							{cate: 'SOCIAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'SOCIAL', des: 'Social wellbeing is building meaningful, communicative, encouraging relationships within your community. This includes family, friends, romantic partners and coworkers as well as the broader community in which you live.', content:[
 								{title: 'I am able to be vulnerable and have intimate relationships (not necessarily romantic), where I can talk about my private feelings'},
 								{title: 'I am engaged and make connections within my community '},
 								{title: 'I respect the diversity of others (i.e., race, ethnicity, religion, gender, ability, or sexual orientation).'},
 								{title: 'I maintain meaningful relationships with a supportive group of friends and family'},
 								{title: 'I try to be a "better person" and work on behaviors that have caused problems in my interactions with others, in every role I play'}
 							]},
-							{cate: 'ENVIROMENTAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'ENVIROMENTAL', des: 'Environmental wellness inspires us to live a lifestyle that is respectful of our surroundings. This realm encourages us to live in harmony with the Earth by taking action to protect it. Environmental well-being promotes interaction with nature and your personal environment. Everyone can have a strong environmental consciousness simply by raising their awareness.', content:[
 								{title: 'I live with the awareness of wholeness and the interconnectedness of all living systems.'},
 								{title: 'I am concerned about impacts on my local, national and world climate. and try to lessen my environmental impact.'},
 								{title: 'I have a private space to call my own where I feel comfortable and at peace in the space I occupy.'},
 								{title: 'I invest time and effort into organizing my space and creating a comfortable environment (home, work, etc)'},
 								{title: 'I feel content in my environments (home, work, school, etc.).'}
 							]},
-							{cate: 'FINANCIAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'FINANCIAL', des: 'Financial wellbeing is about living with a sense of security that your needs can be met, and setting strong foundations that plan for comfort (and even fun) in your future. Even if your financial life feels chaotic right now, it’s possible to break free from stress and debt with careful planning.', content:[
 								{title: 'I save part of my income every time I receive any money (from work, family, gifts, or refunds of any kind).'},
 								{title: 'I am able to set and stick to a budget each month so I don’t run out of money.'},
 								{title: 'I feel good about my current and future financial situation.'},
 								{title: 'I have a healthy relationship with money and a good understanding of my current financial health and options'},
 								{title: 'I seek financial education/skills/advisor to prepare me for my future plans'}
 							]},
-							{cate: 'SPIRITUAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'SPIRITUAL', des: 'Spiritual wellbeing is recognizing and honoring your search for purpose and greater meaning in a way that is resonant with your personal beliefs, and practicing respect and tolerance towards the beliefs of others. This includes commitment to personal values, building harmony between ourselves and our world, and cultivating hope and peaceful practices.', content:[
 								{title: 'I have a sense of purpose in my life.'},
 								{title: 'My values guide my decisions and actions.'},
 								{title: "I take time alone to think about what's important in life -­­ who I am, what I value, where I fit in, and where I'm going."},
 								{title: 'I integrate my "spiritual practice" within everyday life of work, family and relationships.'},
 								{title: 'I have faith in a greater power (God, universe, etc) and a belief system in place (religious, agnostic, atheist, spiritual, etc.).'}
 							]},
-							{cate: 'OCCUPATIONAL', des: 'Social wellness refers to the relationships we have and how we interact with others, including family, friends and romantic relationships', content:[
+							{cate: 'OCCUPATIONAL', des: 'Occupational wellbeing is creating and participating in a career that is fulfilling and enriches your life, and uses your personal passions and skills. This also includes having a growth mentality that allows your skills to grow with new opportunities and further education and training.', content:[
 								{title: 'I balance work with play and other aspects of my life.'},
 								{title: 'I take advantage of opportunities to learn new skills, which will enhance my future employment possibilities or achieve my career goals.'},
 								{title: 'I am passionate and genuinely enjoy what I am doing in my career right now'},
@@ -99,12 +100,16 @@ html
 								{title: 'I feel a great sense of achievement in my current work '}
 							]}
 						])
-
+					.process-box
+						span.current 0 
+						span / 
+						span.total 
+						span Questions answered
 					.swiper-next Next
 					.swiper-prev Prev
 
 				.submit-box
-					button(type="submit" value="Submit") Submit
+					button#submit.disabled(type="submit" value="Submit") Submit
 
 		script(src="./scripts/custom.js")
 		script.
@@ -120,11 +125,31 @@ html
 				},
 			});
 
+
+			//- 計算總題數
+			$('.swiper').each(function() {
+				var tA = $(this).find('.q-card').length;
+
+				$(this).find('span.total').html(tA+" ")
+			})
+
+
+			//- 總回答題數
 			$('.option').on('click', function() {
 				$(this).siblings('.option').removeClass('unchoosen');
 				$(this).addClass('active').siblings('.option').removeClass('active');
+				
+				var tA = $('.swiper').find('.q-card').length;
+				var cA = $('.scroll-box').find('.active').length;
+
+				$('.swiper').find('span.current').html(cA+" ");
+				if(cA == tA) {
+					$('.submit-box').find('button#submit').removeClass('disabled')
+				}
 			});
 
+
+			//- 按鈕 show hide
 			swiper.on('slideChangeTransitionEnd', function(){
 				if($('.swiper-slide-active').hasClass('last-one')) {
 					$('.submit-box').addClass('show');
@@ -132,6 +157,28 @@ html
 					$('.submit-box').removeClass('show');
 				}
 			});
+
+			//- 不同cate 變更背景
+			swiper.on('slideChange', function () {
+				var index = swiper.realIndex+1;
+				$('body').attr('class','')
+				$('body').addClass('cate-0' + index);
+			});
+			
+
+			//- 計算總分數
+			$('#submit').on('click', function() {
+				var score = 0;
+				
+				$('.option-box').each(function(){
+					if($(this).find('.active').data('value') == undefined) {
+					} else {
+						score += $(this).find('.active').data('value');
+						console.log(score)
+					}
+					
+				})
+			})
 
 			tippy('#des', {
 			});

@@ -5,23 +5,90 @@
 @import mixins/_universal
 
 *
-    font-family: Noto Sans TC
+    font-family: NotoSansTC
 
 body
     height: 100%
-    background-image: linear-gradient(135deg, #d8caeb, #9ec5c7)
+    background-image: url(../img/cate-01.jpg)
+    background-size: 150%
+    background-position: center
+    transition: background 0.5s
+
+    &.cate-02
+        background-image: url(../img/cate-02.jpg)
+        transition: background 0.5s
+
+    &.cate-03
+        background-image: url(../img/cate-03.jpg)
+        transition: background 0.5s
+
+    &.cate-04
+        background-image: url(../img/cate-04.jpg)
+        transition: background 0.5s
+
+    &.cate-05
+        background-image: url(../img/cate-05.jpg)
+        transition: background 0.5s
+
+    &.cate-06
+        background-image: url(../img/cate-06.jpg)
+        transition: background 0.5s
+
+    &.cate-07
+        background-image: url(../img/cate-07.jpg)
+        transition: background 0.5s
+
+    &.cate-08
+        background-image: url(../img/cate-08.jpg)
+        transition: background 0.5s
+
+.tippy-box
+    .tippy-content
+        color: white !important
+        font-size: 14px
+        font-weight: 200 !important
+
+
+.title-box
+    margin-bottom: 40px
+    text-align: left
+
+    .title
+        position: relative
+        display: inline
+        color: #eba100
+        max-height: 36px
+        font-size: 33px
+        font-weight: 900
+
+        button
+            margin-left: 5px
+            position: absolute
+            left: 100%
+            bottom: 5px
+            height: 20px
+            width: 20px
+            color: white
+            background: lightgray
+            border: 0
+            border-radius: 100px
+
+    .des
+        margin-top: 10px
+        font-size: 14px
+        font-weight: 200
+
+.container
+    margin: 40px auto
+    padding: 20px 0
+    display: block
+    width: 1120px
+    max-width: calc(100% - 40px)
+    height: calc(100vh - 80px)
+    background: rgba(white, 0.8)
+    border-radius: 30px
 
 .question-page
-    .container
-        margin: 40px auto
-        padding: 20px 0
-        display: block
-        width: 1120px
-        max-width: calc(100% - 40px)
-        height: calc(100vh - 80px)
-        background: rgba(white, 0.8)
-        border-radius: 30px
-
     .function-box
         margin: 0 auto
         margin-bottom: 60px
@@ -59,27 +126,6 @@ body
             position: relative
 
         .swiper-slide
-            .title-box
-                margin-bottom: 40px
-                text-align: left
-
-                .title
-                    position: relative
-                    color: #eba100
-                    font-size: 35px
-                    font-weight: 900
-
-                    button
-                        height: 20px
-                        width: 20px
-                        color: white
-                        background: lightgray
-                        border: 0
-                        border-radius: 100px
-
-                .tippy-content
-                    color: white !important
-
             .scroll-box
                 padding: 0px 10px
                 margin: 0 1px
@@ -152,6 +198,14 @@ body
                             background-image: linear-gradient(45deg, #1624db , #8368e6)
                             font-weight: 100
 
+        .process-box
+            position: absolute
+            bottom: 50px
+            right: 0
+            color: #b1b1b1
+            font-size: 12px
+            font-weight: 300
+
         .swiper-next,
         .swiper-prev
             padding: 10px 0
@@ -205,3 +259,43 @@ body
             font-size: 16px
             line-height: 16px
             cursor: pointer
+
+            &.disabled
+                background: lightgray
+                pointer-events: none
+
+.form
+    .form-box
+        padding: 0 20px
+
+        span.title
+            display: inline-block
+            min-width: 80px
+            font-size: 16px
+            font-weight: 300
+
+        label
+            font-size: 16px
+            font-weight: 100
+
+        input
+            width: calc(100% - 84px)
+            border: 0px
+            border-bottom: 1px solid darkgray
+            background: transparent
+            outline: none
+
+        a
+            padding: 10px 0
+            margin: 0 auto
+            display: block
+            color: white
+            background: #1624db
+            width: 120px
+            max-width: calc(33.33% - 30px/3)
+            border: 0
+            border-radius: 10px
+            font-size: 16px
+            line-height: 16px
+            cursor: pointer
+            text-align: center
