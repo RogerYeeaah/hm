@@ -88,7 +88,7 @@ body
 .question-page
 	.container
 		height: calc(100vh - 80px)
-		background: rgba(white, 1)
+		background: #fbfbfb
 		border-radius: 30px
 
 	.function-box
@@ -116,12 +116,30 @@ body
 
 			.swiper-pagination-progressbar-fill
 				background: transparent
-				background-image: linear-gradient(45deg, #1624db , #8368e6)
+				background-image: linear-gradient(45deg, #2d26e8 , #8368e6)
 
 	.swiper
 		margin: 0 20px
 		position: relative
 		overflow: hidden
+
+		&:after
+			content: ''
+			position: absolute
+			bottom: 80px
+			width: 100%
+			height: 20px
+			background-image: linear-gradient(to top, #fbfbfb, transparent)
+			z-index: 99
+
+		&:before
+			content: ''
+			position: absolute
+			top: 72px
+			width: 100%
+			height: 20px
+			background-image: linear-gradient(to bottom, #fbfbfb, transparent)
+			z-index: 99
 
 		.swiper-wrapper
 			padding-bottom: 40px
@@ -141,22 +159,6 @@ body
 				&::-webkit-scrollbar-thumb
 					background: #bababa
 					border-radius: 20px
-
-				&:after
-					content: ''
-					position: absolute
-					bottom: 40px
-					width: 100%
-					height: 20px
-					background-image: linear-gradient(to top, #ffffff, transparent)
-
-				&:before
-					content: ''
-					position: absolute
-					bottom: 40px
-					width: 100%
-					height: 20px
-					background-image: linear-gradient(to top, #ffffff, transparent)
 
 			.q-card
 				margin-bottom: 40px
@@ -306,7 +308,7 @@ body
 		button
 			padding: 10px 0
 			color: white
-			background: #1624db
+			background: #2d26e8
 			width: 120px
 			max-width: calc(33.33% - 30px/3)
 			border: 0
@@ -360,7 +362,7 @@ body
 			padding: 10px 0
 			margin: 0 auto
 			display: block
-			background: #1624db
+			background: #2d26e8
 			border: 0
 			border-radius: 10px
 			font-size: 16px
