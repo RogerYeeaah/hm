@@ -13,7 +13,7 @@
     <script src="./scripts/jquery/jquery-ui.js"></script>
   </head>
   <body>
-    <div class="form">
+    <div class="form" action="question_page.html">
       <div class="container">
         <div class="title-box t-C">
           <div class="title">Info about you</div>
@@ -21,22 +21,28 @@
         </div>
         <form>
           <div class="col-1 m-B-40 flex"><span class="title">Name</span>
-            <input id="name" type="text" name="realname">
+            <input id="name" type="text" required>
           </div>
           <div class="col-1 m-B-40 flex"><span class="title">Email</span>
-            <input id="email" type="email" name="email">
+            <input type="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
           </div>
           <div class="col-1 m-B-40 flex"><span class="title">Birthday</span>
-            <input id="datepicker" type="text" name="date">
+            <input id="datepicker" type="text" name="date" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}">
           </div>
           <div class="col-1 m-B-40 flex"><span class="title">Gender</span>
-            <input id="male" type="radio" name="gender">
-            <label for="male">Male</label>
-            <input id="female" type="radio" name="gender">
-            <label for="female">Female</label>
-            <input id="other" type="radio" name="gender">
-            <label for="other">Other</label>
-          </div><a href="question_page.html">Submit</a>
+            <div class="radio">
+              <label>
+                <input type="radio" name="gender" value="Male" required>Male
+              </label>
+              <label>
+                <input type="radio" name="gender" value="Female" required>Female
+              </label>
+              <label>
+                <input type="radio" name="gender" value="Other" required>Other
+              </label>
+            </div>
+          </div><a href="question_page.html">
+            <input type="submit" value="submit"></a>
         </form>
       </div>
     </div>
@@ -49,43 +55,15 @@
       
       
       	//- 資料驗證
-      	function checkName(control) {
-      		if (control.value == "") {
-      			validatePrompt(control, "請輸入名字");
-      			return (false);
+      	$('form').submit(function(e) {
+      		e.preventDefault();
+      		if(!$('input[name="gender"]:checked').val()) {
+      			$('input[name="gender"]')[0].setCustomValidity("Please select one of the genders.");
+      			this.reportValidity();
+      			return;
       		}
-      		return (true);
-      	}
-      
-      	function checkMail(control) {
-      		if (control.value == "") {
-      			validatePrompt(control, "請輸入名字");
-      			return (false);
-      		}
-      		return (true);
-      	}
-      
-      	function checkGender(control) {
-      		for (i=0; i<control.length; i++)
-      			if (control[i].checked)
-      				return(true);
-      		alert ("請輸入性別");
-      		return (false);
-      	}
-      
-      	function validateForm(form) {
-      		if (!checkName(form.realname)) return;
-      		if (!checkMail(form.email)) return;
-      		if (!checkDate(form.date)) return;
-      		if (!checkGender(form.gender)) return;
-      		document.testform.submit();	// Submit form
-      	}
-      
-      	function validatePrompt(control, promptStr) {
-      		alert(promptStr);
-      		control.focus();
-      		return;
-      	}
+      		this.submit();
+      	});
       }) 
     </script>
   </body>

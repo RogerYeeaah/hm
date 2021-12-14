@@ -38,10 +38,9 @@ html
 												.option-box
 													p Rarely
 													
-													- for(v=1; v<11; v++)
-														span.option(id="Que" + qCount data-value=v class= (v === 0 ? "unchoosen" : undefined)) #{v}
+													- for(v=1; v<8; v++)
+														span.option(id="Que" + qCount data-value=v class= (v === 0 ? "unchoosen" : undefined))
 													p Always
-
 						+list([
 							{cate: 'PHYSICAL', des: 'Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed.', content:[
 								{title: 'I get 7-­­9 hours of sleep each night and awake feeling refreshed and well-rested in the morning.'},
