@@ -20,7 +20,7 @@ html
 			.container
 				.function-box
 					.swiper-pagination
-					span.des completed
+					span.des Completed
 
 				.swiper.mySwiper
 					.swiper-wrapper
@@ -33,13 +33,13 @@ html
 											button#des(data-tippy-content=item.des) i
 									.scroll-box
 										- for(i=0; i<item.content.length; i++)
-											.q-card
+											.q-card(data-cate=item.cate)
 												.question= item.content[qCount+=1].title
 												.option-box
 													p Rarely
 													
 													- for(v=1; v<8; v++)
-														span.option(id="Que" + qCount data-value=v class= (v === 0 ? "unchoosen" : undefined))
+														span.option(data-value=v)
 													p Always
 						+list([
 							{cate: 'PHYSICAL', des: 'Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed.', content:[
@@ -103,12 +103,15 @@ html
 						span.current 0 
 						span / 
 						span.total 
-						span Questions answered
+						span questions answered
 					.swiper-next Next
-					.swiper-prev Prev
+					.swiper-prev Back
 
 				.submit-box
-					button#submit.disabled(type="submit" value="Submit") Submit
+					button#submit.show(type="submit" value="Submit") Submit
+
+		include ./include/footer
+
 
 		script(src="./scripts/custom.js")
 		script.
@@ -167,16 +170,22 @@ html
 
 			//- 計算總分數
 			$('#submit').on('click', function() {
-				var score = 0;
+				var scorePhy = 0,
+					scoreEmo = 0,
+					scoreInt = 0,
+					scoreSoc = 0,
+					scoreEnv = 0,
+					scoreFin = 0,
+					scoreSpi = 0,
+					scoreOcc = 0;
 				
-				$('.option-box').each(function(){
-					if($(this).find('.active').data('value') == undefined) {
-					} else {
-						score += $(this).find('.active').data('value');
-						console.log(score)
+				$('.q-card').each(function(){
+					if($(this).data('cate') === 'PHYSICAL') {
+						scorePhy += $('.active').data('value');
 					}
-					
 				})
+				console.log(scorePhy)
+				localStorage.setItem('score', scorePhy);
 			})
 
 			tippy('#des', {
