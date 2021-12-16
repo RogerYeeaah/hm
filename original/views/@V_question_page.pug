@@ -38,8 +38,11 @@ html
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					span(:class="index === this.index?'opiton active':'option'" v-for="index in 7" key="index" :data-value="index" v-on:click="onAnswerClick(index)")
+					sp(:sp="qc")
 					p Always
+
+		script#sp(type="text/x-template")
+			span(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" key="index" :data-value="index" @click="onAnswerClick(index)")
 				
 
 		script.
@@ -87,10 +90,20 @@ html
 
 			app.component('qc', {
 				template: '#qc',
-				props:['qc'],
+				props:['qc']
+			});
+
+			app.component('sp', {
+				template: '#sp',
+				data: function () {
+					return {
+						activeClass: -1,
+					}
+				},
+				props:['sp'],
 				methods: {
 					onAnswerClick: function(index){
-						
+						this.activeClass = index;
 					}
 				}
 			});

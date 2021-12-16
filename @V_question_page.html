@@ -42,11 +42,13 @@
       <div class="q-card" v-for="(items, index) in qc.content" key="index">
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
-          <p>Rarely</p><span :class="index === this.index?'opiton active':'option'" v-for="index in 7" key="index" :data-value="index" v-on:click="onAnswerClick(index)"></span>
+          <p>Rarely</p>
+          <sp :sp="qc"></sp>
           <p>Always</p>
         </div>
       </div>
     </script>
+    <script id="sp" type="text/x-template"><span :class="activeClass == index ? 'option active':'option'" v-for="index in 7" key="index" :data-value="index" @click="onAnswerClick(index)"></span></script>
     <script>
       const app = Vue.createApp({
       	data() {
@@ -92,10 +94,20 @@
       
       app.component('qc', {
       	template: '#qc',
-      	props:['qc'],
+      	props:['qc']
+      });
+      
+      app.component('sp', {
+      	template: '#sp',
+      	data: function () {
+      		return {
+      			activeClass: -1,
+      		}
+      	},
+      	props:['sp'],
       	methods: {
       		onAnswerClick: function(index){
-      			
+      			this.activeClass = index;
       		}
       	}
       });
