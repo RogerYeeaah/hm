@@ -3,7 +3,10 @@ doctype html
 html
 	head
 		meta(charset="utf-8")
-		title
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(property="og:title" content="XXX的測驗結果")
+		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
+		title NesswellnessWheel - Know about your self
 		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="scripts/axios/axios.min.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
@@ -24,6 +27,20 @@ html
 				.swiper.mySwiper
 					.swiper-wrapper
 						qs(:qs="questions")
+
+					.process-box
+						span.current {{ ansQ }}
+						span / 
+						span.total {{ totalQ }}
+						span questions answered
+					.swiper-next Next
+					.swiper-prev Back
+
+				.submit-box
+					button#submit.show(type="submit" value="Submit") Submit
+
+		include ./include/footer
+
 		
 		script#qs(type="text/x-template")
 			.swiper-slide(v-for="(items, index) in qs" key="index" :class="index===qs.length-1?'last-one':''")
@@ -42,14 +59,16 @@ html
 					p Always
 
 		script#sp(type="text/x-template")
-			span(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" key="index" :data-value="index" @click="onAnswerClick(index)")
+			span(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" key="index" :data-value="index" @click="onAnswerClick(index); count")
 				
 
 		script.
 			const app = Vue.createApp({
 				data() {
 					return {
-						questions: {}
+						questions: {},
+						ansQ: '0 ',
+						totalQ: '0 '
 					}
 				},
 				created: function() {
@@ -67,6 +86,9 @@ html
 							prevEl: ".swiper-prev",
 						},
 					});
+					
+					var totalQ = document.querySelector('.q-card');
+					console.log(document.querySelector('.q-card'));
 				},
 				methods: {
 					onSliderInfoCatch: function(){
@@ -97,7 +119,7 @@ html
 				template: '#sp',
 				data: function () {
 					return {
-						activeClass: -1,
+						activeClass: -1
 					}
 				},
 				props:['sp'],
