@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+    <script src="scripts/axios/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./scripts/jquery/jquery.min.js"></script>
+    <script src="./scripts/swiper/swiper-bundle.min.js"></script>
+    <script src="./scripts/popper/popper.min.js"></script>
+    <script src="./scripts/tippy/tippy.js"></script>
+    <link rel="stylesheet" href="./styles/swiper/swiper.min.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/custom.css">
+  </head>
+  <body class="cate-01">
+    <div class="question-page">
+      <div class="container" id="app">
+        <div class="function-box">
+          <div class="swiper-pagination"></div><span class="des">Completed</span>
+        </div>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <qs :qs="questions"></qs>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="qs" type="text/x-template">
+      <div class="swiper-slide" v-for="(items, index) in qs" key="index" :class="index===qs.length-1?'last-one':''">
+        <div class="title-box">
+          <div class="title">{{ items.cate }}
+            <button id="des" :data-tippy-content="items.des"></button>
+          </div>
+        </div>
+        <div class="scroll-box">
+          <qc :qc="qs"></qc>
+        </div>
+      </div>
+    </script>
+    <script id="qc" type="text/x-template">
+      <div class="q-card" v-for="(items, index) in qc" key="index"></div>
+    </script>
+    <script>
+      const app = Vue.createApp({
+      	data() {
+      		return {
+      			questions: {}
+      		}
+      	},
+      	created: function() {
+      		this.onSliderInfoCatch();
+      	},
+      	mounted: function() {
+      		var swiper = new Swiper(".mySwiper", {
+      			slidePerView: '1',
+      			pagination: {
+      				el: ".swiper-pagination",
+      				type: "progressbar",
+      			},
+      			navigation: {
+      				nextEl: ".swiper-next",
+      				prevEl: ".swiper-prev",
+      			},
+      		});
+      	},
+      	methods: {
+      		onSliderInfoCatch: function(){
+      			var sObj = {}
+      			axios.get('api/data_question.json', sObj)
+      				.then(function (res) {
+      					this.questions = res.data.questions
+      				}.bind(this))
+      				.catch(function (error) {
+      					console.log(error)
+      				}
+      			);
+      		}
+      	}
+      });
+      
+      app.component('qs', {
+      	template: '#qs',
+      	props:['qs']
+      });
+      
+      app.component('qc', {
+      	template: '#qc',
+      	props:['qc']
+      });
+      
+      app.mount('#app');
+    </script>
+  </body>
+</html>
