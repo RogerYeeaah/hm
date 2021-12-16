@@ -138,7 +138,6 @@ html
 
 			//- 總回答題數
 			$('.option').on('click', function() {
-				$(this).siblings('.option').removeClass('unchoosen');
 				$(this).addClass('active').siblings('.option').removeClass('active');
 				
 				var tA = $('.swiper').find('.q-card').length;
