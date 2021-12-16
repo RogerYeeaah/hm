@@ -42,7 +42,7 @@
       <div class="q-card" v-for="(items, index) in qc.content" key="index">
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
-          <p>Rarely</p><span class="option" v-for="index in 7" key="index" :data-value="index" v-on:click="onAnswerClick(index)"></span>
+          <p>Rarely</p><span :class="index === this.index?'opiton active':'option'" v-for="index in 7" key="index" :data-value="index" v-on:click="onAnswerClick(index)"></span>
           <p>Always</p>
         </div>
       </div>
@@ -95,6 +95,7 @@
       	props:['qc'],
       	methods: {
       		onAnswerClick: function(index){
+      			
       		}
       	}
       });
