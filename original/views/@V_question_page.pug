@@ -29,9 +29,9 @@ html
 						qs(:qs="questions")
 
 					.process-box
-						span.current {{ ansQ }}
+						span.current 5
 						span / 
-						span.total {{ totalQ }}
+						span.total 40
 						span questions answered
 					.swiper-next Next
 					.swiper-prev Back
@@ -43,32 +43,30 @@ html
 
 		
 		script#qs(type="text/x-template")
-			.swiper-slide(v-for="(items, index) in qs" key="index" :class="index===qs.length-1?'last-one':''")
+			.swiper-slide(v-for="(items, index) in qs" :key="index" :class="index===qs.length-1?'last-one':''")
 				.title-box
 					.title {{ items.cate }}
-						button#des(:data-tippy-content="items.des")
+						button#des(:data-tippy-content="items.des") i
 				.scroll-box
 					qc(:qc="qs[index]")
 		
 		script#qc(type="text/x-template")
-			.q-card(v-for="(items, index) in qc.content" key="index")
+			.q-card(v-for="(items, index) in qc.content" :key="index" :qus="index+=1")
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="qc")
+					sp(:sp="qc, items")
 					p Always
 
 		script#sp(type="text/x-template")
-			span(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" key="index" :data-value="index" @click="onAnswerClick(index); count")
+			span(:class="activeClass == index ? 'option active':'option'" :status="activeClass == index ? 'active':''" v-for="index in sp.options" :key="index" @click="onAnswerClick(index)" )
 				
 
 		script.
 			const app = Vue.createApp({
 				data() {
 					return {
-						questions: {},
-						ansQ: '0 ',
-						totalQ: '0 '
+						questions: {}
 					}
 				},
 				created: function() {
@@ -86,9 +84,6 @@ html
 							prevEl: ".swiper-prev",
 						},
 					});
-					
-					var totalQ = document.querySelector('.q-card');
-					console.log(document.querySelector('.q-card'));
 				},
 				methods: {
 					onSliderInfoCatch: function(){
@@ -126,6 +121,7 @@ html
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
+						console.log(this.status)
 					}
 				}
 			});

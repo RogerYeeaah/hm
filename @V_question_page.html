@@ -26,7 +26,7 @@
           <div class="swiper-wrapper">
             <qs :qs="questions"></qs>
           </div>
-          <div class="process-box"><span class="current">{{ ansQ }}</span><span>/ </span><span class="total">{{ totalQ }}</span><span>questions answered</span></div>
+          <div class="process-box"><span class="current">5</span><span>/ </span><span class="total">40</span><span>questions answered</span></div>
           <div class="swiper-next">Next</div>
           <div class="swiper-prev">Back</div>
         </div>
@@ -43,10 +43,10 @@
       </div>
     </div>
     <script id="qs" type="text/x-template">
-      <div class="swiper-slide" v-for="(items, index) in qs" key="index" :class="index===qs.length-1?'last-one':''">
+      <div class="swiper-slide" v-for="(items, index) in qs" :key="index" :class="index===qs.length-1?'last-one':''">
         <div class="title-box">
           <div class="title">{{ items.cate }}
-            <button id="des" :data-tippy-content="items.des"></button>
+            <button id="des" :data-tippy-content="items.des">i</button>
           </div>
         </div>
         <div class="scroll-box">
@@ -55,23 +55,21 @@
       </div>
     </script>
     <script id="qc" type="text/x-template">
-      <div class="q-card" v-for="(items, index) in qc.content" key="index">
+      <div class="q-card" v-for="(items, index) in qc.content" :key="index" :qus="index+=1">
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p>Rarely</p>
-          <sp :sp="qc"></sp>
+          <sp :sp="qc, items"></sp>
           <p>Always</p>
         </div>
       </div>
     </script>
-    <script id="sp" type="text/x-template"><span :class="activeClass == index ? 'option active':'option'" v-for="index in 7" key="index" :data-value="index" @click="onAnswerClick(index); count"></span></script>
+    <script id="sp" type="text/x-template"><span :class="activeClass == index ? 'option active':'option'" :status="activeClass == index ? 'active':''" v-for="index in sp.options" :key="index" @click="onAnswerClick(index)"></span></script>
     <script>
       const app = Vue.createApp({
       	data() {
       		return {
-      			questions: {},
-      			ansQ: '0 ',
-      			totalQ: '0 '
+      			questions: {}
       		}
       	},
       	created: function() {
@@ -89,9 +87,6 @@
       				prevEl: ".swiper-prev",
       			},
       		});
-      		
-      		var totalQ = document.querySelector('.q-card');
-      		console.log(document.querySelector('.q-card'));
       	},
       	methods: {
       		onSliderInfoCatch: function(){
@@ -129,6 +124,7 @@
       	methods: {
       		onAnswerClick: function(index){
       			this.activeClass = index;
+      			console.log(this.status)
       		}
       	}
       });

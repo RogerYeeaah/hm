@@ -3,12 +3,14 @@
         {
             "cate": "PHYSICAL",
             "des": "Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed.",
+            "type": "degree",
+            "options": 7,
             "content":[
-                {"title": "I get 7-­­9 hours of sleep each night and awake feeling refreshed and well-rested in the morning."},
-                {"title": "I manage my weight and important health numbers (cholesterol, blood pressure, etc) in healthy ways."},
-                {"title": "I exercise regularly."},
-                {"title": "I maintain healthy eating patterns (fruits, vegetables, etc) and stay hydrated throughout the day."},
-                {"title": "I explore my sexuality and understand my likes and dislikes."}
+                {"id": "1","title": "I get 7-­­9 hours of sleep each night and awake feeling refreshed and well-rested in the morning."},
+                {"id": "2","title": "I manage my weight and important health numbers (cholesterol, blood pressure, etc) in healthy ways."},
+                {"id": "3","title": "I exercise regularly."},
+                {"id": "4","title": "I maintain healthy eating patterns (fruits, vegetables, etc) and stay hydrated throughout the day."},
+                {"id": "5","title": "I explore my sexuality and understand my likes and dislikes."}
 
             ]
         },
