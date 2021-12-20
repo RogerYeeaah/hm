@@ -55,18 +55,20 @@ html
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="qc, items")
+					sp(:sp="items" :qc="qc")
 					p Always
 
 		script#sp(type="text/x-template")
-			span(:class="activeClass == index ? 'option active':'option'" :status="activeClass == index ? 'active':''" v-for="index in sp.options" :key="index" @click="onAnswerClick(index)" )
-				
+			.box(v-for="index in qc.options")
+				label(:class="activeClass == index ? 'option active':'option'" :for="sp.id+'-'+index" @click="onAnswerClick(index)") 
+				input(type="radio" :id="sp.id+'-'+index" :key="index" :name="sp.id")
 
 		script.
 			const app = Vue.createApp({
 				data() {
 					return {
-						questions: {}
+						questions: {},
+						totalQ: ''
 					}
 				},
 				created: function() {
@@ -86,7 +88,7 @@ html
 					});
 				},
 				methods: {
-					onSliderInfoCatch: function(){
+					onSliderInfoCatch: function() {
 						var sObj = {};
 						axios.get('api/data_question.json', sObj)
 							.then(function (res) {
@@ -117,12 +119,11 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp'],
+				props:['sp', 'qc'],
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
-						console.log(this.status)
-					}
+					},
 				}
 			});
 

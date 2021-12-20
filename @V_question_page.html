@@ -59,17 +59,23 @@
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p>Rarely</p>
-          <sp :sp="qc, items"></sp>
+          <sp :sp="items" :qc="qc"></sp>
           <p>Always</p>
         </div>
       </div>
     </script>
-    <script id="sp" type="text/x-template"><span :class="activeClass == index ? 'option active':'option'" :status="activeClass == index ? 'active':''" v-for="index in sp.options" :key="index" @click="onAnswerClick(index)"></span></script>
+    <script id="sp" type="text/x-template">
+      <div class="box" v-for="index in qc.options">
+        <label :class="activeClass == index ? 'option active':'option'" :for="sp.id+'-'+index" @click="onAnswerClick(index)"> </label>
+        <input type="radio" :id="sp.id+'-'+index" :key="index" :name="sp.id">
+      </div>
+    </script>
     <script>
       const app = Vue.createApp({
       	data() {
       		return {
-      			questions: {}
+      			questions: {},
+      			totalQ: ''
       		}
       	},
       	created: function() {
@@ -89,7 +95,7 @@
       		});
       	},
       	methods: {
-      		onSliderInfoCatch: function(){
+      		onSliderInfoCatch: function() {
       			var sObj = {};
       			axios.get('api/data_question.json', sObj)
       				.then(function (res) {
@@ -120,12 +126,11 @@
       			activeClass: -1
       		}
       	},
-      	props:['sp'],
+      	props:['sp', 'qc'],
       	methods: {
       		onAnswerClick: function(index){
       			this.activeClass = index;
-      			console.log(this.status)
-      		}
+      		},
       	}
       });
       
