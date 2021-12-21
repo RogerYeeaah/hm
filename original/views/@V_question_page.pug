@@ -51,19 +51,20 @@ html
 					qc(:qc="qs.questions[index]" :qcs="qs")
 		
 		script#qc(type="text/x-template")
-			.q-card(v-for="(items, index) in qc.content" :key="index" :status="status")
+			.q-card(v-for="(items, index) in qc.content" :key="index")
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="items" :qc="qc" :qcc="qcs" :indexs="index")
+					sp(:sp="items" :qc="qc" :qcc="qcs" @childEvent="parentEvent" :status="status")
 					p Always
 
 		script#sp(type="text/x-template")
 			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index)")
-				label(:for="sp.id+'-'+index")
+				label(:for="sp.id+'-'+index") {{ status }}
 				input(:id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id")
 
 		script.
+			//- https://www.cnblogs.com/-pdd/p/14388721.html#2%EF%BC%8C%E5%AD%90%E4%BC%A0%E7%88%B6
 			const app = Vue.createApp({
 				data() {
 					return {
@@ -129,12 +130,15 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp', 'qc', 'qcc', 'indexs', 'modelValue'],
+				props:['sp', 'qc', 'qcc.', 'status'],
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
-						console.log(this.indexs);
+						console.log(this.status);
 						this.status = "choosen";
+					},
+					add: function(){
+						this.$emit("childEvent", this.age);
 					}
 				}
 			});
