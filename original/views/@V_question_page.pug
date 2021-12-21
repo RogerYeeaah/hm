@@ -29,10 +29,10 @@ html
 						qs(:qs="this")
 
 					.process-box
-						span.current {{ curQ }}
+						span.current {{ getCurQ }}
 						span / 
-						span.total 40 
-						span questions answered
+						span.total {{ totalCount }} 
+						span  questions answered
 					.swiper-next Next
 					.swiper-prev Back
 
@@ -60,7 +60,7 @@ html
 
 		script#sp(type="text/x-template")
 			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index)")
-				label(:for="sp.id+'-'+index") {{ status }}
+				label(:for="sp.id+'-'+index")
 				input(:id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id")
 
 		script.
@@ -68,8 +68,9 @@ html
 			const app = Vue.createApp({
 				data() {
 					return {
-						questions: {},
-						curQ: '0 '
+						questions: [],
+						curQ: 1,
+						totalQ: 0
 					}
 				},
 				created: function() {
@@ -99,6 +100,18 @@ html
 								console.log(error)
 							}
 						);
+					},
+					getCurQ: function() {
+						return window.document.querySelectorAll('.active').length;
+					}
+				},
+				computed: {
+					totalCount: function() {
+						var r = 0;
+						this.questions.forEach(function(d){
+							r += d.content.length; 
+						});
+						return r;
 					}
 				}
 			});
@@ -136,6 +149,7 @@ html
 						this.activeClass = index;
 						console.log(this.status);
 						this.status = "choosen";
+						this.getCurQ()
 					},
 					add: function(){
 						this.$emit("childEvent", this.age);
