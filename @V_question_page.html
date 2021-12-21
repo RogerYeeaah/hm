@@ -26,7 +26,7 @@
           <div class="swiper-wrapper">
             <qs :qs="this"></qs>
           </div>
-          <div class="process-box"><span class="current">{{ getCurQ }}</span><span>/ </span><span class="total">{{ totalCount }} </span><span> questions answered</span></div>
+          <div class="process-box"><span class="current">{{ curQ }}</span><span>/ </span><span class="total">{{ totalCount }} </span><span> questions answered</span></div>
           <div class="swiper-next">Next</div>
           <div class="swiper-prev">Back</div>
         </div>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <script id="qs" type="text/x-template">
-      <div class="swiper-slide" v-for="(items, index) in qs.questions" :key="index" :class="index===qs.questions.length-1?'last-one':''">
+      <div class="swiper-slide" v-for="(items, index) in qs.questions" :key="index">
         <div class="title-box">
           <div class="title">{{ items.cate }}
             <button id="des" :data-tippy-content="items.des">i</button>
@@ -59,24 +59,23 @@
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p>Rarely</p>
-          <sp :sp="items" :qc="qc" :qcc="qcs" @childEvent="parentEvent" :status="status"></sp>
+          <sp :sp="items" :qc="qc" :qcc="qcs" @pClick="onpClick"></sp>
           <p>Always</p>
         </div>
       </div>
     </script>
     <script id="sp" type="text/x-template">
-      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index)">
+      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); funCopy()">
         <label :for="sp.id+'-'+index"></label>
         <input :id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id">
       </div>
     </script>
     <script>
-      //- https://www.cnblogs.com/-pdd/p/14388721.html#2%EF%BC%8C%E5%AD%90%E4%BC%A0%E7%88%B6
       const app = Vue.createApp({
       	data() {
       		return {
       			questions: [],
-      			curQ: 1,
+      			curQ: 0,
       			totalQ: 0
       		}
       	},
@@ -109,7 +108,7 @@
       			);
       		},
       		getCurQ: function() {
-      			return window.document.querySelectorAll('.active').length;
+      			this.curQ = window.document.querySelectorAll('.active').length;
       		}
       	},
       	computed: {
@@ -121,6 +120,7 @@
       			return r;
       		}
       	}
+      	
       });
       
       app.component('qs', {
@@ -154,12 +154,9 @@
       	methods: {
       		onAnswerClick: function(index){
       			this.activeClass = index;
-      			console.log(this.status);
-      			this.status = "choosen";
-      			this.getCurQ()
       		},
-      		add: function(){
-      			this.$emit("childEvent", this.age);
+      		funCopy: function() {
+      			this.$parent.$parent.getCurQ()
       		}
       	}
       });

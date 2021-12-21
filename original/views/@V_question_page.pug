@@ -29,7 +29,7 @@ html
 						qs(:qs="this")
 
 					.process-box
-						span.current {{ getCurQ }}
+						span.current {{ curQ }}
 						span / 
 						span.total {{ totalCount }} 
 						span  questions answered
@@ -43,7 +43,7 @@ html
 
 		
 		script#qs(type="text/x-template")
-			.swiper-slide(v-for="(items, index) in qs.questions" :key="index" :class="index===qs.questions.length-1?'last-one':''")
+			.swiper-slide(v-for="(items, index) in qs.questions" :key="index")
 				.title-box
 					.title {{ items.cate }}
 						button#des(:data-tippy-content="items.des") i
@@ -55,21 +55,20 @@ html
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="items" :qc="qc" :qcc="qcs" @childEvent="parentEvent" :status="status")
+					sp(:sp="items" :qc="qc" :qcc="qcs" @pClick="onpClick")
 					p Always
 
 		script#sp(type="text/x-template")
-			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index)")
+			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); funCopy()")
 				label(:for="sp.id+'-'+index")
 				input(:id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id")
 
 		script.
-			//- https://www.cnblogs.com/-pdd/p/14388721.html#2%EF%BC%8C%E5%AD%90%E4%BC%A0%E7%88%B6
 			const app = Vue.createApp({
 				data() {
 					return {
 						questions: [],
-						curQ: 1,
+						curQ: 0,
 						totalQ: 0
 					}
 				},
@@ -102,7 +101,7 @@ html
 						);
 					},
 					getCurQ: function() {
-						return window.document.querySelectorAll('.active').length;
+						this.curQ = window.document.querySelectorAll('.active').length;
 					}
 				},
 				computed: {
@@ -114,6 +113,7 @@ html
 						return r;
 					}
 				}
+				
 			});
 			
 			app.component('qs', {
@@ -147,12 +147,9 @@ html
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
-						console.log(this.status);
-						this.status = "choosen";
-						this.getCurQ()
 					},
-					add: function(){
-						this.$emit("childEvent", this.age);
+					funCopy: function() {
+						this.$parent.$parent.getCurQ()
 					}
 				}
 			});
