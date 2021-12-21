@@ -26,12 +26,12 @@ html
 					span.des Completed
 				.swiper.mySwiper
 					.swiper-wrapper
-						qs(:qs="questions")
+						qs(:qs="this")
 
 					.process-box
-						span.current 5
+						span.current {{ curQ }}
 						span / 
-						span.total 40
+						span.total 40 
 						span questions answered
 					.swiper-next Next
 					.swiper-prev Back
@@ -43,32 +43,32 @@ html
 
 		
 		script#qs(type="text/x-template")
-			.swiper-slide(v-for="(items, index) in qs" :key="index" :class="index===qs.length-1?'last-one':''")
+			.swiper-slide(v-for="(items, index) in qs.questions" :key="index" :class="index===qs.questions.length-1?'last-one':''")
 				.title-box
 					.title {{ items.cate }}
 						button#des(:data-tippy-content="items.des") i
 				.scroll-box
-					qc(:qc="qs[index]")
+					qc(:qc="qs.questions[index]" :qcs="qs")
 		
 		script#qc(type="text/x-template")
-			.q-card(v-for="(items, index) in qc.content" :key="index" :qus="index+=1")
+			.q-card(v-for="(items, index) in qc.content" :key="index" :status="status")
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="items" :qc="qc")
+					sp(:sp="items" :qc="qc" :qcc="qcs" :indexs="index")
 					p Always
 
 		script#sp(type="text/x-template")
-			.box(v-for="index in qc.options")
-				label(:class="activeClass == index ? 'option active':'option'" :for="sp.id+'-'+index" @click="onAnswerClick(index)") 
-				input(type="radio" :id="sp.id+'-'+index" :key="index" :name="sp.id")
+			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index)")
+				label(:for="sp.id+'-'+index")
+				input(:id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id")
 
 		script.
 			const app = Vue.createApp({
 				data() {
 					return {
 						questions: {},
-						totalQ: ''
+						curQ: '0 '
 					}
 				},
 				created: function() {
@@ -109,7 +109,17 @@ html
 
 			app.component('qc', {
 				template: '#qc',
-				props:['qc']
+				data: function () {
+					return {
+						status: 'unchoose'
+					}
+				},
+				props:['qc', 'qcs'],
+				methods: {
+					statusChange: function() {
+						cosnole.log(status)
+					}
+				}
 			});
 
 			app.component('sp', {
@@ -119,11 +129,13 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp', 'qc'],
+				props:['sp', 'qc', 'qcc', 'indexs', 'modelValue'],
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
-					},
+						console.log(this.indexs);
+						this.status = "choosen";
+					}
 				}
 			});
 
