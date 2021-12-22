@@ -24,9 +24,9 @@
         </div>
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <qs :qs="this"></qs>
+            <qs :qs="this" @getCurQ="parentGetCurQ"></qs>
           </div>
-          <div class="process-box"><span class="current">{{ curQ }}</span><span>/ </span><span class="total">{{ totalCount }} </span><span> questions answered</span></div>
+          <div class="process-box"><span class="current">{{ curQ }}</span><span>/ </span><span class="total">{{ totalCount }} </span><span>questions answered</span></div>
           <div class="swiper-next">Next</div>
           <div class="swiper-prev">Back</div>
         </div>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="scroll-box">
-          <qc :qc="qs.questions[index]" :qcs="qs"></qc>
+          <qc :qc="qs.questions[index]" :qcs="qs" @getCurQ="childGetCurQ"></qc>
         </div>
       </div>
     </script>
@@ -59,13 +59,13 @@
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p>Rarely</p>
-          <sp :sp="items" :qc="qc" :qcc="qcs" @pClick="onpClick"></sp>
+          <sp :sp="items" :qc="qc" :qcc="qcs" @getCurQ="grandChildGetCurQ"></sp>
           <p>Always</p>
         </div>
       </div>
     </script>
     <script id="sp" type="text/x-template">
-      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); funCopy()">
+      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); $emit('getCurQ')">
         <label :for="sp.id+'-'+index"></label>
         <input :id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id">
       </div>
@@ -75,7 +75,7 @@
       	data() {
       		return {
       			questions: [],
-      			curQ: 0,
+      			curQ: 1,
       			totalQ: 0
       		}
       	},
@@ -120,25 +120,27 @@
       			return r;
       		}
       	}
-      	
       });
       
       app.component('qs', {
       	template: '#qs',
-      	props:['qs']
+      	props:['qs'],
+      	methods: {
+      		parentGetCurQ: function() {
+      			this.$emit("getCurQ");
+      		}
+      	}
       });
       
       app.component('qc', {
       	template: '#qc',
-      	data: function () {
-      		return {
-      			status: 'unchoose'
-      		}
-      	},
       	props:['qc', 'qcs'],
       	methods: {
       		statusChange: function() {
       			cosnole.log(status)
+      		},
+      		greatChildGetCurQ: function() {
+      			this.$emit("getCurQ");
       		}
       	}
       });
@@ -150,13 +152,10 @@
       			activeClass: -1
       		}
       	},
-      	props:['sp', 'qc', 'qcc.', 'status'],
+      	props:['sp', 'qc', 'qcc.'],
       	methods: {
       		onAnswerClick: function(index){
       			this.activeClass = index;
-      		},
-      		funCopy: function() {
-      			this.$parent.$parent.getCurQ()
       		}
       	}
       });

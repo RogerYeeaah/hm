@@ -26,13 +26,13 @@ html
 					span.des Completed
 				.swiper.mySwiper
 					.swiper-wrapper
-						qs(:qs="this")
+						qs(:qs="this" @getCurQ="parentGetCurQ")
 
 					.process-box
 						span.current {{ curQ }}
 						span / 
 						span.total {{ totalCount }} 
-						span  questions answered
+						span questions answered
 					.swiper-next Next
 					.swiper-prev Back
 
@@ -48,18 +48,18 @@ html
 					.title {{ items.cate }}
 						button#des(:data-tippy-content="items.des") i
 				.scroll-box
-					qc(:qc="qs.questions[index]" :qcs="qs")
+					qc(:qc="qs.questions[index]" :qcs="qs" @getCurQ="childGetCurQ")
 		
 		script#qc(type="text/x-template")
 			.q-card(v-for="(items, index) in qc.content" :key="index")
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="items" :qc="qc" :qcc="qcs" @pClick="onpClick")
+					sp(:sp="items" :qc="qc" :qcc="qcs" @getCurQ="grandChildGetCurQ")
 					p Always
 
 		script#sp(type="text/x-template")
-			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); funCopy()")
+			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); $emit('getCurQ')")
 				label(:for="sp.id+'-'+index")
 				input(:id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id")
 
@@ -68,7 +68,7 @@ html
 				data() {
 					return {
 						questions: [],
-						curQ: 0,
+						curQ: 1,
 						totalQ: 0
 					}
 				},
@@ -113,25 +113,27 @@ html
 						return r;
 					}
 				}
-				
 			});
 			
 			app.component('qs', {
 				template: '#qs',
-				props:['qs']
+				props:['qs'],
+				methods: {
+					parentGetCurQ: function() {
+						this.$emit("getCurQ");
+					}
+				}
 			});
 
 			app.component('qc', {
 				template: '#qc',
-				data: function () {
-					return {
-						status: 'unchoose'
-					}
-				},
 				props:['qc', 'qcs'],
 				methods: {
 					statusChange: function() {
 						cosnole.log(status)
+					},
+					greatChildGetCurQ: function() {
+						this.$emit("getCurQ");
 					}
 				}
 			});
@@ -143,13 +145,10 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp', 'qc', 'qcc.', 'status'],
+				props:['sp', 'qc', 'qcc.'],
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
-					},
-					funCopy: function() {
-						this.$parent.$parent.getCurQ()
 					}
 				}
 			});
