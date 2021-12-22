@@ -67,7 +67,7 @@
     <script id="sp" type="text/x-template">
       <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); getCurQ()">
         <label :for="sp.id+'-'+index"></label>
-        <input :id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id">
+        <input :id="sp.id+'-'+index" type="radio" :data-value="qc.id + '-' + sp.id + '-' + index" :key="index" :name="sp.id">
       </div>
     </script>
     <script>
@@ -75,7 +75,7 @@
       	data() {
       		return {
       			questions: [],
-      			curQ: 1
+      			curQ: 0
       		}
       	},
       	created: function() {
