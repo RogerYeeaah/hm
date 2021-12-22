@@ -26,7 +26,7 @@ html
 					span.des Completed
 				.swiper.mySwiper
 					.swiper-wrapper
-						qs(:qs="this" @getCurQ="parentGetCurQ")
+						qs(:qs="this")
 
 					.process-box
 						span.current {{ curQ }}
@@ -37,7 +37,7 @@ html
 					.swiper-prev Back
 
 				.submit-box
-					button#submit.show(type="submit" value="Submit") Submit
+					button#submit.show(:class="curQ === totalCount? '':'disabled'" type="submit" value="Submit") Submit
 
 		include ./include/footer
 
@@ -48,18 +48,18 @@ html
 					.title {{ items.cate }}
 						button#des(:data-tippy-content="items.des") i
 				.scroll-box
-					qc(:qc="qs.questions[index]" :qcs="qs" @getCurQ="childGetCurQ")
+					qc(:qc="qs.questions[index]" :qcs="qs" v-bind="$attrs")
 		
 		script#qc(type="text/x-template")
 			.q-card(v-for="(items, index) in qc.content" :key="index")
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="items" :qc="qc" :qcc="qcs" @getCurQ="grandChildGetCurQ")
+					sp(:sp="items" :qc="qc" :qcc="qcs" v-bind="$attrs")
 					p Always
 
 		script#sp(type="text/x-template")
-			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); $emit('getCurQ')")
+			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); getCurQ()")
 				label(:for="sp.id+'-'+index")
 				input(:id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id")
 
@@ -68,8 +68,7 @@ html
 				data() {
 					return {
 						questions: [],
-						curQ: 1,
-						totalQ: 0
+						curQ: 1
 					}
 				},
 				created: function() {
@@ -99,9 +98,6 @@ html
 								console.log(error)
 							}
 						);
-					},
-					getCurQ: function() {
-						this.curQ = window.document.querySelectorAll('.active').length;
 					}
 				},
 				computed: {
@@ -117,25 +113,12 @@ html
 			
 			app.component('qs', {
 				template: '#qs',
-				props:['qs'],
-				methods: {
-					parentGetCurQ: function() {
-						this.$emit("getCurQ");
-					}
-				}
+				props:['qs']
 			});
 
 			app.component('qc', {
 				template: '#qc',
-				props:['qc', 'qcs'],
-				methods: {
-					statusChange: function() {
-						cosnole.log(status)
-					},
-					greatChildGetCurQ: function() {
-						this.$emit("getCurQ");
-					}
-				}
+				props:['qc', 'qcs']
 			});
 
 			app.component('sp', {
@@ -145,10 +128,13 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp', 'qc', 'qcc.'],
+				props:['sp', 'qc', 'qcc'],
 				methods: {
 					onAnswerClick: function(index){
 						this.activeClass = index;
+					},
+					getCurQ: function() {
+						this.qcc.curQ = window.document.querySelectorAll('.active').length
 					}
 				}
 			});

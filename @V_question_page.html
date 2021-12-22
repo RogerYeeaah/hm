@@ -24,14 +24,14 @@
         </div>
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <qs :qs="this" @getCurQ="parentGetCurQ"></qs>
+            <qs :qs="this"></qs>
           </div>
           <div class="process-box"><span class="current">{{ curQ }}</span><span>/ </span><span class="total">{{ totalCount }} </span><span>questions answered</span></div>
           <div class="swiper-next">Next</div>
           <div class="swiper-prev">Back</div>
         </div>
         <div class="submit-box">
-          <button class="show" id="submit" type="submit" value="Submit">Submit</button>
+          <button class="show" id="submit" :class="curQ === totalCount? '':'disabled'" type="submit" value="Submit">Submit</button>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="scroll-box">
-          <qc :qc="qs.questions[index]" :qcs="qs" @getCurQ="childGetCurQ"></qc>
+          <qc :qc="qs.questions[index]" :qcs="qs" v-bind="$attrs"></qc>
         </div>
       </div>
     </script>
@@ -59,13 +59,13 @@
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p>Rarely</p>
-          <sp :sp="items" :qc="qc" :qcc="qcs" @getCurQ="grandChildGetCurQ"></sp>
+          <sp :sp="items" :qc="qc" :qcc="qcs" v-bind="$attrs"></sp>
           <p>Always</p>
         </div>
       </div>
     </script>
     <script id="sp" type="text/x-template">
-      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); $emit('getCurQ')">
+      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in qc.options" @click="onAnswerClick(index); getCurQ()">
         <label :for="sp.id+'-'+index"></label>
         <input :id="sp.id+'-'+index" type="radio" :data-value="index" :key="index" :name="sp.id">
       </div>
@@ -75,8 +75,7 @@
       	data() {
       		return {
       			questions: [],
-      			curQ: 1,
-      			totalQ: 0
+      			curQ: 1
       		}
       	},
       	created: function() {
@@ -106,9 +105,6 @@
       					console.log(error)
       				}
       			);
-      		},
-      		getCurQ: function() {
-      			this.curQ = window.document.querySelectorAll('.active').length;
       		}
       	},
       	computed: {
@@ -124,25 +120,12 @@
       
       app.component('qs', {
       	template: '#qs',
-      	props:['qs'],
-      	methods: {
-      		parentGetCurQ: function() {
-      			this.$emit("getCurQ");
-      		}
-      	}
+      	props:['qs']
       });
       
       app.component('qc', {
       	template: '#qc',
-      	props:['qc', 'qcs'],
-      	methods: {
-      		statusChange: function() {
-      			cosnole.log(status)
-      		},
-      		greatChildGetCurQ: function() {
-      			this.$emit("getCurQ");
-      		}
-      	}
+      	props:['qc', 'qcs']
       });
       
       app.component('sp', {
@@ -152,10 +135,13 @@
       			activeClass: -1
       		}
       	},
-      	props:['sp', 'qc', 'qcc.'],
+      	props:['sp', 'qc', 'qcc'],
       	methods: {
       		onAnswerClick: function(index){
       			this.activeClass = index;
+      		},
+      		getCurQ: function() {
+      			this.qcc.curQ = window.document.querySelectorAll('.active').length
       		}
       	}
       });
