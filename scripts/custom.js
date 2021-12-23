@@ -2,7 +2,7 @@ var ctx = document.getElementById("polarChart").getContext("2d");
 var myChart = new Chart(ctx, {
 	type: 'polarArea',
 	data: {
-		labels: ["創造力", "洞察力", "正直", "社交智慧", "領導力", "幽默", "樂觀", "活力", "勇敢", "善良"],
+		labels: ["創造力", "洞察力", "正直", "社交智慧", "領導力", "幽默", "樂觀", "活力"],
 		datasets: [{
 			backgroundColor: [
 				"#befada",
@@ -13,15 +13,16 @@ var myChart = new Chart(ctx, {
 				"#e7c2b4",
 				"#a4afc3",
 				"#a78197",
-				"#d4a5b3",
-				"#90a4ca"
 			],
-			data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+			data: [1, 2, 3, 4, 5, 6, 7, 8],
 			borderWidth: 1,
 			borderColor: '#d3e0e2'
 		}]
 	},
-	options: {
+  options: {
+    layout: {
+      padding: 1
+    },
 		animation: {
 			animateRotate: false,
 			animateScale: true
@@ -31,23 +32,22 @@ var myChart = new Chart(ctx, {
 				display: false,
 			}
 		},
-		layout: {
-			padding: 50,
-		},
 		scales: {
 			r: {
+        min: 0,
+        max: 10,
 				angleLines: {
+          max: 10,
 					display: true,
 					center: true,
-					  color: '#d3e0e2'
+          color: '#fff'
 				},
-				ticks: {
-					max: 15,
-					min: 0,
-					display: false
-				},
+        ticks: {
+          display: false,
+          stepSize: 1
+        },
 				grid: {
-					color: '#d3e0e2'
+					color: '#ffffff'
 				}
 			}
 		}

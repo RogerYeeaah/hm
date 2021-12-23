@@ -48,14 +48,14 @@ html
 					.title {{ items.cate }}
 						button#des(:data-tippy-content="items.des") i
 				.scroll-box
-					qc(:qc="qs.questions[index]" :qcs="qs" v-bind="$attrs")
+					qc(:qc="qs.questions[index]" :qcs="qs")
 		
 		script#qc(type="text/x-template")
 			.q-card(v-for="(items, index) in qc.content" :key="index")
 				.question {{ items.title }}
 				.option-box
 					p Rarely
-					sp(:sp="items" :qc="qc" :qcc="qcs" v-bind="$attrs")
+					sp(:sp="items" :qc="qc" :qcc="qcs")
 					p Always
 
 		script#sp(type="text/x-template")

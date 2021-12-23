@@ -9,11 +9,16 @@ html
 		script(src="./scripts/jquery/jquery.min.js")
 		script(src="./scripts/chart/chart.min.js")
 		script(src="./scripts/chart/chartjs-plugin-datalabels.js")
+
+		link(rel="stylesheet", href="./styles/reset.css")
+		link(rel="stylesheet", href="./styles/custom.css")
 		
 	body
 		.container
-			div
+			.main-vision
 				canvas#polarChart
+				.center-box
+					.amoeba
 		div.socialShare
 			div.sbutton.facebook-cresta-share.cresta-float-shadow#shareF
 				a(rel="nofollow" href="#" data-name="Partager sur Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL),'targetWindow','toolbar=no,loc');return false;") facebook

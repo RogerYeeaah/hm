@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="scroll-box">
-          <qc :qc="qs.questions[index]" :qcs="qs" v-bind="$attrs"></qc>
+          <qc :qc="qs.questions[index]" :qcs="qs"></qc>
         </div>
       </div>
     </script>
@@ -59,7 +59,7 @@
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p>Rarely</p>
-          <sp :sp="items" :qc="qc" :qcc="qcs" v-bind="$attrs"></sp>
+          <sp :sp="items" :qc="qc" :qcc="qcs"></sp>
           <p>Always</p>
         </div>
       </div>
