@@ -16,7 +16,7 @@ var myChart = new Chart(ctx, {
 			],
 			data: [1, 2, 3, 4, 5, 6, 7, 8],
 			borderWidth: 1,
-			borderColor: '#d3e0e2'
+			borderColor: '#ffffff'
 		}]
 	},
   options: {
@@ -40,7 +40,7 @@ var myChart = new Chart(ctx, {
           max: 10,
 					display: true,
 					center: true,
-          color: '#fff'
+          color: '#ffffff'
 				},
         ticks: {
           display: false,
