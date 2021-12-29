@@ -1,0 +1,15 @@
+#header.header
+    .container
+        .logo-box
+            .logo(style="background-image: url(./img/logo.png)")
+
+        .hamburger(:class="active === false? '':'open'" @click="active = !active")
+            span
+            transition(name="slide")
+                ul.menu(v-if="active")
+                    li
+                        a(href="index.html#about") {{ menu[0] }}
+                    li
+                        a(href="index.html#resources") {{ menu[1] }}
+                    li
+                        a(href="index.html#Takethetest") {{ menu[2] }}

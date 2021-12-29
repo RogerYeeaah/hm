@@ -6,381 +6,30 @@
     <meta property="og:title" content="XXX的測驗結果">
     <meta property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg">
     <title>NesswellnessWheel - Know about your self</title>
+    <script src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <script src="./scripts/jquery/jquery.min.js"></script>
-    <script src="./scripts/swiper/swiper.min.js"></script>
-    <script src="./scripts/popper/popper.min.js"></script>
-    <script src="./scripts/tippy/tippy.js"></script>
-    <link rel="stylesheet" href="./styles/swiper/swiper.min.css">
+    <script src="./scripts/swiper/swiper-bundle.min.js"></script>
+    <script src="./scripts/data.js"></script>
     <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/swiper/swiper.min.css">
     <link rel="stylesheet" href="./styles/custom.css">
   </head>
   <body class="cate-01">
-    <div class="question-page">
+    <div class="question-page" id="app">
       <div class="container">
         <div class="function-box">
           <div class="swiper-pagination"></div><span class="des">Completed</span>
         </div>
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">PHYSICAL
-                              <button id="des" data-tippy-content="Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="PHYSICAL">
-                              <div class="question">I get 7-­­9 hours of sleep each night and awake feeling refreshed and well-rested in the morning.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="PHYSICAL">
-                              <div class="question">I manage my weight and important health numbers (cholesterol, blood pressure, etc) in healthy ways.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="PHYSICAL">
-                              <div class="question">I exercise regularly.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="PHYSICAL">
-                              <div class="question">I maintain healthy eating patterns (fruits, vegetables, etc) and stay hydrated throughout the day.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="PHYSICAL">
-                              <div class="question">I explore my sexuality and understand my likes and dislikes.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">EMOTIONAL
-                              <button id="des" data-tippy-content="Emotional wellbeing is understanding, processing, and thoughtfully acting on your emotions. This valuable practice of self-awareness includes both celebrating happiness, hope, and joy, as well as accepting uncomfortable feelings, like, being sad, afraid, or angry. Key tools to develop include resilience, ways to cope with stress, responsibility for your actions, and good communication with yourself and others. ">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="EMOTIONAL">
-                              <div class="question">I find healthy ways to cope with stress (e.g. exercise, meditation, social support, self-care activities, etc.)</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="EMOTIONAL">
-                              <div class="question">I do not let my emotions get the better of me. I think before I act.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="EMOTIONAL">
-                              <div class="question">I can express all ranges of feelings (i.e. hurt, sadness, fear, anger, joy, etc.) and manage emotion-related behaviors in a healthy way.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="EMOTIONAL">
-                              <div class="question">I am flexible and able to adapt/adjust to life’s changes in a positive way.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="EMOTIONAL">
-                              <div class="question">I am able to ask for assistance when I need it, either from friends and family, or professionals.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">INTELLECTUAL
-                              <button id="des" data-tippy-content="Intellectual wellbeing is choosing opportunities to learn, be creative, be adaptive, solve problems, and overcome challenges. Think of it as exercising your mind by pursuing your interests, and working on skills you’d like to have.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="INTELLECTUAL">
-                              <div class="question">I seek personal growth by learning new skills.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="INTELLECTUAL">
-                              <div class="question">I listen to ideas different from my own and am open to different perspectives (race, sexual orientation, religion, culture)</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="INTELLECTUAL">
-                              <div class="question">I look for ways to use my creativity and critical thinking skills.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="INTELLECTUAL">
-                              <div class="question">I am open to new ideas.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="INTELLECTUAL">
-                              <div class="question">I stay informed on current issues, events, ideas, and trends or learn about different topics that interest me through books, magazines, newspapers, interest, podcasts, documentaries, etc</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">SOCIAL
-                              <button id="des" data-tippy-content="Social wellbeing is building meaningful, communicative, encouraging relationships within your community. This includes family, friends, romantic partners and coworkers as well as the broader community in which you live.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="SOCIAL">
-                              <div class="question">I am able to be vulnerable and have intimate relationships (not necessarily romantic), where I can talk about my private feelings</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SOCIAL">
-                              <div class="question">I am engaged and make connections within my community </div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SOCIAL">
-                              <div class="question">I respect the diversity of others (i.e., race, ethnicity, religion, gender, ability, or sexual orientation).</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SOCIAL">
-                              <div class="question">I maintain meaningful relationships with a supportive group of friends and family</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SOCIAL">
-                              <div class="question">I try to be a &quot;better person&quot; and work on behaviors that have caused problems in my interactions with others, in every role I play</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">ENVIROMENTAL
-                              <button id="des" data-tippy-content="Environmental wellness inspires us to live a lifestyle that is respectful of our surroundings. This realm encourages us to live in harmony with the Earth by taking action to protect it. Environmental well-being promotes interaction with nature and your personal environment. Everyone can have a strong environmental consciousness simply by raising their awareness.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="ENVIROMENTAL">
-                              <div class="question">I live with the awareness of wholeness and the interconnectedness of all living systems.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="ENVIROMENTAL">
-                              <div class="question">I am concerned about impacts on my local, national and world climate. and try to lessen my environmental impact.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="ENVIROMENTAL">
-                              <div class="question">I have a private space to call my own where I feel comfortable and at peace in the space I occupy.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="ENVIROMENTAL">
-                              <div class="question">I invest time and effort into organizing my space and creating a comfortable environment (home, work, etc)</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="ENVIROMENTAL">
-                              <div class="question">I feel content in my environments (home, work, school, etc.).</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">FINANCIAL
-                              <button id="des" data-tippy-content="Financial wellbeing is about living with a sense of security that your needs can be met, and setting strong foundations that plan for comfort (and even fun) in your future. Even if your financial life feels chaotic right now, it’s possible to break free from stress and debt with careful planning.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="FINANCIAL">
-                              <div class="question">I save part of my income every time I receive any money (from work, family, gifts, or refunds of any kind).</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="FINANCIAL">
-                              <div class="question">I am able to set and stick to a budget each month so I don’t run out of money.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="FINANCIAL">
-                              <div class="question">I feel good about my current and future financial situation.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="FINANCIAL">
-                              <div class="question">I have a healthy relationship with money and a good understanding of my current financial health and options</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="FINANCIAL">
-                              <div class="question">I seek financial education/skills/advisor to prepare me for my future plans</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="title-box">
-                            <div class="title">SPIRITUAL
-                              <button id="des" data-tippy-content="Spiritual wellbeing is recognizing and honoring your search for purpose and greater meaning in a way that is resonant with your personal beliefs, and practicing respect and tolerance towards the beliefs of others. This includes commitment to personal values, building harmony between ourselves and our world, and cultivating hope and peaceful practices.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="SPIRITUAL">
-                              <div class="question">I have a sense of purpose in my life.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SPIRITUAL">
-                              <div class="question">My values guide my decisions and actions.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SPIRITUAL">
-                              <div class="question">I take time alone to think about what's important in life -­­ who I am, what I value, where I fit in, and where I'm going.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SPIRITUAL">
-                              <div class="question">I integrate my &quot;spiritual practice&quot; within everyday life of work, family and relationships.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="SPIRITUAL">
-                              <div class="question">I have faith in a greater power (God, universe, etc) and a belief system in place (religious, agnostic, atheist, spiritual, etc.).</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide last-one">
-                          <div class="title-box">
-                            <div class="title">OCCUPATIONAL
-                              <button id="des" data-tippy-content="Occupational wellbeing is creating and participating in a career that is fulfilling and enriches your life, and uses your personal passions and skills. This also includes having a growth mentality that allows your skills to grow with new opportunities and further education and training.">i</button>
-                            </div>
-                          </div>
-                          <div class="scroll-box">
-                            <div class="q-card" data-cate="OCCUPATIONAL">
-                              <div class="question">I balance work with play and other aspects of my life.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="OCCUPATIONAL">
-                              <div class="question">I take advantage of opportunities to learn new skills, which will enhance my future employment possibilities or achieve my career goals.</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="OCCUPATIONAL">
-                              <div class="question">I am passionate and genuinely enjoy what I am doing in my career right now</div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="OCCUPATIONAL">
-                              <div class="question">I feel a healthy challenge at work with a lot of room and potential to grow </div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                            <div class="q-card" data-cate="OCCUPATIONAL">
-                              <div class="question">I feel a great sense of achievement in my current work </div>
-                              <div class="option-box">
-                                <p>Rarely</p><span class="option" data-value="1"></span><span class="option" data-value="2"></span><span class="option" data-value="3"></span><span class="option" data-value="4"></span><span class="option" data-value="5"></span><span class="option" data-value="6"></span><span class="option" data-value="7"></span>
-                                <p>Always</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+            <qs :qs="this"></qs>
           </div>
-          <div class="process-box"><span class="current">0 </span><span>/ </span><span class="total"> </span><span>questions answered</span></div>
+          <div class="process-box"><span class="current">{{ curQ }}</span><span>/ </span><span class="total">{{ totalCount }}</span><span> questions answered</span></div>
           <div class="swiper-next">Next</div>
           <div class="swiper-prev">Back</div>
         </div>
-        <div class="submit-box">
-          <button class="show" id="submit" type="submit" value="Submit">Submit</button>
+        <div class="submit-box" :class="">
+          <button id="submit" :class="curQ === totalCount ? '':'disabled'" type="submit" value="Submit" @click="cul(result)">Submit</button>
         </div>
       </div>
     </div>
@@ -391,82 +40,134 @@
         </div>
       </div>
     </div>
-    <script src="./scripts/custom.js"></script>
+    <script id="qs" type="text/x-template">
+      <div class="swiper-slide" :class="index === qs.questions.length - 1 ? 'last-one':''" v-for="(items, index) in qs.questions" :key="index">
+        <div class="scroll-box">
+          <qc :qc="qs.questions[index]" :qcs="qs"></qc>
+        </div>
+      </div>
+    </script>
+    <script id="qc" type="text/x-template">
+      <div class="q-card" v-for="(items, index) in qc" :key="index">
+        <div class="question">{{ items.title }}</div>
+        <div class="option-box">
+          <p>Rarely</p>
+          <sp :sp="items" :qc="qc" :qcc="qcs" @childEvent="parentEvent"></sp>
+          <p>Always</p>
+        </div>
+      </div>
+    </script>
+    <script id="sp" type="text/x-template">
+      <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in 7" @click="onAnswerClick(index)">
+        <label :for="sp.categoryId + '-' + sp.questionId + '-' + index"></label>
+        <input :id="sp.categoryId + '-' + sp.questionId + '-' + index" type="radio" :value="((index*10000)*(sp.percentage*10000))/100000000" :key="index" :name="sp.categoryId">
+      </div>
+    </script>
     <script>
-      var swiper = new Swiper(".mySwiper", {
-      	slidePerView: '1',
-      	pagination: {
-      		el: ".swiper-pagination",
-      		type: "progressbar",
-      	},
-      	navigation: {
-      		nextEl: ".swiper-next",
-      		prevEl: ".swiper-prev",
-      	},
-      });
-      
-      
-      //- 計算總題數
-      $('.swiper').each(function() {
-      	var tA = $(this).find('.q-card').length;
-      
-      	$(this).find('span.total').html(tA+" ")
-      })
-      
-      
-      //- 總回答題數
-      $('.option').on('click', function() {
-      	$(this).addClass('active').siblings('.option').removeClass('active');
-      	
-      	var tA = $('.swiper').find('.q-card').length;
-      	var cA = $('.scroll-box').find('.active').length;
-      
-      	$('.swiper').find('span.current').html(cA+" ");
-      	if(cA == tA) {
-      		$('.submit-box').find('button#submit').removeClass('disabled')
-      	}
-      });
-      
-      
-      //- 按鈕 show hide
-      swiper.on('slideChangeTransitionEnd', function(){
-      	if($('.swiper-slide-active').hasClass('last-one')) {
-      		$('.submit-box').addClass('show');
-      	} else {
-      		$('.submit-box').removeClass('show');
-      	}
-      });
-      
-      //- 不同cate 變更背景
-      swiper.on('slideChange', function () {
-      	var index = swiper.realIndex+1;
-      	$('body').attr('class','')
-      	$('body').addClass('cate-0' + index);
-      });
-      
-      
-      //- 計算總分數
-      $('#submit').on('click', function() {
-      	var scorePhy = 0,
-      		scoreEmo = 0,
-      		scoreInt = 0,
-      		scoreSoc = 0,
-      		scoreEnv = 0,
-      		scoreFin = 0,
-      		scoreSpi = 0,
-      		scoreOcc = 0;
-      	
-      	$('.q-card').each(function(){
-      		if($(this).data('cate') === 'PHYSICAL') {
-      			scorePhy += $('.active').data('value');
+      const app = Vue.createApp({
+      	data() {
+      		return {
+      			questions: [],
+      			result: [],
+      			curQ: 0,
+      			totalQ: 0
       		}
-      	})
-      	console.log(scorePhy)
-      	localStorage.setItem('score', scorePhy);
-      })
+      	},
+      	created: function() {
+      		this.onContentCatch();
+      		this.onHeaderCatch();
+      	},
+      	mounted: function() {
+      		var swiper = new Swiper(".mySwiper", {
+      			slidePerView: '1',
+      			pagination: {
+      				el: ".swiper-pagination",
+      				type: "progressbar",
+      			},
+      			navigation: {
+      				nextEl: ".swiper-next",
+      				prevEl: ".swiper-prev",
+      			},
+      		});
       
-      tippy('#des', {
+      		swiper.on('slideChangeTransitionEnd', function(){
+      			var num = swiper.activeIndex+1;
+      			$('body').attr('class', 'cate-0' + num);
+      			if($('.swiper-slide-active').hasClass('last-one')) {
+      				$('.submit-box').addClass('show');
+      			} else {
+      				$('.submit-box').removeClass('show');
+      			}
+      		});
+      	},
+      	methods: {
+      		onContentCatch: function() {
+      			this.questions = pageData.en.questions;
+      		},
+      		onHeaderCatch: function() {
+      			this.menu = pageData.en.menu;
+      		},
+      		cul: function(e) {
+      			var active = window.document.querySelectorAll('.active'),
+      				actives = window.document.querySelectorAll('.active').length,
+      				e = [[],[],[],[],[],[],[],[]],
+      				index;
+      			
+      			for (i = 0; i < actives; i++) {
+      				index = active[i].querySelector('input').name - 1;
+      				
+      				console.log(index, active[i].querySelector('input').value);
+      				e[index].push(active[i].querySelector('input').value);
+      			}
+      			recordCount(e);
+      		},
+      		recordCount: function(e) {
+      			var cate = [];
+      
+      			console.log(e)
+      		}
+      	},
+      	computed: {
+      		totalCount: function() {
+      			var r = 0;
+      			this.questions.forEach(function(d){
+      				r += d.length; 
+      			})
+      			return r;
+      		}
+      	}
       });
+      
+      app.component('qs', {
+      	template: '#qs',
+      	props:['qs']
+      });
+      
+      app.component('qc', {
+      	template: '#qc',
+      	props:['qc', 'qcs']
+      });
+      
+      app.component('sp', {
+      	template: '#sp',
+      	data: function () {
+      		return {
+      			activeClass: -1
+      		}
+      	},
+      	props:['sp', 'qc', 'qcc'],
+      	methods: {
+      		onAnswerClick: function(index){
+      			this.activeClass = index;
+      			this.qcc.curQ = window.document.querySelectorAll('.active').length;
+      		},
+      		add: function(){
+      			this.$emit("childEvent", this.age);
+      		}
+      	}
+      });
+      
+      app.mount('#app');
     </script>
   </body>
 </html>

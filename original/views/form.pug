@@ -1,4 +1,5 @@
 doctype html
+
 html
 	head
 		meta(charset="utf-8")
@@ -6,64 +7,81 @@ html
 		meta(property="og:title" content="XXX的測驗結果")
 		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
 		title NesswellnessWheel - Know about your self
-		
-		link(rel="stylesheet", href="./styles/reset.css")
-		link(rel="stylesheet", href="./styles/custom.css")
-		link(rel="stylesheet", href="./styles/jquery/jquery-ui.css")
-		
+
+		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
 		script(src="./scripts/jquery/jquery-ui.js")
-
+		script(src="./scripts/data.js")
+		
+		link(rel="stylesheet", href="./styles/jquery/jquery-ui.css")
+		link(rel="stylesheet", href="./styles/reset.css")
+		link(rel="stylesheet", href="./styles/custom.css")
 
 	body
-		.form(action="question_page.html")
+		#app.form(action="question_page.html")
+			include ./include/header
+			
 			.container
 				.title-box.t-C
-					.title Info about you
-					.des leave your message
+					.title Tell us a little about yourself first...
 				form
-					.col-1.m-B-40.flex
-						span.title Name
-						input#name(type="text" required)
-					.col-1.m-B-40.flex
-						span.title Email
-						input(type="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
-					.col-1.m-B-40.flex
-						span.title Birthday
-						input#datepicker(type="text" name="date" pattern="[0-9]{4}\/[0-9]{2}\/[0-9]{2}")
-					.col-1.m-B-40.flex
-						span.title Gender
+					.col-1.m-B-30.flex
+						input#name(type="text" :placeholder="info.name" required)
+					.col-1.m-B-30.flex
+						input(type="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+					.col-1.m-B-30.flex
+						.title {{ info.birthday }}
+						input#datepicker(type="text" name="date" placeholder="YYYY / MM / DD" pattern="[0-9]{4}\/[0-9]{2}\/[0-9]{2}")
+					.col-1.m-B-30.flex
+						.title {{ info.gender }}
 						.radio
-							label
-								input(type="radio" name="gender" value="Male" required)
-								| Male
-							label
-								input(type="radio" name="gender" value="Female" required)
-								| Female
-							label
-								input(type="radio" name="gender" value="Other" required)
-								| Other
-					a(href="question_page.html")
+							label(:for="info.genderOpt[0]") {{ info.genderOpt[0] }}
+							input(:id="info.genderOpt[0]" type="radio" name="gender" value="Male" required)
+							label(:for="info.genderOpt[1]") {{ info.genderOpt[1] }}
+							input(:id="info.genderOpt[1]" type="radio" name="gender" value="Female" required)
+							label(:for="info.genderOpt[2]") {{ info.genderOpt[2] }}
+							input(:id="info.genderOpt[2]" type="radio" name="gender" value="Other" required)
+					a.m-H-40(href="question_page.html")
 						input(type="submit" value="submit")
-
-		include ./include/footer
 		
 		script.
-			$(document).ready(function() {
-				//- dtpk
-				$("#datepicker").datepicker({
-					dateFormat: 'yy/mm/dd',
-				});
-
-
-				//- 資料驗證
-				$('form').submit(function(e) {
-					e.preventDefault();
-					if(!$('input[name="gender"]:checked').val()) {
-						$('input[name="gender"]')[0].setCustomValidity("Please select one of the genders.");
-						this.reportValidity();
-						return;
+			const app = Vue.createApp({
+				data() {
+					return {
+						info: [],
+						menu:[],
+						active: false
 					}
-					this.submit();
-				});
-			}) 
+				},
+				created: function() {
+					this.onContentCatch();
+					this.onHeaderCatch();
+				},
+				mounted: function() {
+					//- dtpk
+					$("#datepicker").datepicker({
+						dateFormat: 'yy / mm / dd',
+					});
+
+					//- 資料驗證
+					$('form').submit(function(e) {
+						e.preventDefault();
+						if(!$('input[name="gender"]:checked').val()) {
+							$('input[name="gender"]')[0].setCustomValidity("Please select one of the genders.");
+							this.reportValidity();
+							return;
+						}
+						this.submit();
+					});
+				},
+				methods: {
+					onContentCatch: function() {
+						this.info = pageData.en.info;
+					},
+					onHeaderCatch: function() {
+						this.menu = pageData.en.menu;
+					}
+				},
+			});
+
+			app.mount('#app');

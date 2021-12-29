@@ -6,21 +6,102 @@ html
 		meta(property="og:title" content="XXX的測驗結果")
 		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
 		title NesswellnessWheel - Know about your self
+
+		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
 		script(src="./scripts/chart/chart.min.js")
 		script(src="./scripts/chart/chartjs-plugin-datalabels.js")
-
-		link(rel="stylesheet", href="./styles/reset.css")
-		link(rel="stylesheet", href="./styles/custom.css")
+		script(src="./scripts/data.js")
 		
 	body
-		.container
-			.main-vision
+		#app.container
+			include ./include/header
+
+			div
 				canvas#polarChart
-				.center-box
-					.amoeba
 		div.socialShare
 			div.sbutton.facebook-cresta-share.cresta-float-shadow#shareF
 				a(rel="nofollow" href="#" data-name="Partager sur Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL),'targetWindow','toolbar=no,loc');return false;") facebook
 					i.cs.c-icon-cresta-facebook
-		script(src="./scripts/custom.js")
+
+		script.
+			const app = Vue.createApp({
+				data() {
+					return {
+						category: [],
+						menu:[],
+						active: false
+					}
+				},
+				created: function() {
+					this.onContentCatch();
+					this.onHeaderCatch();
+				},
+				mounted: function() {
+					var ctx = document.getElementById("polarChart").getContext("2d");
+					var myChart = new Chart(ctx, {
+						type: 'polarArea',
+						data: {
+							labels: ["創造力", "洞察力", "正直", "社交智慧", "領導力", "幽默", "樂觀", "活力", "勇敢", "善良"],
+							datasets: [{
+								backgroundColor: [
+									"#befada",
+									"#adcde4",
+									"#b5cbcd",
+									"#e8d0eb",
+									"#f1e09b",
+									"#e7c2b4",
+									"#a4afc3",
+									"#a78197",
+									"#d4a5b3",
+									"#90a4ca"
+								],
+								data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+								borderWidth: 1,
+								borderColor: '#d3e0e2'
+							}]
+						},
+						options: {
+							animation: {
+								animateRotate: false,
+								animateScale: true
+							},
+							plugins: {
+								legend: {
+									display: false,
+								}
+							},
+							layout: {
+								padding: 50,
+							},
+							scales: {
+								r: {
+									angleLines: {
+										display: true,
+										center: true,
+										color: '#d3e0e2'
+									},
+									ticks: {
+										max: 15,
+										min: 0,
+										display: false
+									},
+									grid: {
+										color: '#d3e0e2'
+									}
+								}
+							}
+						}
+					});
+				},
+				methods: {
+					onCateCatch: function() {
+						this.category = pageData.en.category;
+					},
+					onHeaderCatch: function() {
+						this.menu = pageData.en.menu;
+					}
+				},
+			});
+
+			app.mount('#app');
