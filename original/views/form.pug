@@ -18,9 +18,9 @@ html
 		link(rel="stylesheet", href="./styles/custom.css")
 
 	body
+		include ./include/header
+		
 		#app.form(action="question_page.html")
-			include ./include/header
-			
 			.container
 				.title-box.t-C
 					.title Tell us a little about yourself first...
@@ -48,14 +48,11 @@ html
 			const app = Vue.createApp({
 				data() {
 					return {
-						info: [],
-						menu:[],
-						active: false
+						info: []
 					}
 				},
 				created: function() {
 					this.onContentCatch();
-					this.onHeaderCatch();
 				},
 				mounted: function() {
 					//- dtpk
@@ -77,11 +74,8 @@ html
 				methods: {
 					onContentCatch: function() {
 						this.info = pageData.en.info;
-					},
-					onHeaderCatch: function() {
-						this.menu = pageData.en.menu;
 					}
-				},
+				}
 			});
 
 			app.mount('#app');

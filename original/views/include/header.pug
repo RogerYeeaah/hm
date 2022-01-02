@@ -13,3 +13,34 @@
                         a(href="index.html#resources") {{ menu[1] }}
                     li
                         a(href="index.html#Takethetest") {{ menu[2] }}
+    
+    script.
+        const header = Vue.createApp({
+            data() {
+                return {
+                    menu:[],
+                    active: false
+                }
+            },
+            created: function() {
+                this.onHeaderCatch();
+            },
+            mounted: function() {
+            },
+            methods: {
+                onHeaderCatch: function() {
+                    this.menu = pageData.en.menu;
+                }
+            },
+            watch: {
+                active: function (newActive, oldActive) {
+                    if (newActive == true) {
+                        window.document.querySelector('body').style['overflow'] = 'hidden';
+                    } else {
+                        window.document.querySelector('body').style['overflow'] = '';
+                    }
+                }
+            }
+        });
+
+        header.mount('#header');

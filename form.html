@@ -15,23 +15,54 @@
     <link rel="stylesheet" href="./styles/custom.css">
   </head>
   <body>
-    <div class="form" id="app" action="question_page.html">
-      <div class="header" id="header">
-        <div class="container">
-          <div class="logo-box">
-            <div class="logo" style="background-image: url(./img/logo.png)"></div>
-          </div>
-          <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
-            <transition name="slide">
-              <ul class="menu" v-if="active">
-                <li><a href="index.html#about">{{ menu[0] }}</a></li>
-                <li><a href="index.html#resources">{{ menu[1] }}</a></li>
-                <li><a href="index.html#Takethetest">{{ menu[2] }}</a></li>
-              </ul>
-            </transition>
-          </div>
+    <div class="header" id="header">
+      <div class="container">
+        <div class="logo-box">
+          <div class="logo" style="background-image: url(./img/logo.png)"></div>
+        </div>
+        <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
+          <transition name="slide">
+            <ul class="menu" v-if="active">
+              <li><a href="index.html#about">{{ menu[0] }}</a></li>
+              <li><a href="index.html#resources">{{ menu[1] }}</a></li>
+              <li><a href="index.html#Takethetest">{{ menu[2] }}</a></li>
+            </ul>
+          </transition>
         </div>
       </div>
+      <script>
+        const header = Vue.createApp({
+            data() {
+                return {
+                    menu:[],
+                    active: false
+                }
+            },
+            created: function() {
+                this.onHeaderCatch();
+            },
+            mounted: function() {
+            },
+            methods: {
+                onHeaderCatch: function() {
+                    this.menu = pageData.en.menu;
+                }
+            },
+            watch: {
+                active: function (newActive, oldActive) {
+                    if (newActive == true) {
+                        window.document.querySelector('body').style['overflow'] = 'hidden';
+                    } else {
+                        window.document.querySelector('body').style['overflow'] = '';
+                    }
+                }
+            }
+        });
+        
+        header.mount('#header');
+      </script>
+    </div>
+    <div class="form" id="app" action="question_page.html">
       <div class="container">
         <div class="title-box t-C">
           <div class="title">Tell us a little about yourself first...</div>
@@ -66,14 +97,11 @@
       const app = Vue.createApp({
       	data() {
       		return {
-      			info: [],
-      			menu:[],
-      			active: false
+      			info: []
       		}
       	},
       	created: function() {
       		this.onContentCatch();
-      		this.onHeaderCatch();
       	},
       	mounted: function() {
       		//- dtpk
@@ -95,11 +123,8 @@
       	methods: {
       		onContentCatch: function() {
       			this.info = pageData.en.info;
-      		},
-      		onHeaderCatch: function() {
-      			this.menu = pageData.en.menu;
       		}
-      	},
+      	}
       });
       
       app.mount('#app');
