@@ -18,7 +18,9 @@
   "homepage": "https://github.com/RogerYeeaah/hm#readme",
   "dependencies": {
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-cached": "^1.1.1",
+    "gulp-filter": "^7.0.0",
     "gulp-imagemin": "^7.1.0",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.0.0",

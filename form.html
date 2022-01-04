@@ -20,12 +20,13 @@
         <div class="logo-box">
           <div class="logo" style="background-image: url(./img/logo.png)"></div>
         </div>
+        <div class="function-box"><a href="javascript:;"><img src="./img/icons/globe.png" alt="">En</a></div>
         <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
           <transition name="slide">
             <ul class="menu" v-if="active">
-              <li><a href="index.html#about">{{ menu[0] }}</a></li>
-              <li><a href="index.html#resources">{{ menu[1] }}</a></li>
-              <li><a href="index.html#Takethetest">{{ menu[2] }}</a></li>
+              <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
+              <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
+              <li><a href="index.html#anchor-takethetest">{{ menu[2] }}</a></li>
             </ul>
           </transition>
         </div>

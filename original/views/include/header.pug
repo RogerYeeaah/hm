@@ -3,16 +3,21 @@
         .logo-box
             .logo(style="background-image: url(./img/logo.png)")
 
+        .function-box
+            a(href="javascript:;")
+                img(src="./img/icons/globe.png", alt="")
+                | En
+
         .hamburger(:class="active === false? '':'open'" @click="active = !active")
             span
             transition(name="slide")
                 ul.menu(v-if="active")
                     li
-                        a(href="index.html#about") {{ menu[0] }}
+                        a(href="index.html#anchor-about") {{ menu[0] }}
                     li
-                        a(href="index.html#resources") {{ menu[1] }}
+                        a(href="index.html#anchor-resources") {{ menu[1] }}
                     li
-                        a(href="index.html#Takethetest") {{ menu[2] }}
+                        a(href="index.html#anchor-takethetest") {{ menu[2] }}
     
     script.
         const header = Vue.createApp({

@@ -14,58 +14,69 @@ var pageData = {
 			"article":[
 				{"type": "title", "content": "How balanced is your life?"},
 				{"type": "article", "content": "Take our quick free quiz and learn which areas of your life are thriving and which areas need a bit more attention."},
-				{"type": "button", "content": "Let's get started"},
-				{"type": "svg", "": ""},
+				{"type": "button", "content": "Let's get started", "url": "form.html"},
 				{"type": "title", "content": "Why take this quiz?"},
 				{"type": "article", "content": "The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be."},
-				{"type": "article", "content": "The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life. Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement."},
-				{"type": "article", "content": "Learn more about the eight dimensions of wellness"},
-				{"type": "article", "content": "ness wellness is a resource, platform and community bringing together like-minded individuals, collectively promoting wellness, self-care and self-growth. We see wellness as an alliance. An alliance of our mind, body and soul, but also an alliance of people, spaces and purposes all coming together towards a more wholesome you. Visit our website for more information, events and resources"},
-				{"type": ""},
-				{"type": ""},
-				{"type": ""},
-			]
-		},
-		"category": {
-			"1": {
-				"title": "Emotional",
-				"logo": "",
-				"info": "Emotional wellbeing is understanding, processing, and thoughtfully acting on your emotions. This valuable practice of self-awareness includes both celebrating happiness, hope, and joy, as well as accepting uncomfortable feelings, like, being sad, afraid, or angry. Key tools to develop include resilience, ways to cope with stress, responsibility for your actions, and good communication with yourself and others."
-			},
-			"2": {
-				"title": "Physical",
-				"logo": "",
-				"info": "Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed."
-			},
-			"3": {
-				"title": "Spiritual",
-				"logo": "",
-				"info": "Spiritual wellbeing is recognizing and honoring your search for purpose and greater meaning in a way that is resonant with your personal beliefs, and practicing respect and tolerance towards the beliefs of others. This includes commitment to personal values, building harmony between ourselves and our world, and cultivating hope and peaceful practices."
-			},
-			"4 ": {
-				"title": "Intellectual",
-				"logo": "",
-				"info": "Intellectual wellbeing is choosing opportunities to learn, be creative, be adaptive, solve problems, and overcome challenges. Think of it as exercising your mind by pursuing your interests, and working on skills you’d like to have."
-			},
-			"5": {
-				"title": "Social",
-				"logo": "",
-				"info": "Social wellbeing is building meaningful, communicative, encouraging relationships within your community. This includes family, friends, romantic partners and coworkers as well as the broader community in which you live."
-			},
-			"6": {
-				"title": "Environmental",
-				"logo": "",
-				"info": "Environmental wellness inspires us to live a lifestyle that is respectful of our surroundings. This realm encourages us to live in harmony with the Earth by taking action to protect it. Environmental well-being promotes interaction with nature and your personal environment. Everyone can have a strong environmental consciousness simply by raising their awareness."
-			},
-			"7": {
-				"title": "Occupational",
-				"logo": "",
-				"info": "Occupational wellbeing is creating and participating in a career that is fulfilling and enriches your life, and uses your personal passions and skills. This also includes having a growth mentality that allows your skills to grow with new opportunities and further education and training."
-			}, 
-			"8": {
-				"title": "Financial",
-				"logo": "",
-				"info": "Financial wellbeing is about living with a sense of security that your needs can be met, and setting strong foundations that plan for comfort (and even fun) in your future. Even if your financial life feels chaotic right now, it’s possible to break free from stress and debt with careful planning."
+				{"type": "svg", "": ""},
+				{"type": "article", "content": "The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life."},
+				{"type":"article", "content":"Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement."},
+				{"type": "link", "content": "Learn more about the <a href='index.html#resources'>eight dimensions of wellness</a>"},
+				{"type": "button", "content": "Let's get started", "url": "form.html"},
+				{"type": "title", "content": "Who We Are"},
+				{"type": "article", "content": "ness wellness is a resource, platform and community bringing together like-minded individuals, collectively promoting wellness, self-care and self-growth."},
+				{"type": "article", "content":"We see wellness as an alliance. An alliance of our mind, body and soul, but also an alliance of people, spaces and purposes all coming together towards a more wholesome you."},
+				{"type": "link", "content": "Visit our <a href='https://www.nesswellness.com/'>website</a> for more information, events and resources"},
+				{"type": "button", "content": "Start the quiz"},
+				{"type": "title", "content": "The ness Wellness Wheel"},
+				{"type": "article", "content": "The ness Wellness Wheel is a way for us to to see how our life as a whole is balanced and if all eight essential spokes or dimensions are fulfilled and taken care of."},
+				{"type": "article", "content": "If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives."},
+				{"type": "article", "content": "While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows."},
+				{"type": "link", "content": "The first step towards your wellness journey starts with knowing where you are. <a href='form.html'>Take our quiz</a> and get started on your path to a well-rounded, balanced, and fulfilled life."},
+				{"type": "title", "content": "8 Dimensions of Wellness"},
+				{"type": "category"},
+				{"type": "button", "content": "Start the quiz"}
+			],
+			"category": {
+				"1": {
+					"title": "Emotional",
+					"logo": "img/icons/badge.png",
+					"info": "Emotional wellbeing is understanding, processing, and thoughtfully acting on your emotions. This valuable practice of self-awareness includes both celebrating happiness, hope, and joy, as well as accepting uncomfortable feelings, like, being sad, afraid, or angry. Key tools to develop include resilience, ways to cope with stress, responsibility for your actions, and good communication with yourself and others."
+				},
+				"2": {
+					"title": "Physical",
+					"logo": "img/icons/badge.png",
+					"info": "Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed."
+				},
+				"3": {
+					"title": "Spiritual",
+					"logo": "img/icons/badge.png",
+					"info": "Spiritual wellbeing is recognizing and honoring your search for purpose and greater meaning in a way that is resonant with your personal beliefs, and practicing respect and tolerance towards the beliefs of others. This includes commitment to personal values, building harmony between ourselves and our world, and cultivating hope and peaceful practices."
+				},
+				"4 ": {
+					"title": "Intellectual",
+					"logo": "img/icons/badge.png",
+					"info": "Intellectual wellbeing is choosing opportunities to learn, be creative, be adaptive, solve problems, and overcome challenges. Think of it as exercising your mind by pursuing your interests, and working on skills you’d like to have."
+				},
+				"5": {
+					"title": "Social",
+					"logo": "img/icons/badge.png",
+					"info": "Social wellbeing is building meaningful, communicative, encouraging relationships within your community. This includes family, friends, romantic partners and coworkers as well as the broader community in which you live."
+				},
+				"6": {
+					"title": "Environmental",
+					"logo": "img/icons/badge.png",
+					"info": "Environmental wellness inspires us to live a lifestyle that is respectful of our surroundings. This realm encourages us to live in harmony with the Earth by taking action to protect it. Environmental well-being promotes interaction with nature and your personal environment. Everyone can have a strong environmental consciousness simply by raising their awareness."
+				},
+				"7": {
+					"title": "Occupational",
+					"logo": "img/icons/badge.png",
+					"info": "Occupational wellbeing is creating and participating in a career that is fulfilling and enriches your life, and uses your personal passions and skills. This also includes having a growth mentality that allows your skills to grow with new opportunities and further education and training."
+				}, 
+				"8": {
+					"title": "Financial",
+					"logo": "img/icons/badge.png",
+					"info": "Financial wellbeing is about living with a sense of security that your needs can be met, and setting strong foundations that plan for comfort (and even fun) in your future. Even if your financial life feels chaotic right now, it’s possible to break free from stress and debt with careful planning."
+				}
 			}
 		},
 		"questions": [
@@ -333,7 +344,25 @@ var pageData = {
 			"birthday": "生日",
 			"gender": "性別",
 			"genderOpt":["男","女","其他"],
-			"":[]
+			"article":[
+				"您的生活有多和諧平衡呢?",
+				"歡迎參加我們的免費測驗，了解您生活中哪些領域已經蓬勃發展或者值得更多的關注。",
+				"開始進行吧!",
+				"測驗帶來的好處?",
+				"The ness Wellness Wheel 以最全面的角度觀察您的生活，檢視您所處於的現況與未來將前往的方向。",
+				"The ness Wellness Wheel 是一種自我評估工具，可讓您直觀地了解自己的生活平衡程度。透過對於健康的八個面向（社交、身體、情感、職業、心靈、智慧、環境和財務）中的每個面向進行反思，我們可以使用該工具定期評估我們的健康如何隨著時間的推移而發生變化以及如何影響我們的目標和生活。請記得沒有人是完美的，但我們可以透過瞭解您正在蓬勃發展以及關注需要改善的領域，邁向全方位平衡的生活。",
+				"了解更多關於健康的八個面向",
+				"介紹我們",
+				"ness Wellness 將健康生活視為一種聯盟，一個為了實踐理想及圓滿身心靈所建立的資源整合社群平台。目的是希望結合社群，空間和目標，聚集有共鳴的人們一起，共同分享和推廣理想及圓滿的生活方式，愛惜自己和自我成長，一起找到更健康且理想的自己。歡迎參觀我們的網站了解更多信息、活動和資源。",
+				"測驗開始",
+				"The ness Wellness Wheel 是一種讓我們了解自己的生活是否達到整體平衡，以及健康的八個面向是否都被滿足照顧到的方式。",
+				"如果當其中一個生活面向成為空間主軸，而忽略了其他部分，The ness Wellness Wheel 就會感覺失去平衡，我們的生活亦是如此。",
+				"我們雖然不需要在每個生活面向都追求完美，但渴望創造一個圓滿和諧的生活樣貌，不帶有高低落差的劇烈起伏。", 
+				"邁向健康旅程的第一步始於了解您所處於的生活狀態。參加我們的測驗，開始走向全方位、平衡且充實的生活。",
+				"The ness Wellness Wheel",
+				"關於健康的八個面向",
+				"簡單介紹你自己",
+			]
 		},
 		"category": {
 			"1": {
