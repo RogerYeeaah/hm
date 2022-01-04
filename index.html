@@ -124,8 +124,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="show = !show, openNot(i)" :key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt=""> {{ items.title }}</p>
-        <div class="arrow" :style="{active: i === activeItem}?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
-        <transition-group name="slide"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition-group>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
       </li>
     </script>
     <script>

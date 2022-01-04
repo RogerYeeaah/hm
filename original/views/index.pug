@@ -76,9 +76,8 @@ html
 				p
 					img(:src="items.logo", alt="")
 					|  {{ items.title }}
-				.arrow(:style="{active: i === activeItem}?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
-				transition-group(name="slide")
-					span(v-if="i === activeItem? show:!show") {{ items.info }}
+				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
+				span(v-if="i === activeItem? show:!show") {{ items.info }}
 
 		script.
 			const app = Vue.createApp({
