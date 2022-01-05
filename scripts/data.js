@@ -28,7 +28,7 @@ var pageData = {
 				{"type": "link", "content": "Visit our <a href='https://www.nesswellness.com/'>website</a> for more information, events and resources"},
 				{"type": "button", "content": "Start the quiz"},
 				{"type": "title", "content": "The ness Wellness Wheel"},
-				{"type": "article", "content": "The ness Wellness Wheel is a way for us to to see how our life as a whole is balanced and if all eight essential spokes or dimensions are fulfilled and taken care of."},
+				{"type": "article", "content": "The ness Wellness Wheel is a way for us to see how our life as a whole is balanced and if all eight essential spokes or dimensions are fulfilled and taken care of."},
 				{"type": "article", "content": "If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives."},
 				{"type": "article", "content": "While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows."},
 				{"type": "link", "content": "The first step towards your wellness journey starts with knowing where you are. <a href='form.html'>Take our quiz</a> and get started on your path to a well-rounded, balanced, and fulfilled life."},
