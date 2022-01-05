@@ -66,6 +66,11 @@ body
 
 	span
 		display: block
+		transform: scale(0.9)
+		
+		small
+			strong
+				font-weight: 500
 
 	.title
 		padding: 20px 20px
@@ -473,6 +478,7 @@ body
 			margin-bottom: 20px
 			display: flex
 			justify-content: center
+			align-items: center
 			font-size: 12px
 
 			img
@@ -485,11 +491,17 @@ body
 				display: inline
 				text-decoration: underline
 				color: black
+			
+			.detail
+				p
+					line-height: 16px
 		
 		.right
+			font-size: 14px
 			text-align: center
 
 		.logo-box
+			margin-top: 30px
 			margin-bottom: 20px
 
 	.container
@@ -659,7 +671,7 @@ body
 			margin-bottom: 20px
 			padding: 0 60px
 			line-height: 34px
-			font-size: 23px
+			font-size: 18px
 			font-weight: 600
 		
 		span
@@ -688,6 +700,7 @@ body
 			background: #fbb91c
 			border: 0px solid transparent
 			border-radius: 10px
+			font-size: 14px
 			font-weight: 500
 
 		.simulator
@@ -720,7 +733,8 @@ body
 					max-height: 600px
 					width: 100%
 					max-width: 600px
-					background: linear-gradient(90deg, #edd8bf, #f1bdbd, #cdddf1, #cdc0db, #dbbdd2, #c3e0d2, #eadbe0, #cbd8de)
+					border: 1px solid lightblue
+					// background: linear-gradient(90deg, #edd8bf, #f1bdbd, #cdddf1, #cdc0db, #dbbdd2, #c3e0d2, #eadbe0, #cbd8de)
 					background-size: 1600% 1600%
 					animation: morph 12s ease-in-out -2s infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate
 					opacity: 0.7
@@ -739,6 +753,8 @@ body
 
 			svg
 				position: relative
+				background: rgba(white, 0.5)
+				border-radius: 1000px
 				z-index: 1
 
 		.demensions
@@ -780,15 +796,17 @@ body
 				height: 24px
 
 			span
-				padding-top: 10px
+				padding: 0 20px
+				padding-top: 20px
 				position: relative
 				height: 0
+				text-align: left
 
 //keyframe
 @keyframes morph
 	0%,
 	100%
-		border-radius: 33% 71% 70% 30% / 30% 30% 70% 70%
+		border-radius: 38% 68% 70% 30% / 30% 30% 67% 70%
 	
 	20%
 		border-radius: 40% 62% 42% 58% / 46% 51% 49% 59%
@@ -797,10 +815,10 @@ body
 		border-radius: 67% 43% 64% 58% / 64% 48% 52% 36%
 
 	60%
-		border-radius: 47% 47% 51% 49% / 37% 65% 35% 63%
+		border-radius: 47% 47% 51% 49% / 41% 65% 35% 63%
 	
 	80%
-		border-radius: 41% 63% 51% 49% / 33% 30% 70% 60%
+		border-radius: 41% 63% 51% 49% / 9% 30% 70% 60%
 
 @keyframes change
 	100%
