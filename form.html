@@ -15,54 +15,6 @@
     <link rel="stylesheet" href="./styles/custom.css">
   </head>
   <body>
-    <div class="header" id="header">
-      <div class="container">
-        <div class="logo-box">
-          <div class="logo" style="background-image: url(./img/logo.png)"></div>
-        </div>
-        <div class="function-box"><a href="javascript:;"><img src="./img/icons/globe.png" alt="">En</a></div>
-        <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
-          <transition name="slide">
-            <ul class="menu" v-if="active">
-              <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
-              <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
-              <li><a href="index.html#anchor-takethetest">{{ menu[2] }}</a></li>
-            </ul>
-          </transition>
-        </div>
-      </div>
-      <script>
-        const header = Vue.createApp({
-            data() {
-                return {
-                    menu:[],
-                    active: false
-                }
-            },
-            created: function() {
-                this.onHeaderCatch();
-            },
-            mounted: function() {
-            },
-            methods: {
-                onHeaderCatch: function() {
-                    this.menu = pageData.en.menu;
-                }
-            },
-            watch: {
-                active: function (newActive, oldActive) {
-                    if (newActive == true) {
-                        window.document.querySelector('body').style['overflow'] = 'hidden';
-                    } else {
-                        window.document.querySelector('body').style['overflow'] = '';
-                    }
-                }
-            }
-        });
-        
-        header.mount('#header');
-      </script>
-    </div>
     <div class="form" id="app" action="question_page.html">
       <div class="container">
         <div class="title-box t-C">
@@ -90,8 +42,15 @@
               <input :id="info.genderOpt[2]" type="radio" name="gender" value="Other" required>
             </div>
           </div><a class="m-H-40" href="question_page.html">
-            <input type="submit" value="submit"></a>
+            <input type="Submit" value="Submit"></a>
         </form>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <div class="logo-box"><span>Powered by</span>
+          <div class="logo" style="background-image: url(./img/logo.png)"></div>
+        </div>
       </div>
     </div>
     <script>
@@ -108,6 +67,8 @@
       		//- dtpk
       		$("#datepicker").datepicker({
       			dateFormat: 'yy / mm / dd',
+      			changeYear: true,
+      			changeMonth: true
       		});
       
       		//- 資料驗證

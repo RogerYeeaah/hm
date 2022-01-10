@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="XXX的測驗結果">
+    <meta property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg">
+    <title>NesswellnessWheel - Know about your self</title>
+    <script src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./scripts/jquery/jquery.min.js"></script>
+    <script src="./scripts/chart/chart.min.js"></script>
+    <script src="./scripts/chart/chartjs-plugin-datalabels.js"></script>
+    <script src="./scripts/data.js"></script>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/custom.css">
+  </head>
+  <body>
+    <div class="results" id="app">
+      <div class="container">
+        <p class="name">Hi Melody,</p>
+        <div class="title">Here are your ness Wellness Wheel results</div>
+        <div class="result-canvas">
+          <canvas id="polarChart"></canvas>
+        </div>
+        <div class="function">
+          <label class="switch">
+            <input class="checkbox">
+            <div class="spanslider round"></div>
+          </label><a class="download" href="#"> <img src="./img/icons/download.png"></a>
+        </div>
+        <p class="ps">Let's take a look at how you're doing overall</p>
+        <div class="card">
+          <div class="img" style="background-image: url(./img/icons/Emotional.png)"></div><span>You scored heghest on emotional health</span>
+        </div>
+        <div class="card"><span>...and have the most room for improvement in social health</span>
+          <div class="img" style="background-image: url(./img/icons/Social.png)"></div>
+        </div>
+        <div class="avr-score">
+          <div class="title">Average score: 23.5
+            <div class="status style1">Not Will</div>
+          </div>
+          <div class="content">That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out www.nesswellness.com </div>
+        </div>
+        <div class="about">
+          <div class="title">About the ness<br>Wellness Wheel</div>
+          <div class="content">The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life.</div>
+        </div>
+        <ul class="demensions">
+          <list :list="this.category"></list>
+        </ul>
+        <div class="balence">
+          <div class="title">Finding balance</div>
+          <div class="content">If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.<br>Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.</div>
+        </div>
+        <div class="other">
+          <div class="title">More wellness<br>resources</div>
+          <div class="sp">TBC</div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="container">
+          <div class="logo-box"><span>Powered by</span>
+            <div class="logo" style="background-image: url(./img/logo.png)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="list" type="text/x-template">
+      <li v-for="(items, i) in list" @click="show = !show, openNot(i)" :key="i" :class="{active: i === activeItem}">
+        <p><img :src="items.logo" alt=""> {{ items.title }}</p>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
+      </li>
+    </script>
+    <script>
+      const app = Vue.createApp({
+      	data() {
+      		return {
+      			category: [],
+      		}
+      	},
+      	created: function() {
+      		this.onCateCatch();
+      		console.log(this.category)
+      	},
+      	mounted: function() {
+      		var ctx = document.getElementById("polarChart").getContext("2d");
+      		var myChart = new Chart(ctx, {
+      			type: 'polarArea',
+      			data: {
+      				labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"],
+      				datasets: [{
+      					backgroundColor: [
+      						"#d2f9f4",
+      						"#d3f9d4",
+      						"#eef8d4",
+      						"#fbead6",
+      						"#ffcddd",
+      						"#f4e2f0",
+      						"#e9d3f9",
+      						"#bbebf7",
+      					],
+      					data: [6, 4, 7, 3, 4, 5, 3, 5],
+      					borderWidth: 1,
+      					borderColor: '#fff'
+      				}]
+      			},
+      			options: {
+      				animation: {
+      					animateRotate: false,
+      					animateScale: true
+      				},
+      				plugins: {
+      					legend: {
+      						display: false,
+      					}
+      				},
+      				layout: {
+      					padding: 50,
+      				},
+      				scales: {
+      					r: {
+      						min: 0,
+      						max: 10,
+      						angleLines: {
+      							max: 10,
+      							display: true,
+      							center: true,
+      							color: '#fff'
+      						},
+      						ticks: {
+      							display: false,
+      							stepSize: 1,
+      							position: "top",
+      							z: 2,
+      						},
+      						grid: {
+      							color: '#fff'
+      						}
+      					}
+      				}
+      			}
+      		});
+      	},
+      	methods: {
+      		onCateCatch: function() {
+      			this.category = pageData.en.info.category;
+      		}
+      	},
+      });
+      
+      app.component('list', {
+      	data() {
+      		return {
+      			activeItem: '',
+      			show: true
+      		}
+      	},
+      	template: '#list',
+      	props:['list'],
+      	methods: {
+      		openNot: function(i) {
+      			this.activeItem = i;
+      		}
+      	}
+      });
+      
+      app.mount('#app');
+    </script>
+  </body>
+</html>

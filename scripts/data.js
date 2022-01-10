@@ -17,7 +17,7 @@ var pageData = {
 				{"type": "button", "content": "Let's get started", "url": "form.html"},
 				{"type": "title", "content": "Why take this quiz?"},
 				{"type": "article", "content": "The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be."},
-				{"type": "svg", "": ""},
+				{"type": "svg"},
 				{"type": "article", "content": "The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life."},
 				{"type":"article", "content":"Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement."},
 				{"type": "link", "content": "Learn more about the <a href='index.html#resources'>eight dimensions of wellness</a>"},

@@ -16,54 +16,6 @@
     <link rel="stylesheet" href="./styles/custom.css">
   </head>
   <body>
-    <div class="header" id="header">
-      <div class="container">
-        <div class="logo-box">
-          <div class="logo" style="background-image: url(./img/logo.png)"></div>
-        </div>
-        <div class="function-box"><a href="javascript:;"><img src="./img/icons/globe.png" alt="">En</a></div>
-        <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
-          <transition name="slide">
-            <ul class="menu" v-if="active">
-              <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
-              <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
-              <li><a href="index.html#anchor-takethetest">{{ menu[2] }}</a></li>
-            </ul>
-          </transition>
-        </div>
-      </div>
-      <script>
-        const header = Vue.createApp({
-            data() {
-                return {
-                    menu:[],
-                    active: false
-                }
-            },
-            created: function() {
-                this.onHeaderCatch();
-            },
-            mounted: function() {
-            },
-            methods: {
-                onHeaderCatch: function() {
-                    this.menu = pageData.en.menu;
-                }
-            },
-            watch: {
-                active: function (newActive, oldActive) {
-                    if (newActive == true) {
-                        window.document.querySelector('body').style['overflow'] = 'hidden';
-                    } else {
-                        window.document.querySelector('body').style['overflow'] = '';
-                    }
-                }
-            }
-        });
-        
-        header.mount('#header');
-      </script>
-    </div>
     <div class="index" id="app">
       <div class="container">
         <div class="title-box"><span class="uppercase"><small><strong>powered by +ness wellness</strong></small></span>
@@ -108,16 +60,18 @@
           </div>
         </div>
         <div class="footer inline">
-          <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
-            <div class="detail">
-              <p>Tag us on your Wellness Wheel</p>
-              <p>@<a href="instagram.com">nesswellnesswheel</a>@<a href="instagram.com">ness_wellness</a></p>
+          <div class="container">
+            <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
+              <div class="detail">
+                <p>Tag us on your Wellness Wheel</p>
+                <p>@<a href="https://www.instagram.com/nesswellnesswheel">nesswellnesswheel</a>@<a href="https://www.instagram.com/ness.wellness">ness.wellness</a></p>
+              </div>
             </div>
+            <div class="logo-box"><span>Powered by</span>
+              <div class="logo" style="background-image: url(./img/logo.png)"></div>
+            </div>
+            <div class="right">Wheel of Wellness by ness wellness© All rights reserved 2022</div>
           </div>
-          <div class="logo-box"><span>Powered by</span>
-            <div class="logo" style="background-image: url(./img/logo.png)"></div>
-          </div>
-          <div class="right">Wheel of Wellness by ness wellness© All rights reserved 2022</div>
         </div>
       </div>
     </div>
@@ -131,11 +85,13 @@
       const app = Vue.createApp({
       	data() {
       		return {
-      			info: []
+      			info: [],
+      			category: []
       		}
       	},
       	created: function() {
-      		this.oninfoCatch();
+      		this.onInfoCatch();
+      		this.onCateCatch();
       	},
       	mounted: function() {
       		(function (s, i, o, w) {
@@ -825,8 +781,11 @@
       		}, '__SVGATOR_PLAYER__', window);
       	},
       	methods: {
-      		oninfoCatch: function() {
+      		onInfoCatch: function() {
       			this.info = pageData.en.info;
+      		},
+      		onCateCatch: function() {
+      			this.category = pageData.en.category;
       		}
       	}
       });

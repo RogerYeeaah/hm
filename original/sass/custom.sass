@@ -100,11 +100,15 @@ body
 
 .container
 	margin: 0 auto
+	margin-top: 20px
+	margin-bottom: 20px
 	padding: 20px 0
+	position: relative
 	display: block
 	width: calc(100% - 40px)
 	max-width: 800px
-	height: calc(100vh - 80px)
+	height: auto
+	min-height: calc(100vh - 80px)
 	background: #fbfbfb
 	border-radius: 30px
 
@@ -353,7 +357,8 @@ body
 
 	.submit-box
 		padding: 0px 20px
-		position: relative
+		position: absolute
+		bottom: 20px
 		top: -36px
 		width: 100%
 		text-align: right
@@ -388,12 +393,9 @@ body
 
 // form
 .form
-	> .container
-		height: auto
-		min-height: calc(100vh - 60px)
-		background: rgba(white, 1)
-		border-radius: 30px 30px 0 0
-
+	.title-box
+		.title
+			font-size: 40px
 	form
 		padding: 0 20px
 
@@ -412,7 +414,7 @@ body
 			text-align: center
 
 		label
-			font-size: 16px
+			font-size: 14px
 			font-weight: 100
 
 		input
@@ -421,7 +423,7 @@ body
 			border: 0px
 			background: #f3eceb
 			outline: none
-			font-size: 16px
+			font-size: 14px
 			text-align: center
 
 			&::placeholder
@@ -435,7 +437,7 @@ body
 			label
 				padding: 20px 0
 				width: calc(33.333% - 20px)
-				font-size: 16px
+				font-size: 14px
 				font-weight: 400
 				text-align: center
 				background: #f3eceb
@@ -465,20 +467,32 @@ body
 
 // header footer
 .footer
+	margin-top: -20px
 	height: 60px
 	display: inline-block
+	width: 100%
+
+	.container
+		min-height: auto
 
 	&.inline
 		padding: 20px
 		margin: 0 auto
-		margin-top: 80px
+		margin-top: 20px
 		display: inline-block
+		height: auto
+
+		.container
+			flex-wrap: wrap
+			display: inline-flex
+			width: 100%
 
 		.instagram
-			margin-bottom: 20px
+			margin-bottom: 60px
 			display: flex
 			justify-content: center
 			align-items: center
+			width: 100%
 			font-size: 12px
 
 			img
@@ -497,7 +511,8 @@ body
 					line-height: 16px
 		
 		.right
-			font-size: 14px
+			width: 100%
+			font-size: 12px
 			text-align: center
 
 		.logo-box
@@ -525,9 +540,10 @@ body
 
 	.logo
 		margin-left: 5px
+		padding-bottom: 6.5%
 		display: inline-block
 		width: 10vw
-		height: calc(10vw*0.23)
+		max-width: 40px
 		background-image: url(./img/logo.png)
 		background-size: contain
 		background-position: center
@@ -691,6 +707,7 @@ body
 					color: black
 					text-decoration: underline
 					background: transparent
+					font-size: 12px
 
 		a
 			margin-bottom: 20px
@@ -733,7 +750,7 @@ body
 					max-height: 600px
 					width: 100%
 					max-width: 600px
-					border: 1px solid lightblue
+					border: 1px solid #71a9ff
 					// background: linear-gradient(90deg, #edd8bf, #f1bdbd, #cdddf1, #cdc0db, #dbbdd2, #c3e0d2, #eadbe0, #cbd8de)
 					background-size: 1600% 1600%
 					animation: morph 12s ease-in-out -2s infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate
@@ -801,6 +818,191 @@ body
 				position: relative
 				height: 0
 				text-align: left
+
+
+// results
+.results
+	.container
+		padding: 20px
+
+	p
+		&.name
+			margin-bottom: 20px
+
+		&.ps
+			margin-bottom: 20px
+			color: #2326ba
+			font-size: 12px
+			font-weight: 600
+			text-align: center
+
+	.title
+		text-align: center
+		font-size: 23px
+		font-weight: 600
+		line-height: 30px
+
+	.result-canvas
+		margin-bottom: 20px
+		position: relative
+
+		&:after
+			content: ''
+			position: absolute
+			top: 0
+			height: 100%
+			width: 100%
+			background-image: url(../img/text.png)
+			background-repeat: no-repeat
+			background-size: cover
+			z-index: 19
+
+		a.download
+			position: absolute
+			right: 10px
+			bottom: 10px
+			width: 30px
+			height: 30px
+			background: #ffd400
+			border-radius: 100px
+
+			img
+				padding: 3px
+
+	.card
+		display: flex
+		align-items: center
+
+		.img
+			padding-bottom: 30%
+			width: 30%
+			background-repeat: no-repeat
+			background-size: contain
+
+		span
+			width: 70%
+			font-size: 14px
+			line-height: 20px
+	
+	.avr-score
+		margin-bottom: 80px
+		position: relative
+
+		&:after
+			content: ''
+			position: absolute
+			bottom: -40px
+			left: 50%
+			width: 33%
+			height: 1px
+			background: lightgray
+			transform: translateX(-50%)
+		
+		.title
+			margin-bottom: 20px
+			font-size: 13px
+			line-height: 20px
+			text-align: left
+
+			.status
+				padding: 5px 6px
+				display: inline-block
+				border-radius: 5px
+				font-size: 12px
+				font-weight: 300
+				line-height: 12px
+
+				&.style1
+					background: #dfbaba
+
+				&.style2
+					background: #fadbb8
+
+				&.style3
+					background: #c7f0f4
+
+				&.style4
+					background: #d4f8d7
+		
+		.content
+			margin-bottom: 20px
+			font-size: 14px
+			line-height: 20px
+
+	.about,
+	.balence,
+	.other
+		.title
+			margin-bottom: 20px
+		
+		.content
+			margin-bottom: 20px
+			font-size: 13px
+			line-height: 20px
+
+		.sp
+			margin-bottom: 50px
+			font-size: 50px
+			font-weight: bold
+			text-align: center
+
+	.other
+		margin-top: 150px
+
+	.demensions
+		padding: 0
+		margin-bottom: 20px
+
+		li
+			margin-bottom: 10px
+			position: relative
+
+			&.active
+				span
+					height: auto
+
+		p
+			margin: 0
+			padding: 10px 20px
+			display: flex
+			align-items: center
+			width: 100%
+			background: #ececec
+			border-radius: 2px
+			font-size: 20px
+			font-weight: 400
+			line-height: 34px
+
+		.arrow
+			position: absolute
+			right: 20px
+			top: 20px
+			background-image: url(./img/icons/down-arrow.png)
+			background-repeat: no-repeat
+			background-size: cover
+			height: 20px
+			width: 20px
+
+		img
+			margin-right: 5px
+			width: 24px
+			height: 24px
+
+		span
+			margin-bottom: 20px
+			display: inline-block
+			line-height: 15px
+			font-size: 12px
+			font-weight: 500
+			padding: 0 20px
+			padding-top: 20px
+			position: relative
+			height: 0
+			text-align: left
+
+
+
+
 
 //keyframe
 @keyframes morph

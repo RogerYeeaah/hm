@@ -1,0 +1,177 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(property="og:title" content="XXX的測驗結果")
+		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
+		title NesswellnessWheel - Know about your self
+
+		script(src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
+		script(src="./scripts/jquery/jquery.min.js")
+		script(src="./scripts/chart/chart.min.js")
+		script(src="./scripts/chart/chartjs-plugin-datalabels.js")
+		script(src="./scripts/data.js")
+
+		link(rel="stylesheet", href="./styles/reset.css")
+		link(rel="stylesheet", href="./styles/custom.css")
+		
+	body
+		#app.results
+			.container
+				p.name Hi Melody,
+				.title Here are your ness Wellness Wheel results
+				div.result-canvas
+					canvas#polarChart
+				.function
+					label.switch
+						input.checkbox
+						.spanslider.round
+					a.download(href="#") 
+						img(src="./img/icons/download.png")
+				p.ps Let's take a look at how you're doing overall
+				.card
+					.img(style="background-image: url(./img/icons/Emotional.png)")
+					span You scored heghest on emotional health
+				.card
+					span ...and have the most room for improvement in social health
+					.img(style="background-image: url(./img/icons/Social.png)")
+
+				.avr-score
+					.title Average score: 23.5
+						.status.style1 Not Will
+						//- .status.style2 Average
+						//- .status.style3 Pretty Well
+						//- .status.style4 Vwry Well
+					.content That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out www.nesswellness.com 
+				
+				.about
+					.title About the ness
+						br
+						| Wellness Wheel
+					.content The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life.
+				
+				ul.demensions
+					list(:list="this.category")
+
+				.balence
+					.title Finding balance
+					.content If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.
+						br
+						| Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.
+
+				.other
+					.title More wellness
+						br
+						|resources
+					.sp TBC
+
+			include ./include/footer
+
+			//- div.socialShare
+			//- 	div.sbutton.facebook-cresta-share.cresta-float-shadow#shareF
+			//- 		a(rel="nofollow" href="#" data-name="Partager sur Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL),'targetWindow','toolbar=no,loc');return false;") facebook
+			//- 			i.cs.c-icon-cresta-facebook
+
+		script#list(type="text/x-template")
+			li(v-for="(items, i) in list" @click="show = !show, openNot(i)" :key="i" :class="{active: i === activeItem}")
+				p
+					img(:src="items.logo", alt="")
+					|  {{ items.title }}
+				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
+				span(v-if="i === activeItem? show:!show") {{ items.info }}
+
+		script.
+			const app = Vue.createApp({
+				data() {
+					return {
+						category: [],
+					}
+				},
+				created: function() {
+					this.onCateCatch();
+					console.log(this.category)
+				},
+				mounted: function() {
+					var ctx = document.getElementById("polarChart").getContext("2d");
+					var myChart = new Chart(ctx, {
+						type: 'polarArea',
+						data: {
+							labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"],
+							datasets: [{
+								backgroundColor: [
+									"#d2f9f4",
+									"#d3f9d4",
+									"#eef8d4",
+									"#fbead6",
+									"#ffcddd",
+									"#f4e2f0",
+									"#e9d3f9",
+									"#bbebf7",
+								],
+								data: [6, 4, 7, 3, 4, 5, 3, 5],
+								borderWidth: 1,
+								borderColor: '#fff'
+							}]
+						},
+						options: {
+							animation: {
+								animateRotate: false,
+								animateScale: true
+							},
+							plugins: {
+								legend: {
+									display: false,
+								}
+							},
+							layout: {
+								padding: 50,
+							},
+							scales: {
+								r: {
+									min: 0,
+									max: 10,
+									angleLines: {
+										max: 10,
+										display: true,
+										center: true,
+										color: '#fff'
+									},
+									ticks: {
+										display: false,
+										stepSize: 1,
+										position: "top",
+										z: 2,
+									},
+									grid: {
+										color: '#fff'
+									}
+								}
+							}
+						}
+					});
+				},
+				methods: {
+					onCateCatch: function() {
+						this.category = pageData.en.info.category;
+					}
+				},
+			});
+			
+			app.component('list', {
+				data() {
+					return {
+						activeItem: '',
+						show: true
+					}
+				},
+				template: '#list',
+				props:['list'],
+				methods: {
+					openNot: function(i) {
+						this.activeItem = i;
+					}
+				}
+			});
+
+			app.mount('#app');
