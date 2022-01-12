@@ -1735,6 +1735,7 @@ input:checked + .slider:before {
   z-index: 1;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 1000px;
+  opacity: 0.6;
 }
 .index .artical .simulator svg g[id] {
   opacity: 0.5;
@@ -1848,10 +1849,10 @@ input:checked + .slider:before {
   border-radius: 100px;
 }
 .results .function a.download img {
-  padding: 3px;
+  padding: 9px;
 }
 .results .function a.fbshare {
-  padding: 12px 14px 12px;
+  padding: 12px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
