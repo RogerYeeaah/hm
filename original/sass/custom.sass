@@ -1,5 +1,4 @@
 @charset "utf-8"
-
 @import mixins/_rwd
 @import mixins/_font
 @import mixins/_universal
@@ -119,6 +118,58 @@ body
 	height: 1px
 	background: lightgray
 
+
+// input style
+/* The switch - the box around the slider */
+.switch
+	position: relative
+	display: inline-block
+	width: 52px
+	height: 30px
+
+/* Hide default HTML checkbox */
+.switch input
+	opacity: 0
+	width: 0
+	height: 0
+
+.slider
+	position: absolute
+	cursor: pointer
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	background-color: #ccc
+	-webkit-transition: .4s
+	transition: .4s
+
+.slider:before
+	position: absolute
+	content: ""
+	height: 22px
+	width: 22px
+	left: 4px
+	bottom: 4px
+	background-color: white
+	-webkit-transition: .4s
+	transition: .4s
+
+input:checked + .slider
+	background-color: #a964c4
+
+input:focus + .slider
+	box-shadow: 0 0 1px #a964c4
+
+input:checked + .slider:before
+	transform: translateX(22px)
+
+/* Rounded sliders */
+.slider.round
+	border-radius: 34px
+
+.slider.round:before
+	border-radius: 50%
 
 // question page
 .question-page
@@ -721,7 +772,6 @@ body
 			font-weight: 500
 
 		.simulator
-			padding: 50px
 			margin: 0
 			position: relative
 			height: calc(100vw - 40px)
@@ -737,10 +787,10 @@ body
 				max-width: 600px
 				height: calc(100% - 70px)
 				max-height: 600px
-				z-index: 0
+				z-index: 1
 				background: linear-gradient(50deg, #ceffdf, #b0feff, #d3a5ff, #c3e1ff, #ffcfa4, #edbbff, #bcffcf, #ffc2d6)
 				background-size: 1600% 1600%
-				animation: morph 10s ease-in-out infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate
+				animation: morph 20s ease-in-out infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate
 
 				&:after
 					content: ''
@@ -756,23 +806,41 @@ body
 					animation: morph 12s ease-in-out -2s infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate
 					opacity: 0.7
 
-				// &:before
-				// 	content: ''
-				// 	position: absolute
-				// 	height: 100%
-				// 	max-height: 600px
-				// 	width: 100%
-				// 	max-width: 600px
-				// 	background: linear-gradient(10deg, #a4e5ba, #ADE6E7, #e0c3fc, #a0c5e9, #4facfe, #ddc1e7, #c6edd1, #fed6e3)
-				// 	background-size: 1600% 1600%
-				// 	animation: morph 12s ease-in-out -2s infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate
-				// 	opacity: 0.7
+			.amoeba1
+				margin: 0 auto
+				position: absolute
+				width: calc(100% - 70px)
+				max-width: 600px
+				height: calc(100% - 70px)
+				max-height: 600px
+				animation: rotate 20s linear infinite alternate-reverse
+				z-index: 99
+				opacity: 0.5
+				
+				&:after
+					content: ''
+					position: absolute
+					top: 50%
+					left: 50%
+					height: 64%
+					max-height: 300px
+					width: 64%
+					max-width: 300px
+					background: linear-gradient(10deg, #a4e5ba, #ADE6E7, #e0c3fc, #a0c5e9, #4facfe, #ddc1e7, #c6edd1, #fed6e3)
+					transform: translate(-50%, -50%)
+					background-size: 1600% 1600%
+					animation: morph2 12s ease-in-out -2s infinite alternate, change 10s linear infinite alternate
 
 			svg
 				position: relative
-				background: rgba(white, 0.5)
-				border-radius: 1000px
+				width: calc((100% - 70px)*0.86)
+				max-width: 500px
 				z-index: 1
+				background: rgba(white, 0.9)
+				border-radius: 1000px
+				
+				g[id]
+					opacity: 0.5
 
 		.demensions
 			padding: 0 20px
@@ -857,17 +925,44 @@ body
 			background-size: cover
 			z-index: 19
 
+	.function
+		margin-bottom: 40px
+		position: relative
+		display: flex
+		justify-content: center
+		align-items: center
+		flex-wrap: wrap
+
+		> *
+			margin: 0 5px
+
 		a.download
-			position: absolute
-			right: 10px
-			bottom: 10px
-			width: 30px
-			height: 30px
+			display: inline-block
+			width: 40px
+			height: 40px
 			background: #ffd400
 			border-radius: 100px
 
 			img
 				padding: 3px
+
+		a.fbshare
+			padding: 12px 14px 12px
+			display: inline-flex
+			justify-content: center
+			align-content: center
+			color: white
+			background: #026ae3
+			border-radius: 30px
+
+			span
+				margin-right: 4px
+				display: inline-block
+				font-size: 14px
+
+			img
+				width: 15px
+				height: 15px
 
 	.card
 		display: flex
@@ -1008,7 +1103,7 @@ body
 @keyframes morph
 	0%,
 	100%
-		border-radius: 38% 68% 70% 30% / 30% 30% 67% 70%
+		border-radius: 38% 68% 60% 30% / 30% 30% 67% 80%
 	
 	20%
 		border-radius: 40% 62% 42% 58% / 46% 51% 49% 59%
@@ -1020,7 +1115,24 @@ body
 		border-radius: 47% 47% 51% 49% / 41% 65% 35% 63%
 	
 	80%
-		border-radius: 41% 63% 51% 49% / 9% 30% 70% 60%
+		border-radius: 41% 63% 51% 49% / 49% 30% 70% 60%
+
+@keyframes morph2
+	0%,
+	100%
+		border-radius: 39% 64% 50% 60% / 34% 76% 36% 83%
+	
+	20%
+		border-radius: 63% 49% 85% 51% / 77% 52% 69% 54%
+
+	40%
+		border-radius: 54% 61% 71% 49% / 41% 49% 39% 51%
+
+	60%
+		border-radius: 51% 81% 59% 68% / 38% 81% 40% 65%
+	
+	80%
+		border-radius: 92% 31% 89% 33% / 62% 38% 59% 38%
 
 @keyframes change
 	100%

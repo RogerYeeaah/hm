@@ -20,7 +20,7 @@ gulp.task('sass', function () {
         // .on('error', errorLog)
         // .pipe(gulpPlumber())
         .pipe(sass({
-            outputStyle: 'nested '
+            outputStyle: 'expanded'
         }))
         .pipe(autoprefixer({
             overrideBrowserslist: ["last 5 versions", "Android >= 4.0"],
