@@ -832,6 +832,7 @@ body.cate-08 {
 
 .header ~ div .container {
   margin-top: 0;
+  margin-bottom: 0;
   border-radius: 30px 30px 0 0;
   height: auto;
   min-height: calc(100vh - 60px);
@@ -1357,6 +1358,7 @@ input:checked + .slider:before {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  min-height: auto;
   width: 100%;
 }
 .footer.inline .instagram {
@@ -1456,6 +1458,7 @@ input:checked + .slider:before {
   -ms-flex-line-pack: center;
       align-content: center;
   height: 100%;
+  min-height: auto;
   background: transparent;
 }
 .header .container .logo-box {
@@ -1735,10 +1738,10 @@ input:checked + .slider:before {
   z-index: 1;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 1000px;
-  opacity: 0.6;
+  opacity: 1;
 }
 .index .artical .simulator svg g[id] {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .index .artical .demensions {
   padding: 0 20px;
