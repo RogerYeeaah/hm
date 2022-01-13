@@ -39,42 +39,42 @@ var pageData = {
 			"category": {
 				"1": {
 					"title": "Emotional",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Emotional.png",
 					"info": "Emotional wellbeing is understanding, processing, and thoughtfully acting on your emotions. This valuable practice of self-awareness includes both celebrating happiness, hope, and joy, as well as accepting uncomfortable feelings, like, being sad, afraid, or angry. Key tools to develop include resilience, ways to cope with stress, responsibility for your actions, and good communication with yourself and others."
 				},
 				"2": {
 					"title": "Physical",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Physical.png",
 					"info": "Physical wellness relates to maintaining a healthy body and seeking care when needed. Physical health is attained through exercise, eating well, getting enough sleep, paying attention to the signs of illness and getting help when needed."
 				},
 				"3": {
 					"title": "Spiritual",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Spiritual.png",
 					"info": "Spiritual wellbeing is recognizing and honoring your search for purpose and greater meaning in a way that is resonant with your personal beliefs, and practicing respect and tolerance towards the beliefs of others. This includes commitment to personal values, building harmony between ourselves and our world, and cultivating hope and peaceful practices."
 				},
 				"4 ": {
 					"title": "Intellectual",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Intellectual.png",
 					"info": "Intellectual wellbeing is choosing opportunities to learn, be creative, be adaptive, solve problems, and overcome challenges. Think of it as exercising your mind by pursuing your interests, and working on skills you’d like to have."
 				},
 				"5": {
 					"title": "Social",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Social.png",
 					"info": "Social wellbeing is building meaningful, communicative, encouraging relationships within your community. This includes family, friends, romantic partners and coworkers as well as the broader community in which you live."
 				},
 				"6": {
 					"title": "Environmental",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Environmental.png",
 					"info": "Environmental wellness inspires us to live a lifestyle that is respectful of our surroundings. This realm encourages us to live in harmony with the Earth by taking action to protect it. Environmental well-being promotes interaction with nature and your personal environment. Everyone can have a strong environmental consciousness simply by raising their awareness."
 				},
 				"7": {
 					"title": "Occupational",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Occupational.png",
 					"info": "Occupational wellbeing is creating and participating in a career that is fulfilling and enriches your life, and uses your personal passions and skills. This also includes having a growth mentality that allows your skills to grow with new opportunities and further education and training."
 				}, 
 				"8": {
 					"title": "Financial",
-					"logo": "img/icons/badge.png",
+					"logo": "img/icons/Financial.png",
 					"info": "Financial wellbeing is about living with a sense of security that your needs can be met, and setting strong foundations that plan for comfort (and even fun) in your future. Even if your financial life feels chaotic right now, it’s possible to break free from stress and debt with careful planning."
 				}
 			}
