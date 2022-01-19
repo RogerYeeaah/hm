@@ -38,7 +38,7 @@
                 return {
                     menu:[],
                     active: false,
-                    len: ""
+                    len: 'en'
                 }
             },
             created: function() {
@@ -52,17 +52,19 @@
                     this.menu = pageData.en.menu;
                 },
                 onLenCatch: function() {
-                    localStorage.setItem('len', 'en')
                     this.len = localStorage.len;
                 },
                 lenChange: function() {
                     if(localStorage.len === 'en') {
                         localStorage.setItem('len', '中')
                         this.len = localStorage.len;
+                        this.menu = pageData.ch.menu;
                     } else if (localStorage.len === '中') {
                         localStorage.setItem('len', 'en')
                         this.len = localStorage.len;
+                        this.menu = pageData.en.menu;
                     }
+                    location. reload();
                 }
             },
             watch: {
@@ -166,7 +168,7 @@
       		return {
       			info: [],
       			category: [],
-      			len: ""
+      			len: localStorage.len
       		}
       	},
       	created: function() {
@@ -176,13 +178,20 @@
       	},
       	methods: {
       		onInfoCatch: function() {
-      			this.info = pageData.en.info;
+      			if(this.len === 'en') {
+      				this.info = pageData.en.info;
+      			} else if(this.len === '中') {
+      				this.info = pageData.ch.info;
+      			}
       		},
       		onCateCatch: function() {
-      			this.category = pageData.en.category;
+      			if(this.len === 'en') {
+      				this.category = pageData.en.category;
+      			} else if(this.len === '中') {
+      				this.category = pageData.ch.category;
+      			}
       		},
       		onLenCatch: function() {
-      			localStorage.setItem('len', 'en')
       			this.len = localStorage.len;
       		}
       	}

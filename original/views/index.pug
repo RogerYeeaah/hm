@@ -113,7 +113,7 @@ html
 					return {
 						info: [],
 						category: [],
-						len: ""
+						len: localStorage.len
 					}
 				},
 				created: function() {
@@ -123,13 +123,20 @@ html
 				},
 				methods: {
 					onInfoCatch: function() {
-						this.info = pageData.en.info;
+						if(this.len === 'en') {
+							this.info = pageData.en.info;
+						} else if(this.len === '中') {
+							this.info = pageData.ch.info;
+						}
 					},
 					onCateCatch: function() {
-						this.category = pageData.en.category;
+						if(this.len === 'en') {
+							this.category = pageData.en.category;
+						} else if(this.len === '中') {
+							this.category = pageData.ch.category;
+						}
 					},
 					onLenCatch: function() {
-						localStorage.setItem('len', 'en')
 						this.len = localStorage.len;
 					}
 				}

@@ -38,7 +38,7 @@
                 return {
                     menu:[],
                     active: false,
-                    len: ""
+                    len: 'en'
                 }
             },
             created: function() {
@@ -52,17 +52,19 @@
                     this.menu = pageData.en.menu;
                 },
                 onLenCatch: function() {
-                    localStorage.setItem('len', 'en')
                     this.len = localStorage.len;
                 },
                 lenChange: function() {
                     if(localStorage.len === 'en') {
                         localStorage.setItem('len', '中')
                         this.len = localStorage.len;
+                        this.menu = pageData.ch.menu;
                     } else if (localStorage.len === '中') {
                         localStorage.setItem('len', 'en')
                         this.len = localStorage.len;
+                        this.menu = pageData.en.menu;
                     }
+                    location. reload();
                 }
             },
             watch: {
@@ -197,9 +199,10 @@
       						color: '#d1d1d1'
       					},
       					ticks: {
-      						display: false,
+      						display: true,
       						stepSize: 1,
-      						position: "top",
+      						color: 'black',
+      						backdropColor: 'transparent',
       						z: 2,
       					},
       					grid: {
