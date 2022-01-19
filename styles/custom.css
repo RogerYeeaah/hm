@@ -791,6 +791,9 @@ body {
   -o-transition: background 0.5s;
   transition: background 0.5s;
 }
+body.result .header .function-box {
+  display: none;
+}
 body.cate-02 {
   background-image: url(../img/cate-02.jpg);
   -webkit-transition: background 0.5s;
@@ -1459,6 +1462,9 @@ input:checked + .slider:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-line-pack: center;
       align-content: center;
   height: 100%;
@@ -1747,20 +1753,21 @@ input:checked + .slider:before {
 .index .artical .simulator svg g[id] {
   opacity: 0.8;
 }
-.index .artical .demensions {
+.index .artical .dimensions {
   padding: 0 20px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
-.index .artical .demensions li {
+.index .artical .dimensions li {
   margin-bottom: 10px;
   position: relative;
 }
-.index .artical .demensions li.active span {
+.index .artical .dimensions li.active span {
   height: auto;
 }
-.index .artical .demensions p {
+.index .artical .dimensions p {
   margin: 0;
-  padding: 10px 20px;
+  padding: 10px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1773,7 +1780,7 @@ input:checked + .slider:before {
   font-size: 20px;
   font-weight: 400;
 }
-.index .artical .demensions .arrow {
+.index .artical .dimensions .arrow {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -1783,12 +1790,12 @@ input:checked + .slider:before {
   height: 20px;
   width: 20px;
 }
-.index .artical .demensions img {
+.index .artical .dimensions img {
   margin-right: 5px;
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
 }
-.index .artical .demensions span {
+.index .artical .dimensions span {
   padding: 0 20px;
   padding-top: 20px;
   position: relative;
@@ -1973,19 +1980,19 @@ input:checked + .slider:before {
   text-decoration: underline;
 }
 .results .about .title,
-.results .balence .title,
+.results .balance .title,
 .results .other .title {
   margin-bottom: 20px;
 }
 .results .about .content,
-.results .balence .content,
+.results .balance .content,
 .results .other .content {
   margin-bottom: 20px;
   font-size: 13px;
   line-height: 20px;
 }
 .results .about .sp,
-.results .balence .sp,
+.results .balance .sp,
 .results .other .sp {
   margin-bottom: 50px;
   font-size: 50px;
@@ -1995,12 +2002,13 @@ input:checked + .slider:before {
 .results .other {
   margin-top: 150px;
 }
-.results .demensions {
+.results .dimensions {
   padding: 0;
+  margin-top: 40px;
   margin-bottom: 80px;
   position: relative;
 }
-.results .demensions:after {
+.results .dimensions:after {
   content: "";
   position: absolute;
   bottom: -40px;
@@ -2012,14 +2020,14 @@ input:checked + .slider:before {
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
 }
-.results .demensions li {
+.results .dimensions li {
   margin-bottom: 10px;
   position: relative;
 }
-.results .demensions li.active span {
+.results .dimensions li.active span {
   height: auto;
 }
-.results .demensions p {
+.results .dimensions p {
   margin: 0;
   padding: 10px 10px;
   display: -webkit-box;
@@ -2035,7 +2043,7 @@ input:checked + .slider:before {
   font-weight: 400;
   line-height: 34px;
 }
-.results .demensions .arrow {
+.results .dimensions .arrow {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -2045,12 +2053,12 @@ input:checked + .slider:before {
   height: 20px;
   width: 20px;
 }
-.results .demensions img {
+.results .dimensions img {
   margin-right: 5px;
   width: 40px;
   height: 40px;
 }
-.results .demensions span {
+.results .dimensions span {
   margin-bottom: 20px;
   display: inline-block;
   line-height: 15px;

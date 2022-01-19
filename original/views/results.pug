@@ -17,7 +17,7 @@ html
 		link(rel="stylesheet", href="./styles/reset.css")
 		link(rel="stylesheet", href="./styles/custom.css")
 		
-	body
+	body.result
 		include ./include/header
 
 		#app.results
@@ -49,14 +49,14 @@ html
 						.status.style1 Not Well
 						//- .status.style2 Average
 						//- .status.style3 Pretty Well
-						//- .status.style4 Vwry Well
+						//- .status.style4 Very Well
 					.content That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out 
 						a(href="www.nesswellness.com") www.nesswellness.com 
 
 				.avr-score
-					.title Balence score: 23.5
+					.title Balance score: 23.5
 						.status.style1 Unbalanced
-						//- .status.style4 Well Balenced
+						//- .status.style4 Well Balanced
 					.content Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus.  
 				
 				.about
@@ -65,10 +65,10 @@ html
 						| Wellness Wheel
 					.content The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life.
 				
-				ul.demensions
+				ul.dimensions
 					list(:list="this.category")
 
-				.balence
+				.balance
 					.title Finding balance
 					.content If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.
 						br
@@ -86,7 +86,7 @@ html
 			//- 			i.cs.c-icon-cresta-facebook
 
 		script#list(type="text/x-template")
-			li(v-for="(items, i) in list" @click="show = !show, openNot(i)" :key="i" :class="{active: i === activeItem}")
+			li(v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}")
 				p
 					img(:src="items.logo", alt="")
 					|  {{ items.title }}
@@ -153,7 +153,7 @@ html
 									max: 10,
 									display: true,
 									center: true,
-									color: '#f9f9f9'
+									color: '#d1d1d1'
 								},
 								ticks: {
 									display: false,
@@ -162,7 +162,7 @@ html
 									z: 2,
 								},
 								grid: {
-									color: '#f9f9f9',
+									color: '#d1d1d1',
 									z: 2
 								}
 							}
@@ -170,37 +170,38 @@ html
 						animation: {
 							duration: 500,
 							easing: "easeOutQuart",
-							onComplete: function () {
-								var ctx = this.ctx;
-								ctx.textAlign = 'center';
-								ctx.textBaseline = 'bottom';
+							//- onComplete: function () {
+							//- 	var ctx = this.ctx;
+							//- 	ctx.textAlign = 'center';
+							//- 	ctx.textBaseline = 'bottom';
 
-								this.data.datasets.forEach(function (dataset) {
-									for (var i = 0; i < dataset.data.length; i++) {
-									var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
-										total = dataset._meta[Object.keys(dataset._meta)[0]].total,
-										mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius)/2,
-										start_angle = model.startAngle,
-										end_angle = model.endAngle,
-										mid_angle = start_angle + (end_angle - start_angle)/2;
+							//- 	this.data.datasets.forEach(function (dataset) {
+							//- 		for (var i = 0; i < dataset.data.length; i++) {
+							//- 		var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
+							//- 			total = dataset._meta[Object.keys(dataset._meta)[0]].total,
+							//- 			mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius)/2,
+							//- 			start_angle = model.startAngle,
+							//- 			end_angle = model.endAngle,
+							//- 			mid_angle = start_angle + (end_angle - start_angle)/2;
 
-									var x = mid_radius * Math.cos(mid_angle);
-									var y = mid_radius * Math.sin(mid_angle);
+							//- 		var x = mid_radius * Math.cos(mid_angle);
+							//- 		var y = mid_radius * Math.sin(mid_angle);
 
-									ctx.fillStyle = '#fff';
-									if (i == 3){ // Darker text color for lighter background
-										ctx.fillStyle = '#444';
-									}
-									var percent = String(Math.round(dataset.data[i]/total*100)) + "%";
-									ctx.fillText(dataset.data[i], model.x + x, model.y + y);
-									// Display percent in another line, line break doesn't work for fillText
-									ctx.fillText(percent, model.x + x, model.y + y + 15);
-										console.log(dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model);
-									}
-								});               
-							}
+							//- 		ctx.fillStyle = '#fff';
+							//- 		if (i == 3){ // Darker text color for lighter background
+							//- 			ctx.fillStyle = '#444';
+							//- 		}
+							//- 		var percent = String(Math.round(dataset.data[i]/total*100)) + "%";
+							//- 		ctx.fillText(dataset.data[i], model.x + x, model.y + y);
+							//- 		// Display percent in another line, line break doesn't work for fillText
+							//- 		ctx.fillText(percent, model.x + x, model.y + y + 15);
+							//- 			console.log(dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model);
+							//- 		}
+							//- 	});               
+							//- }
 						}
 					};
+
 					var myChart = new Chart(ctx, {
 						type: 'polarArea',
 						data: data,
@@ -208,7 +209,6 @@ html
 					});
 					
 					var meta = myChart.getDatasetMeta(0);
-					console.log(meta)
 				},
 				methods: {
 					onCateCatch: function() {

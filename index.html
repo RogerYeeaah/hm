@@ -21,7 +21,7 @@
         <div class="logo-box">
           <div class="logo" style="background-image: url(./img/logo.png)"></div>
         </div>
-        <div class="function-box"><a href="javascript:;"><img src="./img/icons/globe.png" alt="">En</a></div>
+        <div class="function-box"><a href="javascript:;" @click="lenChange()"><img src="./img/icons/globe.png" alt="">{{ len }}</a></div>
         <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
           <transition name="slide">
             <ul class="menu" v-if="active">
@@ -37,17 +37,32 @@
             data() {
                 return {
                     menu:[],
-                    active: false
+                    active: false,
+                    len: ""
                 }
             },
             created: function() {
                 this.onHeaderCatch();
+                this.onLenCatch();
             },
             mounted: function() {
             },
             methods: {
                 onHeaderCatch: function() {
                     this.menu = pageData.en.menu;
+                },
+                onLenCatch: function() {
+                    localStorage.setItem('len', 'en')
+                    this.len = localStorage.len;
+                },
+                lenChange: function() {
+                    if(localStorage.len === 'en') {
+                        localStorage.setItem('len', '中')
+                        this.len = localStorage.len;
+                    } else if (localStorage.len === '中') {
+                        localStorage.setItem('len', 'en')
+                        this.len = localStorage.len;
+                    }
                 }
             },
             watch: {
@@ -118,7 +133,7 @@
                 </g>
               </svg>
             </div>
-            <ul class="demensions" v-if="items.type === 'category'">
+            <ul class="dimensions" v-if="items.type === 'category'">
               <list :list="info.category"></list>
             </ul>
           </div>
@@ -140,7 +155,7 @@
       </div>
     </div>
     <script id="list" type="text/x-template">
-      <li v-for="(items, i) in list" @click="show = !show, openNot(i)" :key="i" :class="{active: i === activeItem}">
+      <li v-for="(items, i) in list" @click="openNot(i)" key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt=""> {{ items.title }}</p>
         <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
       </li>
@@ -150,12 +165,14 @@
       	data() {
       		return {
       			info: [],
-      			category: []
+      			category: [],
+      			len: ""
       		}
       	},
       	created: function() {
       		this.onInfoCatch();
       		this.onCateCatch();
+      		this.onLenCatch();
       	},
       	methods: {
       		onInfoCatch: function() {
@@ -163,6 +180,10 @@
       		},
       		onCateCatch: function() {
       			this.category = pageData.en.category;
+      		},
+      		onLenCatch: function() {
+      			localStorage.setItem('len', 'en')
+      			this.len = localStorage.len;
       		}
       	}
       });
@@ -178,6 +199,7 @@
       	props:['list'],
       	methods: {
       		openNot: function(i) {
+      			console.log(i)
       			this.activeItem = i;
       		}
       	}

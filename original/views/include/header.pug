@@ -4,9 +4,9 @@
             .logo(style="background-image: url(./img/logo.png)")
 
         .function-box
-            a(href="javascript:;")
+            a(href="javascript:;" @click="lenChange()")
                 img(src="./img/icons/globe.png", alt="")
-                | En
+                | {{ len }}
 
         .hamburger(:class="active === false? '':'open'" @click="active = !active")
             span
@@ -24,17 +24,32 @@
             data() {
                 return {
                     menu:[],
-                    active: false
+                    active: false,
+                    len: ""
                 }
             },
             created: function() {
                 this.onHeaderCatch();
+                this.onLenCatch();
             },
             mounted: function() {
             },
             methods: {
                 onHeaderCatch: function() {
                     this.menu = pageData.en.menu;
+                },
+                onLenCatch: function() {
+                    localStorage.setItem('len', 'en')
+                    this.len = localStorage.len;
+                },
+                lenChange: function() {
+                    if(localStorage.len === 'en') {
+                        localStorage.setItem('len', '中')
+                        this.len = localStorage.len;
+                    } else if (localStorage.len === '中') {
+                        localStorage.setItem('len', 'en')
+                        this.len = localStorage.len;
+                    }
                 }
             },
             watch: {

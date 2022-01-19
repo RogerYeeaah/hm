@@ -16,6 +16,10 @@ body
 	background-position: center
 	transition: background 0.5s
 
+	&.result
+		.header .function-box
+			display: none
+
 	&.cate-02
 		background-image: url(../img/cate-02.jpg)
 		transition: background 0.5s
@@ -612,6 +616,7 @@ input:checked + .slider:before
 	.container
 		margin: 0 auto
 		display: flex
+		justify-content: space-between
 		align-content: center
 		height: 100%
 		min-height: auto
@@ -847,8 +852,9 @@ input:checked + .slider:before
 				g[id]
 					opacity: 0.8
 
-		.demensions
+		.dimensions
 			padding: 0 20px
+			margin-top: 20px
 			margin-bottom: 20px
 
 			li
@@ -861,7 +867,7 @@ input:checked + .slider:before
 
 			p
 				margin: 0
-				padding: 10px 20px
+				padding: 10px 10px
 				display: flex
 				align-items: center
 				width: 100%
@@ -882,8 +888,8 @@ input:checked + .slider:before
 
 			img
 				margin-right: 5px
-				width: 24px
-				height: 24px
+				width: 40px
+				height: 40px
 
 			span
 				padding: 0 20px
@@ -1069,7 +1075,7 @@ input:checked + .slider:before
 				text-decoration: underline
 
 	.about,
-	.balence,
+	.balance,
 	.other
 		.title
 			margin-bottom: 20px
@@ -1088,8 +1094,9 @@ input:checked + .slider:before
 	.other
 		margin-top: 150px
 
-	.demensions
+	.dimensions
 		padding: 0
+		margin-top: 40px
 		margin-bottom: 80px
 		position: relative
 
