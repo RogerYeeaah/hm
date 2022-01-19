@@ -160,7 +160,7 @@
       					"#e9d3f9",
       					"#bbebf7",
       				],
-      				data: [6, 9, 7, 5, 8, 6, 10, 7],
+      				data: [6.9, 9, 7, 2.3, 8.1, 6, 10, 7.4],
       				borderWidth: 1,
       				borderColor: '#f2f2f2',
       				label: 'My dataset'
@@ -214,35 +214,42 @@
       			animation: {
       				duration: 500,
       				easing: "easeOutQuart",
-      				//- onComplete: function () {
-      				//- 	var ctx = this.ctx;
-      				//- 	ctx.textAlign = 'center';
-      				//- 	ctx.textBaseline = 'bottom';
+      				onComplete: function () {
+      					let ctx = this.ctx;
+      					// ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+      					ctx.font = '12px "Helvetica Neue"';
+      					ctx.textAlign = 'center';
+      					ctx.textBaseline = 'bottom';
+      	
+      					console.log('!!!!');
+      					console.log(this.getDatasetMeta(0));
+      					let _meta = this.getDatasetMeta(0);
+      					this.data.datasets.forEach(function (dataset) {
       
-      				//- 	this.data.datasets.forEach(function (dataset) {
-      				//- 		for (var i = 0; i < dataset.data.length; i++) {
-      				//- 		var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
-      				//- 			total = dataset._meta[Object.keys(dataset._meta)[0]].total,
-      				//- 			mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius)/2,
-      				//- 			start_angle = model.startAngle,
-      				//- 			end_angle = model.endAngle,
-      				//- 			mid_angle = start_angle + (end_angle - start_angle)/2;
+      						for (let i = 0; i < dataset.data.length; i++) {
+      							let model = _meta.data[i],
+      								mid_radius = model.innerRadius + (110 - model.innerRadius)/2 + 50,
+      								start_angle = model.startAngle,
+      								end_angle = model.endAngle,
+      								mid_angle = start_angle + (end_angle - start_angle)/2;
+      							console.log('=======' + i + '=======');
+      							console.log('model.innerRadius :' + model.innerRadius);
+      							console.log('model.outerRadius :' + model.outerRadius);
+      							console.log('model.startAngle :' + model.startAngle);
+      							console.log('model.endAngle :' + model.endAngle);
+      							let x = mid_radius * Math.cos(mid_angle);
+      							let y = mid_radius * Math.sin(mid_angle) + 8;
+      							let t = dataset.data[i];
+      							// ctx.fillStyle = '#fff';
+      							// console.log('t:' + typeof(t));
+      							// if(t.toString().length < 2){
+      							//   t = '0' + dataset.data[i];
+      							// }
+      							ctx.fillText(t, model.x + x, model.y + y);
       
-      				//- 		var x = mid_radius * Math.cos(mid_angle);
-      				//- 		var y = mid_radius * Math.sin(mid_angle);
-      
-      				//- 		ctx.fillStyle = '#fff';
-      				//- 		if (i == 3){ // Darker text color for lighter background
-      				//- 			ctx.fillStyle = '#444';
-      				//- 		}
-      				//- 		var percent = String(Math.round(dataset.data[i]/total*100)) + "%";
-      				//- 		ctx.fillText(dataset.data[i], model.x + x, model.y + y);
-      				//- 		// Display percent in another line, line break doesn't work for fillText
-      				//- 		ctx.fillText(percent, model.x + x, model.y + y + 15);
-      				//- 			console.log(dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model);
-      				//- 		}
-      				//- 	});               
-      				//- }
+      						}
+      					});
+      				}
       			}
       		};
       
@@ -251,8 +258,6 @@
       			data: data,
       			options: options
       		});
-      		
-      		var meta = myChart.getDatasetMeta(0);
       	},
       	methods: {
       		onCateCatch: function() {
