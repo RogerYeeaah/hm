@@ -12,45 +12,51 @@ html
 		script(src="./scripts/chart/chart.min.js")
 		script(src="./scripts/chart/chartjs-plugin-datalabels.js")
 		script(src="./scripts/data.js")
+		script(async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v12.0" nonce="3wIFGc8b")
 
 		link(rel="stylesheet", href="./styles/reset.css")
 		link(rel="stylesheet", href="./styles/custom.css")
 		
 	body
+		include ./include/header
+
 		#app.results
 			.container
 				p.name Hi Melody,
 				.title Here are your ness Wellness Wheel results
 				div.result-canvas
+					//- .avg
+					//- 	span 7.5
 					canvas#polarChart
 				.function
-					label.switch
-						input(type="checkbox" checked)
+					label.switch.d-none
+						input(type="checkbox")
 						span.slider.round
 					a.fbshare(href="#")
-						img(src="./img/icons/facebook-w.png")
+						iframe(src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&width=68&height=28&appId" width="68" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
 					a.download(href="#")
-						img(src="./img/icons/download.png")
+						img(src="./img/icons/download-w.png")
 				p.ps Let's take a look at how you're doing overall
 				.card
 					.img(style="background-image: url(./img/icons/Emotional.png)")
-					span You scored heghest on emotional health
+					span You scored highest on emotional health
 				.card
 					span ...and have the most room for improvement in social health
 					.img(style="background-image: url(./img/icons/Social.png)")
 
-				.avr-score
+				.avr-score.sp
 					.title Average score: 23.5
-						.status.style1 Not Will
+						.status.style1 Not Well
 						//- .status.style2 Average
 						//- .status.style3 Pretty Well
 						//- .status.style4 Vwry Well
-					.content That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out www.nesswellness.com 
+					.content That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out 
+						a(href="www.nesswellness.com") www.nesswellness.com 
 
 				.avr-score
 					.title Balence score: 23.5
-						.status.style1 Unblanced
-						//- .status.style4 Will Balenced
+						.status.style1 Unbalanced
+						//- .status.style4 Well Balenced
 					.content Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus.  
 				
 				.about
@@ -74,8 +80,6 @@ html
 						|resources
 					.sp TBC
 
-			include ./include/footer
-
 			//- div.socialShare
 			//- 	div.sbutton.facebook-cresta-share.cresta-float-shadow#shareF
 			//- 		a(rel="nofollow" href="#" data-name="Partager sur Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL),'targetWindow','toolbar=no,loc');return false;") facebook
@@ -98,66 +102,113 @@ html
 				},
 				created: function() {
 					this.onCateCatch();
-					console.log(this.category)
 				},
 				mounted: function() {
 					var ctx = document.getElementById("polarChart").getContext("2d");
-					var myChart = new Chart(ctx, {
-						type: 'polarArea',
-						data: {
-							labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"],
-							datasets: [{
-								backgroundColor: [
-									"#d2f9f4",
-									"#d3f9d4",
-									"#eef8d4",
-									"#fbead6",
-									"#ffcddd",
-									"#f4e2f0",
-									"#e9d3f9",
-									"#bbebf7",
-								],
-								data: [6, 9, 7, 5, 8, 6, 10, 7],
-								borderWidth: 1,
-								borderColor: '#fff'
-							}]
+					var data = {
+						datasets: [{
+							backgroundColor: [
+								"#d2f9f4",
+								"#d3f9d4",
+								"#eef8d4",
+								"#fbead6",
+								"#ffcddd",
+								"#f4e2f0",
+								"#e9d3f9",
+								"#bbebf7",
+							],
+							data: [6, 9, 7, 5, 8, 6, 10, 7],
+							borderWidth: 1,
+							borderColor: '#f2f2f2',
+							label: 'My dataset'
+						}],
+						labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"]
+					}
+					var options = {
+						//- animation: {
+						//- 	animateRotate: true,
+						//- 	animateScale: true,
+						//- 	onComplete: function () {
+						//- 		console.log(this);
+						//- 		var ctx = this.chart.ctx;
+						//- 		ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+						//- 		ctx.textAlign = 'center';
+						//- 		ctx.textBaseline = 'bottom';
+						//- 		ctx.fillText('eo4', 500, 500);	
+						//- 	}
+						//- },
+						plugins: {
+							legend: {
+								display: false,
+							}
 						},
-						options: {
-							animation: {
-								animateRotate: false,
-								animateScale: true
-							},
-							plugins: {
-								legend: {
-									display: false,
-								}
-							},
-							layout: {
-								padding: 50,
-							},
-							scales: {
-								r: {
-									min: 0,
+						layout: {
+							padding: 50,
+						},
+						scales: {
+							r: {
+								min: 0,
+								max: 10,
+								angleLines: {
 									max: 10,
-									angleLines: {
-										max: 10,
-										display: true,
-										center: true,
-										color: '#fff'
-									},
-									ticks: {
-										display: false,
-										stepSize: 1,
-										position: "top",
-										z: 2,
-									},
-									grid: {
-										color: '#fff'
-									}
+									display: true,
+									center: true,
+									color: '#f9f9f9'
+								},
+								ticks: {
+									display: false,
+									stepSize: 1,
+									position: "top",
+									z: 2,
+								},
+								grid: {
+									color: '#f9f9f9',
+									z: 2
 								}
 							}
+						},
+						animation: {
+							duration: 500,
+							easing: "easeOutQuart",
+							onComplete: function () {
+								var ctx = this.ctx;
+								ctx.textAlign = 'center';
+								ctx.textBaseline = 'bottom';
+
+								this.data.datasets.forEach(function (dataset) {
+									for (var i = 0; i < dataset.data.length; i++) {
+									var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
+										total = dataset._meta[Object.keys(dataset._meta)[0]].total,
+										mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius)/2,
+										start_angle = model.startAngle,
+										end_angle = model.endAngle,
+										mid_angle = start_angle + (end_angle - start_angle)/2;
+
+									var x = mid_radius * Math.cos(mid_angle);
+									var y = mid_radius * Math.sin(mid_angle);
+
+									ctx.fillStyle = '#fff';
+									if (i == 3){ // Darker text color for lighter background
+										ctx.fillStyle = '#444';
+									}
+									var percent = String(Math.round(dataset.data[i]/total*100)) + "%";
+									ctx.fillText(dataset.data[i], model.x + x, model.y + y);
+									// Display percent in another line, line break doesn't work for fillText
+									ctx.fillText(percent, model.x + x, model.y + y + 15);
+										console.log(dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model);
+									}
+								});               
+							}
 						}
+					};
+					var myChart = new Chart(ctx, {
+						type: 'polarArea',
+						data: data,
+						options: options
 					});
+					
+					var meta = myChart.getDatasetMeta(0);
+					console.log(meta)
 				},
 				methods: {
 					onCateCatch: function() {

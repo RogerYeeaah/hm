@@ -705,7 +705,7 @@ input:checked + .slider:before
 			flex-direction: column
 			justify-content: center
 			top: 0
-			right: 0
+			right: -20px
 			width: 100vw
 			height: 100vh
 			background: white
@@ -900,6 +900,7 @@ input:checked + .slider:before
 
 	p
 		&.name
+			padding: 0 10px
 			margin-bottom: 20px
 
 		&.ps
@@ -914,10 +915,38 @@ input:checked + .slider:before
 		font-size: 23px
 		font-weight: 600
 		line-height: 30px
+		letter-spacing: -0.7px
 
 	.result-canvas
 		margin-bottom: 20px
 		position: relative
+
+		canvas
+			padding: 8%
+			margin: 0 auto
+			display: block
+			height: 100%
+			width: 100%
+			max-height: 100%
+			max-width: 100%
+
+			+breakpoint(pad-portrait)
+				padding: 0%
+
+
+		.avg
+			position: absolute
+			display: flex
+			justify-content: center
+			align-items: center
+			height: 40px
+			width: 40px
+			left: 50%
+			top: 50%
+			transform: translate(-50%, -50%)
+			background: white
+			border-radius: 100px
+			border: 1px solid #f2f2f2
 
 		&:after
 			content: ''
@@ -928,7 +957,7 @@ input:checked + .slider:before
 			background-image: url(../img/text.png)
 			background-repeat: no-repeat
 			background-size: cover
-			z-index: 19
+			z-index: 1
 
 	.function
 		margin-bottom: 40px
@@ -945,29 +974,29 @@ input:checked + .slider:before
 			display: inline-block
 			width: 40px
 			height: 40px
-			background: #ffd400
+			background: #1877f2
 			border-radius: 100px
 
 			img
 				padding: 9px
 
 		a.fbshare
-			padding: 12px
-			display: inline-flex
-			justify-content: center
-			align-content: center
-			color: white
-			background: #026ae3
-			border-radius: 30px
+			// padding: 12px
+			// display: inline-flex
+			// justify-content: center
+			// align-content: center
+			// color: white
+			// background: #026ae3
+			// border-radius: 30px
 
-			span
-				margin-right: 4px
-				display: inline-block
-				font-size: 14px
+			// span
+			// 	margin-right: 4px
+			// 	display: inline-block
+			// 	font-size: 14px
 
-			img
-				width: 15px
-				height: 15px
+			// img
+			// 	width: 15px
+			// 	height: 15px
 
 	.card
 		display: flex
@@ -987,6 +1016,12 @@ input:checked + .slider:before
 	.avr-score
 		margin-bottom: 80px
 		position: relative
+
+		&.sp
+			margin-bottom: 120px
+
+			&:after
+				bottom: -60px
 
 		&:after
 			content: ''
@@ -1029,6 +1064,10 @@ input:checked + .slider:before
 			font-size: 14px
 			line-height: 20px
 
+			a
+				color: black
+				text-decoration: underline
+
 	.about,
 	.balence,
 	.other
@@ -1051,7 +1090,18 @@ input:checked + .slider:before
 
 	.demensions
 		padding: 0
-		margin-bottom: 20px
+		margin-bottom: 80px
+		position: relative
+
+		&:after
+			content: ''
+			position: absolute
+			bottom: -40px
+			left: 50%
+			width: 33%
+			height: 1px
+			background: lightgray
+			transform: translateX(-50%)
 
 		li
 			margin-bottom: 10px
@@ -1063,11 +1113,11 @@ input:checked + .slider:before
 
 		p
 			margin: 0
-			padding: 10px 20px
+			padding: 10px 10px
 			display: flex
 			align-items: center
 			width: 100%
-			background: #ececec
+			background: #f8f8f8
 			border-radius: 2px
 			font-size: 20px
 			font-weight: 400
@@ -1085,8 +1135,8 @@ input:checked + .slider:before
 
 		img
 			margin-right: 5px
-			width: 24px
-			height: 24px
+			width: 40px
+			height: 40px
 
 		span
 			margin-bottom: 20px

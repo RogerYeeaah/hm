@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="XXX的測驗結果">
+    <meta property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg">
+    <title>NesswellnessWheel - Know about your self</title>
+    <script src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./scripts/jquery/jquery.min.js"></script>
+    <script src="./scripts/chart/chart.min.js"></script>
+    <script src="./scripts/chart/chartjs-plugin-datalabels.js"></script>
+    <script src="./scripts/data.js"></script>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/custom.css">
+  </head>
+  <body>
+    <div class="results" id="app">
+      <div class="container">
+        <p class="name">Hi Melody,</p>
+        <div class="title">Here are your ness Wellness Wheel results</div>
+        <div class="result-canvas">
+          <canvas id="polarChart"></canvas>
+        </div>
+        <div class="function">
+          <label class="switch">
+            <input type="checkbox"><span class="slider round"></span>
+          </label><a class="fbshare" href="#"><span>Post on Facebook</span><img src="./img/icons/facebook-w.png"></a><a class="download" href="#"><img src="./img/icons/download.png"></a>
+        </div>
+        <p class="ps">Let's take a look at how you're doing overall</p>
+        <div class="card">
+          <div class="img" style="background-image: url(./img/icons/Emotional.png)"></div><span>You scored heghest on emotional health</span>
+        </div>
+        <div class="card"><span>...and have the most room for improvement in social health</span>
+          <div class="img" style="background-image: url(./img/icons/Social.png)"></div>
+        </div>
+        <div class="avr-score">
+          <div class="title">Average score: 23.5
+            <div class="status style1">Not Will</div>
+          </div>
+          <div class="content">That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out www.nesswellness.com </div>
+        </div>
+        <div class="about">
+          <div class="title">About the ness<br>Wellness Wheel</div>
+          <div class="content">The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life.</div>
+        </div>
+        <ul class="demensions">
+          <list :list="this.category"></list>
+        </ul>
+        <div class="balence">
+          <div class="title">Finding balance</div>
+          <div class="content">If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.<br>Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.</div>
+        </div>
+        <div class="other">
+          <div class="title">More wellness<br>resources</div>
+          <div class="sp">TBC</div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="container">
+          <div class="logo-box"><span>Powered by</span>
+            <div class="logo" style="background-image: url(./img/logo.png)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="list" type="text/x-template">
+      <li v-for="(items, i) in list" @click="show = !show, openNot(i)" :key="i" :class="{active: i === activeItem}">
+        <p><img :src="items.logo" alt=""> {{ items.title }}</p>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
+      </li>
+    </script>
+    <script>
+      
+
+      const app = Vue.createApp({
+      	data() {
+      		return {
+      			category: [],
+      		}
+      	},
+      	created: function() {
+      		this.onCateCatch();
+      		console.log(this.category)
+      	},
+      	mounted: function() {
+          // console.log(document.getElementById("polarChart"));
+      		var ctx = document.getElementById("polarChart").getContext("2d");
+          let configData = {
+            labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"],
+            datasets: [{
+              backgroundColor: [
+                "#d2f9f4",
+                "#d3f9d4",
+                "#eef8d4",
+                "#fbead6",
+                "#ffcddd",
+                "#f4e2f0",
+                "#e9d3f9",
+                "#bbebf7",
+              ],
+              data: [10, 2, 1, 10, 6, 10, 5, 10],
+              borderWidth: 1,
+              borderColor: '#fff'
+            }]
+          };
+
+          
+          // console.log(configData);
+          var pieOptions = {
+              plugins: {
+                legend: {
+                  display: false,
+                }
+              },
+              layout: {
+                padding: 50,
+              },
+              scales: {
+                r: {
+                  min: 0,
+                  max: 10,
+                  angleLines: {
+                    max: 10,
+                    display: true,
+                    center: true,
+                    color: '#fff'
+                  },
+                  ticks: {
+                    display: false,
+                    stepSize: 1,
+                    position: "top",
+                    z: 2,
+                  },
+                  grid: {
+                    color: '#fff',
+                    z: 10,
+                  }
+                }
+              },
+              animation: {
+                duration: 500,
+                animateRotate: false,
+                animateScale: true,              
+                onComplete: function () {
+                  let ctx = this.ctx;
+                  // ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+                  ctx.font = '12px "Helvetica Neue"';
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'bottom';
+  
+                  console.log('!!!!');
+                  console.log(this.getDatasetMeta(0));
+                  let _meta = this.getDatasetMeta(0);
+                  this.data.datasets.forEach(function (dataset) {
+
+                    for (let i = 0; i < dataset.data.length; i++) {
+                      let model = _meta.data[i],
+                          mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius)/2,
+                          start_angle = model.startAngle,
+                          end_angle = model.endAngle,
+                          mid_angle = start_angle + (end_angle - start_angle)/2;
+
+                      let x = mid_radius * Math.cos(mid_angle);
+                      let y = mid_radius * Math.sin(mid_angle) + 8;
+                      let t = dataset.data[i];
+                      // ctx.fillStyle = '#fff';
+                      // console.log('t:' + typeof(t));
+                      // if(t.toString().length < 2){
+                      //   t = '0' + dataset.data[i];
+                      // }
+                      // ctx.fillText(t, model.x + x, model.y + y);
+
+                    }
+                  });               
+                }
+              }
+            };
+
+
+      		var myChart = new Chart(ctx, {
+      			type: 'polarArea',
+      			data: configData,
+      			options: pieOptions
+      		});
+
+      	},
+      	methods: {
+      		onCateCatch: function() {
+      			this.category = pageData.en.info.category;
+      		}
+      	},
+      });
+      
+      app.component('list', {
+      	data() {
+      		return {
+      			activeItem: '',
+      			show: true
+      		}
+      	},
+      	template: '#list',
+      	props:['list'],
+      	methods: {
+      		openNot: function(i) {
+      			this.activeItem = i;
+      		}
+      	}
+      });
+      
+      app.mount('#app');
+    </script>
+  </body>
+</html>
