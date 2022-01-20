@@ -71,10 +71,11 @@
       		$("#datepicker").datepicker({
       			dateFormat: 'yy / mm / dd',
       			changeYear: true,
-      			changeMonth: true
-      		}).on(
-      			"changeDate", () => {this.date = $('#datepicker').val()}
-      		);
+      			changeMonth: true,
+      			onSelect: function() {
+      				this.date = $('#datepicker').val();
+      			}
+      		});
       
       		//- 資料驗證
       		$('form').submit(function(e) {
