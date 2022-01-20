@@ -10,7 +10,7 @@
         <ul class="menu" v-if="active">
           <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
           <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
-          <li><a href="index.html#anchor-takethetest">{{ menu[2] }}</a></li>
+          <li><a href="form.html">{{ menu[2] }}</a></li>
         </ul>
       </transition>
     </div>
@@ -21,7 +21,7 @@
             return {
                 menu:[],
                 active: false,
-                len: 'en'
+                len: localStorage.len
             }
         },
         created: function() {
@@ -32,7 +32,11 @@
         },
         methods: {
             onHeaderCatch: function() {
-                this.menu = pageData.en.menu;
+                if(this.len === 'en') {
+                    this.menu = pageData.en.menu;
+                } else if(this.len === '中') {
+                    this.menu = pageData.ch.menu;
+                }
             },
             onLenCatch: function() {
                 this.len = localStorage.len;

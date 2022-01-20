@@ -27,7 +27,7 @@
             <ul class="menu" v-if="active">
               <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
               <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
-              <li><a href="index.html#anchor-takethetest">{{ menu[2] }}</a></li>
+              <li><a href="form.html">{{ menu[2] }}</a></li>
             </ul>
           </transition>
         </div>
@@ -38,7 +38,7 @@
                 return {
                     menu:[],
                     active: false,
-                    len: 'en'
+                    len: localStorage.len
                 }
             },
             created: function() {
@@ -49,7 +49,11 @@
             },
             methods: {
                 onHeaderCatch: function() {
-                    this.menu = pageData.en.menu;
+                    if(this.len === 'en') {
+                        this.menu = pageData.en.menu;
+                    } else if(this.len === '中') {
+                        this.menu = pageData.ch.menu;
+                    }
                 },
                 onLenCatch: function() {
                     this.len = localStorage.len;
@@ -87,9 +91,9 @@
           <div class="title">Wellness<br>Wheel</div>
         </div>
         <div class="divider"></div>
-        <div class="artical">
+        <div class="article">
           <div v-for="(items, index) in info.article" key="index">
-            <p v-if="items.type === 'title'">{{ items.content }}</p><span v-if="items.type === 'article'">{{ items.content }}</span><a v-if="items.type === 'button'" :href="items.url">{{ items.content }}</a><span class="link" v-if="items.type === 'link'"><span v-html="items.content"></span></span>
+            <p v-if="items.type === 'title'" :id="items.id === 'anchor'? '':items.anchor">{{ items.content }}</p><span v-if="items.type === 'article'">{{ items.content }}</span><a v-if="items.type === 'button'" :href="items.url">{{ items.content }}</a><span class="link" v-if="items.type === 'link'"><span v-html="items.content"></span></span>
             <div class="simulator" v-if="items.type === 'svg'">
               <div class="amoeba"></div>
               <svg id="ePz7kJ65AYM1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 651.2 651.2" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">

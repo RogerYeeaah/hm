@@ -1625,11 +1625,11 @@ input:checked + .slider:before {
   opacity: 0;
 }
 
-.index .artical {
+.index .article {
   color: black;
   text-align: center;
 }
-.index .artical p {
+.index .article p {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 0 60px;
@@ -1637,7 +1637,7 @@ input:checked + .slider:before {
   font-size: 18px;
   font-weight: 600;
 }
-.index .artical span {
+.index .article span {
   margin-bottom: 20px;
   padding: 0 40px;
   display: inline-block;
@@ -1645,10 +1645,10 @@ input:checked + .slider:before {
   font-size: 12px;
   font-weight: 500;
 }
-.index .artical span.link {
+.index .article span.link {
   padding: 0;
 }
-.index .artical span.link a {
+.index .article span.link a {
   padding: 0;
   display: inline;
   color: black;
@@ -1656,7 +1656,7 @@ input:checked + .slider:before {
   background: transparent;
   font-size: 12px;
 }
-.index .artical a {
+.index .article a {
   margin-bottom: 20px;
   padding: 15px 20px;
   display: inline-block;
@@ -1667,7 +1667,7 @@ input:checked + .slider:before {
   font-size: 14px;
   font-weight: 500;
 }
-.index .artical .simulator {
+.index .article .simulator {
   margin: 0;
   position: relative;
   height: calc(100vw - 40px);
@@ -1682,7 +1682,7 @@ input:checked + .slider:before {
           justify-content: center;
   overflow: hidden;
 }
-.index .artical .simulator .amoeba {
+.index .article .simulator .amoeba {
   margin: 0 auto;
   position: absolute;
   width: calc(100% - 70px);
@@ -1697,7 +1697,7 @@ input:checked + .slider:before {
   -webkit-animation: morph 20s ease-in-out infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate;
           animation: morph 20s ease-in-out infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate;
 }
-.index .artical .simulator .amoeba:after {
+.index .article .simulator .amoeba:after {
   content: "";
   position: absolute;
   left: 0;
@@ -1711,7 +1711,7 @@ input:checked + .slider:before {
           animation: morph 12s ease-in-out -2s infinite alternate, change 20s linear infinite alternate, rotate 20s linear infinite alternate;
   opacity: 0.7;
 }
-.index .artical .simulator .amoeba1 {
+.index .article .simulator .amoeba1 {
   margin: 0 auto;
   position: absolute;
   width: calc(100% - 70px);
@@ -1722,7 +1722,7 @@ input:checked + .slider:before {
   z-index: 99;
   opacity: 0.5;
 }
-.index .artical .simulator .amoeba1:after {
+.index .article .simulator .amoeba1:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -1741,7 +1741,7 @@ input:checked + .slider:before {
   -webkit-animation: morph2 12s ease-in-out -2s infinite alternate, change 10s linear infinite alternate;
           animation: morph2 12s ease-in-out -2s infinite alternate, change 10s linear infinite alternate;
 }
-.index .artical .simulator svg {
+.index .article .simulator svg {
   position: relative;
   width: calc((100% - 70px) * 0.86);
   max-width: 500px;
@@ -1750,22 +1750,22 @@ input:checked + .slider:before {
   border-radius: 1000px;
   opacity: 1;
 }
-.index .artical .simulator svg g[id] {
+.index .article .simulator svg g[id] {
   opacity: 0.8;
 }
-.index .artical .dimensions {
+.index .article .dimensions {
   padding: 0 20px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.index .artical .dimensions li {
+.index .article .dimensions li {
   margin-bottom: 10px;
   position: relative;
 }
-.index .artical .dimensions li.active span {
+.index .article .dimensions li.active span {
   height: auto;
 }
-.index .artical .dimensions p {
+.index .article .dimensions p {
   margin: 0;
   padding: 10px 10px;
   display: -webkit-box;
@@ -1780,7 +1780,7 @@ input:checked + .slider:before {
   font-size: 20px;
   font-weight: 400;
 }
-.index .artical .dimensions .arrow {
+.index .article .dimensions .arrow {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -1790,12 +1790,12 @@ input:checked + .slider:before {
   height: 20px;
   width: 20px;
 }
-.index .artical .dimensions img {
+.index .article .dimensions img {
   margin-right: 5px;
   width: 40px;
   height: 40px;
 }
-.index .artical .dimensions span {
+.index .article .dimensions span {
   padding: 0 20px;
   padding-top: 20px;
   position: relative;

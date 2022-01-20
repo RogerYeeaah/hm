@@ -31,9 +31,9 @@ html
 						| Wheel
      
 				.divider
-				.artical
+				.article
 					div(v-for="(items, index) in info.article" key="index")
-						p(v-if="items.type === 'title'") {{ items.content }}
+						p(v-if="items.type === 'title'" :id="items.id === 'anchor'? '':items.anchor") {{ items.content }}
 						span(v-if="items.type === 'article'") {{ items.content }}
 						a(v-if="items.type === 'button'" :href="items.url") {{ items.content }}
 						span.link(v-if="items.type === 'link'")
