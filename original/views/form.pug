@@ -24,12 +24,12 @@ html
 					.title Tell us a little about yourself first...
 				form
 					.col-1.m-B-30.flex
-						input#name(type="text" :placeholder="info.name" required)
+						input#name(type="text" v-model="name" :placeholder="info.name" required)
 					.col-1.m-B-30.flex
-						input(type="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+						input(type="email" v-model="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
 					.col-1.m-B-30.flex
 						.title {{ info.birthday }}
-						input#datepicker(type="text" name="date" placeholder="YYYY / MM / DD" pattern="[0-9]{4}\/[0-9]{2}\/[0-9]{2}")
+						input#datepicker(type="text" v-model="date" name="date" placeholder="YYYY / MM / DD")
 					.col-1.m-B-30.flex
 						.title {{ info.gender }}
 						.radio
@@ -39,8 +39,8 @@ html
 							input(:id="info.genderOpt[1]" type="radio" name="gender" value="Female" required)
 							label(:for="info.genderOpt[2]") {{ info.genderOpt[2] }}
 							input(:id="info.genderOpt[2]" type="radio" name="gender" value="Other" required)
-					a.m-H-40(href="question_page.html")
-						input(type="Submit" value="Submit")
+					a.m-H-40(@click="test()")
+						//- input(type="Submit" value="Submit")
 
 		include ./include/footer
 		
@@ -48,7 +48,11 @@ html
 			const app = Vue.createApp({
 				data() {
 					return {
-						info: []
+						info: [],
+						name: '',
+						email: '',
+						date: '',
+						personInfo: []
 					}
 				},
 				created: function() {
@@ -60,7 +64,9 @@ html
 						dateFormat: 'yy / mm / dd',
 						changeYear: true,
 						changeMonth: true
-					});
+					}).on(
+						"changeDate", () => {this.date = $('#datepicker').val()}
+					);
 
 					//- 資料驗證
 					$('form').submit(function(e) {
@@ -76,6 +82,11 @@ html
 				methods: {
 					onContentCatch: function() {
 						this.info = pageData.en.info;
+					},
+					test: function() {
+						this.personInfo = [];
+						this.personInfo.push(this.name, this.email, this.date)
+						console.log(this.personInfo)
 					}
 				}
 			});

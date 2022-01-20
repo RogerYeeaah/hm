@@ -22,14 +22,14 @@
         </div>
         <form>
           <div class="col-1 m-B-30 flex">
-            <input id="name" type="text" :placeholder="info.name" required>
+            <input id="name" type="text" v-model="name" :placeholder="info.name" required>
           </div>
           <div class="col-1 m-B-30 flex">
-            <input type="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+            <input type="email" v-model="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
           </div>
           <div class="col-1 m-B-30 flex">
             <div class="title">{{ info.birthday }}</div>
-            <input id="datepicker" type="text" name="date" placeholder="YYYY / MM / DD" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}">
+            <input id="datepicker" type="text" v-model="date" name="date" placeholder="YYYY / MM / DD">
           </div>
           <div class="col-1 m-B-30 flex">
             <div class="title">{{ info.gender }}</div>
@@ -41,8 +41,7 @@
               <label :for="info.genderOpt[2]">{{ info.genderOpt[2] }}</label>
               <input :id="info.genderOpt[2]" type="radio" name="gender" value="Other" required>
             </div>
-          </div><a class="m-H-40" href="question_page.html">
-            <input type="Submit" value="Submit"></a>
+          </div><a class="m-H-40" @click="test()"></a>
         </form>
       </div>
     </div>
@@ -57,7 +56,11 @@
       const app = Vue.createApp({
       	data() {
       		return {
-      			info: []
+      			info: [],
+      			name: '',
+      			email: '',
+      			date: '',
+      			personInfo: []
       		}
       	},
       	created: function() {
@@ -69,7 +72,9 @@
       			dateFormat: 'yy / mm / dd',
       			changeYear: true,
       			changeMonth: true
-      		});
+      		}).on(
+      			"changeDate", () => {this.date = $('#datepicker').val()}
+      		);
       
       		//- 資料驗證
       		$('form').submit(function(e) {
@@ -85,6 +90,11 @@
       	methods: {
       		onContentCatch: function() {
       			this.info = pageData.en.info;
+      		},
+      		test: function() {
+      			this.personInfo = [];
+      			this.personInfo.push(this.name, this.email, this.date)
+      			console.log(this.personInfo)
       		}
       	}
       });
