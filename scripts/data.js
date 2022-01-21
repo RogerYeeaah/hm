@@ -26,7 +26,7 @@ var pageData = {
 				{"type": "article", "content": "ness wellness is a resource, platform and community bringing together like-minded individuals, collectively promoting wellness, self-care and self-growth."},
 				{"type": "article", "content":"We see wellness as an alliance. An alliance of our mind, body and soul, but also an alliance of people, spaces and purposes all coming together towards a more wholesome you."},
 				{"type": "link", "content": "Visit our <a href='https://www.nesswellness.com/'>website</a> for more information, events and resources"},
-				{"type": "button", "content": "Start the quiz"},
+				{"type": "button", "content": "Start the quiz", "url": "form.html"},
 				{"type": "title", "content": "The ness Wellness Wheel"},
 				{"type": "article", "content": "The ness Wellness Wheel is a way for us to see how our life as a whole is balanced and if all eight essential spokes or dimensions are fulfilled and taken care of."},
 				{"type": "article", "content": "If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives."},
@@ -34,7 +34,7 @@ var pageData = {
 				{"type": "link", "content": "The first step towards your wellness journey starts with knowing where you are. <a href='form.html'>Take our quiz</a> and get started on your path to a well-rounded, balanced, and fulfilled life."},
 				{"type": "title", "content": "8 Dimensions of Wellness"},
 				{"type": "category"},
-				{"type": "button", "content": "Start the quiz"}
+				{"type": "button", "content": "Start the quiz", "url": "form.html"}
 			],
 			"category": {
 				"1": {
@@ -347,16 +347,16 @@ var pageData = {
 			"article":[
 				{"type": "title", "content": "您的生活有多和諧平衡呢?"},
 				{"type": "article", "content": "歡迎參加我們的免費測驗，了解您生活中哪些領域已經蓬勃發展或者值得更多的關注。"},
-				{"type": "button", "content": "開始進行吧!"},
+				{"type": "button", "content": "開始進行吧!", "url": "form.html"},
 				{"type": "title", "content": "測驗帶來的好處?"},
 				{"type": "article", "content": "The ness Wellness Wheel 以最全面的角度觀察您的生活，檢視您所處於的現況與未來將前往的方向。"},
 				{"type": "svg"},
 				{"type": "article", "content": "The ness Wellness Wheel 是一種自我評估工具，可讓您直觀地了解自己的生活平衡程度。透過對於健康的八個面向（社交、身體、情感、職業、心靈、智慧、環境和財務）中的每個面向進行反思，我們可以使用該工具定期評估我們的健康如何隨著時間的推移而發生變化以及如何影響我們的目標和生活。請記得沒有人是完美的，但我們可以透過瞭解您正在蓬勃發展以及關注需要改善的領域，邁向全方位平衡的生活。"},
 				{"type": "link", "content": "了解更多關於健康的八個面向"},
-				{"type": "button", "content": "開始進行吧!"},
+				{"type": "button", "content": "開始進行吧!", "url": "form.html"},
 				{"type": "title", "anchor": "anchor-about", "content": "介紹我們"},
 				{"type": "article", "content": "ness Wellness 將健康生活視為一種聯盟，一個為了實踐理想及圓滿身心靈所建立的資源整合社群平台。目的是希望結合社群，空間和目標，聚集有共鳴的人們一起，共同分享和推廣理想及圓滿的生活方式，愛惜自己和自我成長，一起找到更健康且理想的自己。歡迎參觀我們的網站了解更多信息、活動和資源。"},
-				{"type": "button", "content": "測驗開始"},
+				{"type": "button", "content": "測驗開始", "url": "form.html"},
 				{"type": "title", "content": "The ness Wellness Wheel"},
 				{"type": "article", "content": "The ness Wellness Wheel 是一種讓我們了解自己的生活是否達到整體平衡，以及健康的八個面向是否都被滿足照顧到的方式。"},
 				{"type": "article", "content": "如果當其中一個生活面向成為空間主軸，而忽略了其他部分，The ness Wellness Wheel 就會感覺失去平衡，我們的生活亦是如此。"},
@@ -364,7 +364,7 @@ var pageData = {
 				{"type": "article", "content": "邁向健康旅程的第一步始於了解您所處於的生活狀態。參加我們的測驗，開始走向全方位、平衡且充實的生活。"},
 				{"type": "title", "content": "關於健康的八個面向"},
 				{"type": "category"},
-				{"type": "button", "content": "測驗開始"},
+				{"type": "button", "content": "測驗開始", "url": "form.html"},
 			],
 			"category": {
 				"1": {
