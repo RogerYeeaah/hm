@@ -200,7 +200,7 @@
       						color: '#d1d1d1'
       					},
       					ticks: {
-      						display: true,
+      						display: false,
       						stepSize: 1,
       						color: 'black',
       						backdropColor: 'transparent',
@@ -217,7 +217,7 @@
       				easing: "easeOutQuart",
       				onComplete: function () {
       					let ctx = this.ctx;
-      					ctx.font = '12px "Montserrat"';
+      					ctx.font = '8px "Montserrat"';
       					ctx.textAlign = 'center';
       					ctx.textBaseline = 'bottom';
       	
@@ -240,13 +240,7 @@
       							let x = mid_radius * Math.cos(mid_angle);
       							let y = mid_radius * Math.sin(mid_angle) + 8;
       							let t = dataset.data[i];
-      							// ctx.fillStyle = '#fff';
-      							// console.log('t:' + typeof(t));
-      							// if(t.toString().length < 2){
-      							//   t = '0' + dataset.data[i];
-      							// }
       							ctx.fillText(t, model.x + x, model.y + y);
-      
       						}
       					});
       				}

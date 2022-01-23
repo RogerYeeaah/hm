@@ -11,6 +11,7 @@ html
 		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
 		script(src="./scripts/jquery/jquery-ui.js")
+		script(src="./scripts/axios/axios.min.js")
 		script(src="./scripts/data.js")
 		
 		link(rel="stylesheet", href="./styles/jquery/jquery-ui.css")
@@ -34,13 +35,13 @@ html
 						.title {{ info.gender }}
 						.radio
 							label(:for="info.genderOpt[0]") {{ info.genderOpt[0] }}
-							input(:id="info.genderOpt[0]" type="radio" name="gender" value="Male" required)
+							input(:id="info.genderOpt[0]" type="radio" name="gender" v-model="gender" value="Male" required)
 							label(:for="info.genderOpt[1]") {{ info.genderOpt[1] }}
-							input(:id="info.genderOpt[1]" type="radio" name="gender" value="Female" required)
+							input(:id="info.genderOpt[1]" type="radio" name="gender" v-model="gender" value="Female" required)
 							label(:for="info.genderOpt[2]") {{ info.genderOpt[2] }}
-							input(:id="info.genderOpt[2]" type="radio" name="gender" value="Other" required)
-					a.m-H-40(@click="test()")
-						//- input(type="Submit" value="Submit")
+							input(:id="info.genderOpt[2]" type="radio" name="gender" v-model="gender" value="Other" required)
+					a.m-H-40
+						input(type="submit" value="Submit" @click="dataPost")
 
 		include ./include/footer
 		
@@ -52,6 +53,7 @@ html
 						name: '',
 						email: '',
 						date: '',
+						gender: '',
 						personInfo: []
 					}
 				},
@@ -60,12 +62,13 @@ html
 				},
 				mounted: function() {
 					//- dtpk
+					var self = this
 					$("#datepicker").datepicker({
 						dateFormat: 'yy / mm / dd',
 						changeYear: true,
 						changeMonth: true,
-						onSelect: function() {
-							this.date = $('#datepicker').val();
+						onSelect: function(date) {
+							self.date = date
 						}
 					});
 
@@ -77,17 +80,27 @@ html
 							this.reportValidity();
 							return;
 						}
-						this.submit();
 					});
 				},
 				methods: {
 					onContentCatch: function() {
 						this.info = pageData.en.info;
 					},
-					test: function() {
-						this.personInfo = [];
-						this.personInfo.push(this.name, this.email, this.date)
-						console.log(this.personInfo)
+					dataPost: function() {
+						console.log(this.email, this.name, this.date, this.gender)
+						axios({
+							method: 'post',
+							url: pageData.DBurl,
+							headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+							data: {
+								"email": this.email,
+								"name": this.name,
+								"birthday": this.date,
+								"gender": this.gender
+							}
+						})
+						.then( (response) => console.log(window.location.href))
+						.catch( (error) => console.log(error));
 					}
 				}
 			});

@@ -661,7 +661,8 @@ var pageData = {
 				},
 			]
 		]
-	} 
+	},
+	"DBurl": "https://wayne19921106.wixsite.com/my-site/_functions/info"
 }
 
 // 浮點數相加
