@@ -17,52 +17,61 @@
   </div>
   <script>
     const header = Vue.createApp({
-        data() {
-            return {
-                menu:[],
-                active: false,
-                len: localStorage.len
-            }
-        },
-        created: function() {
-            this.onHeaderCatch();
-            this.onLenCatch();
-        },
-        mounted: function() {
-        },
-        methods: {
-            onHeaderCatch: function() {
-                if(this.len === 'en') {
-                    this.menu = pageData.en.menu;
-                } else if(this.len === '中') {
-                    this.menu = pageData.ch.menu;
-                }
-            },
-            onLenCatch: function() {
-                this.len = localStorage.len;
-            },
-            lenChange: function() {
-                if(localStorage.len === 'en') {
-                    localStorage.setItem('len', '中')
-                    this.len = localStorage.len;
-                    this.menu = pageData.ch.menu;
-                } else if (localStorage.len === '中') {
-                    localStorage.setItem('len', 'en')
-                    this.len = localStorage.len;
-                    this.menu = pageData.en.menu;
-                }
-                location. reload();
-            }
-        },
-        watch: {
-            active: function (newActive, oldActive) {
-                if (newActive == true) {
-                    window.document.querySelector('body').style['overflow'] = 'hidden';
-                } else {
-                    window.document.querySelector('body').style['overflow'] = '';
-                }
-            }
-        }
+    	data() {
+    		return {
+    			menu:[],
+    			active: false,
+    			len: localStorage.len
+    		}
+    	},
+    	created: function() {
+    		this.onHeaderCatch();
+    		this.onLenCatch();
+    	},
+    	mounted: function() {
+    	},
+    	methods: {
+    		onHeaderCatch: function() {
+    			if(this.len === 'en') {
+    				this.menu = pageData.en.menu;
+    			} else if(this.len === '中') {
+    				this.menu = pageData.ch.menu;
+    			} else {
+    				this.menu = pageData.en.menu;
+    			}
+    		},
+    		onLenCatch: function() {
+    			if(this.len != 'en' && this.len != '中') {
+    				localStorage.setItem('len', 'en')
+    				this.len = localStorage.len;
+    			}
+    		},
+    		lenChange: function() {
+    			if(localStorage.len === 'en') {
+    				localStorage.setItem('len', '中')
+    				this.len = localStorage.len;
+    				this.menu = pageData.ch.menu;
+    			} else if (localStorage.len === '中') {
+    				localStorage.setItem('len', 'en')
+    				this.len = localStorage.len;
+    				this.menu = pageData.en.menu;
+    			} else {
+    				localStorage.setItem('len', 'en')
+    				this.len = localStorage.len;
+    				this.menu = pageData.en.menu;
+    			}
+    			location. reload();
+    		}
+    	},
+    	watch: {
+    		active: function (newActive, oldActive) {
+    			if (newActive == true) {
+    				window.document.querySelector('body').style['overflow'] = 'hidden';
+    			} else {
+    				window.document.querySelector('body').style['overflow'] = '';
+    			}
+    		}
+    	}
     });
     
     header.mount('#header');

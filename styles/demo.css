@@ -1,0 +1,30 @@
+body {
+    height: 100%;
+    background-image: url(../img/cate-06.jpg);
+    background-size: cover;
+    background-position: center;
+    -webkit-transition: background .5s;
+    -o-transition: background .5s;
+    transition: background .5s
+}
+
+.container{
+	margin: 30px auto;
+	max-width: 800px;
+
+}
+
+.quiz{
+	background-color: #fff;
+	border-radius: 30px;
+	padding: 30px;
+}
+
+.result img{
+	display: block;
+	margin: 30px auto;
+}
+
+.ans{
+	margin: 30px auto;
+}

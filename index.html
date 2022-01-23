@@ -34,52 +34,61 @@
       </div>
       <script>
         const header = Vue.createApp({
-            data() {
-                return {
-                    menu:[],
-                    active: false,
-                    len: localStorage.len
-                }
-            },
-            created: function() {
-                this.onHeaderCatch();
-                this.onLenCatch();
-            },
-            mounted: function() {
-            },
-            methods: {
-                onHeaderCatch: function() {
-                    if(this.len === 'en') {
-                        this.menu = pageData.en.menu;
-                    } else if(this.len === '中') {
-                        this.menu = pageData.ch.menu;
-                    }
-                },
-                onLenCatch: function() {
-                    this.len = localStorage.len;
-                },
-                lenChange: function() {
-                    if(localStorage.len === 'en') {
-                        localStorage.setItem('len', '中')
-                        this.len = localStorage.len;
-                        this.menu = pageData.ch.menu;
-                    } else if (localStorage.len === '中') {
-                        localStorage.setItem('len', 'en')
-                        this.len = localStorage.len;
-                        this.menu = pageData.en.menu;
-                    }
-                    location. reload();
-                }
-            },
-            watch: {
-                active: function (newActive, oldActive) {
-                    if (newActive == true) {
-                        window.document.querySelector('body').style['overflow'] = 'hidden';
-                    } else {
-                        window.document.querySelector('body').style['overflow'] = '';
-                    }
-                }
-            }
+        	data() {
+        		return {
+        			menu:[],
+        			active: false,
+        			len: localStorage.len
+        		}
+        	},
+        	created: function() {
+        		this.onHeaderCatch();
+        		this.onLenCatch();
+        	},
+        	mounted: function() {
+        	},
+        	methods: {
+        		onHeaderCatch: function() {
+        			if(this.len === 'en') {
+        				this.menu = pageData.en.menu;
+        			} else if(this.len === '中') {
+        				this.menu = pageData.ch.menu;
+        			} else {
+        				this.menu = pageData.en.menu;
+        			}
+        		},
+        		onLenCatch: function() {
+        			if(this.len != 'en' && this.len != '中') {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        			}
+        		},
+        		lenChange: function() {
+        			if(localStorage.len === 'en') {
+        				localStorage.setItem('len', '中')
+        				this.len = localStorage.len;
+        				this.menu = pageData.ch.menu;
+        			} else if (localStorage.len === '中') {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        				this.menu = pageData.en.menu;
+        			} else {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        				this.menu = pageData.en.menu;
+        			}
+        			location. reload();
+        		}
+        	},
+        	watch: {
+        		active: function (newActive, oldActive) {
+        			if (newActive == true) {
+        				window.document.querySelector('body').style['overflow'] = 'hidden';
+        			} else {
+        				window.document.querySelector('body').style['overflow'] = '';
+        			}
+        		}
+        	}
         });
         
         header.mount('#header');
@@ -163,7 +172,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt=""> {{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
       </li>
     </script>
     <script>
@@ -186,6 +195,8 @@
       				this.info = pageData.en.info;
       			} else if(this.len === '中') {
       				this.info = pageData.ch.info;
+      			} else {
+      				this.info = pageData.en.info;
       			}
       		},
       		onCateCatch: function() {
@@ -193,6 +204,8 @@
       				this.category = pageData.en.category;
       			} else if(this.len === '中') {
       				this.category = pageData.ch.category;
+      			} else {
+      				this.category = pageData.en.category;
       			}
       		},
       		onLenCatch: function() {
@@ -212,8 +225,12 @@
       	props:['list'],
       	methods: {
       		openNot: function(i) {
-      			console.log(i)
-      			this.activeItem = i;
+      			if(this.activeItem === i) {
+      				this.activeItem = null;
+      			} else {
+      				console.log('2')
+      				this.activeItem = i;
+      			}
       		}
       	}
       });

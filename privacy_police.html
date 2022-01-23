@@ -30,52 +30,61 @@
       </div>
       <script>
         const header = Vue.createApp({
-            data() {
-                return {
-                    menu:[],
-                    active: false,
-                    len: localStorage.len
-                }
-            },
-            created: function() {
-                this.onHeaderCatch();
-                this.onLenCatch();
-            },
-            mounted: function() {
-            },
-            methods: {
-                onHeaderCatch: function() {
-                    if(this.len === 'en') {
-                        this.menu = pageData.en.menu;
-                    } else if(this.len === '中') {
-                        this.menu = pageData.ch.menu;
-                    }
-                },
-                onLenCatch: function() {
-                    this.len = localStorage.len;
-                },
-                lenChange: function() {
-                    if(localStorage.len === 'en') {
-                        localStorage.setItem('len', '中')
-                        this.len = localStorage.len;
-                        this.menu = pageData.ch.menu;
-                    } else if (localStorage.len === '中') {
-                        localStorage.setItem('len', 'en')
-                        this.len = localStorage.len;
-                        this.menu = pageData.en.menu;
-                    }
-                    location. reload();
-                }
-            },
-            watch: {
-                active: function (newActive, oldActive) {
-                    if (newActive == true) {
-                        window.document.querySelector('body').style['overflow'] = 'hidden';
-                    } else {
-                        window.document.querySelector('body').style['overflow'] = '';
-                    }
-                }
-            }
+        	data() {
+        		return {
+        			menu:[],
+        			active: false,
+        			len: localStorage.len
+        		}
+        	},
+        	created: function() {
+        		this.onHeaderCatch();
+        		this.onLenCatch();
+        	},
+        	mounted: function() {
+        	},
+        	methods: {
+        		onHeaderCatch: function() {
+        			if(this.len === 'en') {
+        				this.menu = pageData.en.menu;
+        			} else if(this.len === '中') {
+        				this.menu = pageData.ch.menu;
+        			} else {
+        				this.menu = pageData.en.menu;
+        			}
+        		},
+        		onLenCatch: function() {
+        			if(this.len != 'en' && this.len != '中') {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        			}
+        		},
+        		lenChange: function() {
+        			if(localStorage.len === 'en') {
+        				localStorage.setItem('len', '中')
+        				this.len = localStorage.len;
+        				this.menu = pageData.ch.menu;
+        			} else if (localStorage.len === '中') {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        				this.menu = pageData.en.menu;
+        			} else {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        				this.menu = pageData.en.menu;
+        			}
+        			location. reload();
+        		}
+        	},
+        	watch: {
+        		active: function (newActive, oldActive) {
+        			if (newActive == true) {
+        				window.document.querySelector('body').style['overflow'] = 'hidden';
+        			} else {
+        				window.document.querySelector('body').style['overflow'] = '';
+        			}
+        		}
+        	}
         });
         
         header.mount('#header');
@@ -89,6 +98,8 @@
           <p class="m-B-20"> 我們不會對您使用 Facebook 或本條款涵蓋之其他產品或服務收取費用，但企業商家和組織會付費請我們向您顯示其商品和服務的廣告。只要使用我們的產品，即表示您同意我們向您顯示我們認為與您個人及興趣相關的廣告。我們會運用您的個人資料來決定該向您顯示哪些廣告。</p>
           <p class="m-B-20"> 我們絕不會將您的個資販售給廣告商，且除非您授予我們特定權限，否則我們也不會與廣告商分享可識別您個人身分的資訊（例如姓名、電子郵件地址或其他聯絡資料）。然而廣告商可以告知我們想要顯示廣告的目標受眾類型，我們再針對可能會感興趣的對象顯示他們的廣告。我們為廣告商提供廣告成效報告，協助他們瞭解用戶與廣告內容的互動情形。請參考後續第 2 節瞭解詳情。</p>
           <p class="m-B-20"> 我們的《資料政策》說明我們如何蒐集和使用您的個人資料來決定您看到的部分廣告內容，以及提供後續提及的所有服務。您也能隨時前往設定查看可用的隱私選項，瞭解我們如何使用您的資料。</p>
+          <div class="title m-B-20"> 資料政策</div>
+          <p>本政策說明我們為支援 Facebook、Instagram、Messenger 及其他 Meta Platforms, Inc. 所提供之產品與功能（下稱「Meta 產品或「產品」）所處理的資料。您可以在 Facebook 設定及 Instagram 設定找到其他工具和資訊。</p>
         </div>
       </div>
     </div>

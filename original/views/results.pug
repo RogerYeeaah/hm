@@ -125,18 +125,6 @@ html
 						labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"]
 					}
 					var options = {
-						//- animation: {
-						//- 	animateRotate: true,
-						//- 	animateScale: true,
-						//- 	onComplete: function () {
-						//- 		console.log(this);
-						//- 		var ctx = this.chart.ctx;
-						//- 		ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-						//- 		ctx.textAlign = 'center';
-						//- 		ctx.textBaseline = 'bottom';
-						//- 		ctx.fillText('eo4', 500, 500);	
-						//- 	}
-						//- },
 						plugins: {
 							legend: {
 								display: false,
@@ -173,8 +161,7 @@ html
 							easing: "easeOutQuart",
 							onComplete: function () {
 								let ctx = this.ctx;
-								// ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-								ctx.font = '12px "Helvetica Neue"';
+								ctx.font = '12px "Montserrat"';
 								ctx.textAlign = 'center';
 								ctx.textBaseline = 'bottom';
 				

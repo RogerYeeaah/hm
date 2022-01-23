@@ -34,52 +34,61 @@
       </div>
       <script>
         const header = Vue.createApp({
-            data() {
-                return {
-                    menu:[],
-                    active: false,
-                    len: localStorage.len
-                }
-            },
-            created: function() {
-                this.onHeaderCatch();
-                this.onLenCatch();
-            },
-            mounted: function() {
-            },
-            methods: {
-                onHeaderCatch: function() {
-                    if(this.len === 'en') {
-                        this.menu = pageData.en.menu;
-                    } else if(this.len === '中') {
-                        this.menu = pageData.ch.menu;
-                    }
-                },
-                onLenCatch: function() {
-                    this.len = localStorage.len;
-                },
-                lenChange: function() {
-                    if(localStorage.len === 'en') {
-                        localStorage.setItem('len', '中')
-                        this.len = localStorage.len;
-                        this.menu = pageData.ch.menu;
-                    } else if (localStorage.len === '中') {
-                        localStorage.setItem('len', 'en')
-                        this.len = localStorage.len;
-                        this.menu = pageData.en.menu;
-                    }
-                    location. reload();
-                }
-            },
-            watch: {
-                active: function (newActive, oldActive) {
-                    if (newActive == true) {
-                        window.document.querySelector('body').style['overflow'] = 'hidden';
-                    } else {
-                        window.document.querySelector('body').style['overflow'] = '';
-                    }
-                }
-            }
+        	data() {
+        		return {
+        			menu:[],
+        			active: false,
+        			len: localStorage.len
+        		}
+        	},
+        	created: function() {
+        		this.onHeaderCatch();
+        		this.onLenCatch();
+        	},
+        	mounted: function() {
+        	},
+        	methods: {
+        		onHeaderCatch: function() {
+        			if(this.len === 'en') {
+        				this.menu = pageData.en.menu;
+        			} else if(this.len === '中') {
+        				this.menu = pageData.ch.menu;
+        			} else {
+        				this.menu = pageData.en.menu;
+        			}
+        		},
+        		onLenCatch: function() {
+        			if(this.len != 'en' && this.len != '中') {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        			}
+        		},
+        		lenChange: function() {
+        			if(localStorage.len === 'en') {
+        				localStorage.setItem('len', '中')
+        				this.len = localStorage.len;
+        				this.menu = pageData.ch.menu;
+        			} else if (localStorage.len === '中') {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        				this.menu = pageData.en.menu;
+        			} else {
+        				localStorage.setItem('len', 'en')
+        				this.len = localStorage.len;
+        				this.menu = pageData.en.menu;
+        			}
+        			location. reload();
+        		}
+        	},
+        	watch: {
+        		active: function (newActive, oldActive) {
+        			if (newActive == true) {
+        				window.document.querySelector('body').style['overflow'] = 'hidden';
+        			} else {
+        				window.document.querySelector('body').style['overflow'] = '';
+        			}
+        		}
+        	}
         });
         
         header.mount('#header');
@@ -172,18 +181,6 @@
       			labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"]
       		}
       		var options = {
-      			//- animation: {
-      			//- 	animateRotate: true,
-      			//- 	animateScale: true,
-      			//- 	onComplete: function () {
-      			//- 		console.log(this);
-      			//- 		var ctx = this.chart.ctx;
-      			//- 		ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-      			//- 		ctx.textAlign = 'center';
-      			//- 		ctx.textBaseline = 'bottom';
-      			//- 		ctx.fillText('eo4', 500, 500);	
-      			//- 	}
-      			//- },
       			plugins: {
       				legend: {
       					display: false,
@@ -220,8 +217,7 @@
       				easing: "easeOutQuart",
       				onComplete: function () {
       					let ctx = this.ctx;
-      					// ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
-      					ctx.font = '12px "Helvetica Neue"';
+      					ctx.font = '12px "Montserrat"';
       					ctx.textAlign = 'center';
       					ctx.textBaseline = 'bottom';
       	

@@ -1,72 +1,81 @@
 #header.header
-    .container
-        .logo-box
-            .logo(style="background-image: url(./img/logo.png)")
+	.container
+		.logo-box
+			.logo(style="background-image: url(./img/logo.png)")
 
-        .function-box
-            a(href="javascript:;" @click="lenChange()")
-                img(src="./img/icons/globe.png", alt="")
-                | {{ len }}
+		.function-box
+			a(href="javascript:;" @click="lenChange()")
+				img(src="./img/icons/globe.png", alt="")
+				| {{ len }}
 
-        .hamburger(:class="active === false? '':'open'" @click="active = !active")
-            span
-            transition(name="slide")
-                ul.menu(v-if="active")
-                    li
-                        a(href="index.html#anchor-about") {{ menu[0] }}
-                    li
-                        a(href="index.html#anchor-resources") {{ menu[1] }}
-                    li
-                        a(href="form.html") {{ menu[2] }}
-    
-    script.
-        const header = Vue.createApp({
-            data() {
-                return {
-                    menu:[],
-                    active: false,
-                    len: localStorage.len
-                }
-            },
-            created: function() {
-                this.onHeaderCatch();
-                this.onLenCatch();
-            },
-            mounted: function() {
-            },
-            methods: {
-                onHeaderCatch: function() {
-                    if(this.len === 'en') {
-                        this.menu = pageData.en.menu;
-                    } else if(this.len === '中') {
-                        this.menu = pageData.ch.menu;
-                    }
-                },
-                onLenCatch: function() {
-                    this.len = localStorage.len;
-                },
-                lenChange: function() {
-                    if(localStorage.len === 'en') {
-                        localStorage.setItem('len', '中')
-                        this.len = localStorage.len;
-                        this.menu = pageData.ch.menu;
-                    } else if (localStorage.len === '中') {
-                        localStorage.setItem('len', 'en')
-                        this.len = localStorage.len;
-                        this.menu = pageData.en.menu;
-                    }
-                    location. reload();
-                }
-            },
-            watch: {
-                active: function (newActive, oldActive) {
-                    if (newActive == true) {
-                        window.document.querySelector('body').style['overflow'] = 'hidden';
-                    } else {
-                        window.document.querySelector('body').style['overflow'] = '';
-                    }
-                }
-            }
-        });
+		.hamburger(:class="active === false? '':'open'" @click="active = !active")
+			span
+			transition(name="slide")
+				ul.menu(v-if="active")
+					li
+						a(href="index.html#anchor-about") {{ menu[0] }}
+					li
+						a(href="index.html#anchor-resources") {{ menu[1] }}
+					li
+						a(href="form.html") {{ menu[2] }}
+	
+	script.
+		const header = Vue.createApp({
+			data() {
+				return {
+					menu:[],
+					active: false,
+					len: localStorage.len
+				}
+			},
+			created: function() {
+				this.onHeaderCatch();
+				this.onLenCatch();
+			},
+			mounted: function() {
+			},
+			methods: {
+				onHeaderCatch: function() {
+					if(this.len === 'en') {
+						this.menu = pageData.en.menu;
+					} else if(this.len === '中') {
+						this.menu = pageData.ch.menu;
+					} else {
+						this.menu = pageData.en.menu;
+					}
+				},
+				onLenCatch: function() {
+					if(this.len != 'en' && this.len != '中') {
+						localStorage.setItem('len', 'en')
+						this.len = localStorage.len;
+					}
+				},
+				lenChange: function() {
+					if(localStorage.len === 'en') {
+						localStorage.setItem('len', '中')
+						this.len = localStorage.len;
+						this.menu = pageData.ch.menu;
+					} else if (localStorage.len === '中') {
+						localStorage.setItem('len', 'en')
+						this.len = localStorage.len;
+						this.menu = pageData.en.menu;
+					} else {
+						localStorage.setItem('len', 'en')
+						this.len = localStorage.len;
+						this.menu = pageData.en.menu;
+					}
+					location. reload();
+				}
+			},
+			watch: {
+				active: function (newActive, oldActive) {
+					if (newActive == true) {
+						window.document.querySelector('body').style['overflow'] = 'hidden';
+					} else {
+						window.document.querySelector('body').style['overflow'] = '';
+					}
+				}
+			}
+		});
 
-        header.mount('#header');
+		header.mount('#header');

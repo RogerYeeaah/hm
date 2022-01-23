@@ -104,7 +104,7 @@ html
 				p
 					img(:src="items.logo", alt="")
 					|  {{ items.title }}
-				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
+				.arrow(:style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'")
 				span(v-if="i === activeItem? show:!show") {{ items.info }}
 
 		script.
@@ -127,6 +127,8 @@ html
 							this.info = pageData.en.info;
 						} else if(this.len === '中') {
 							this.info = pageData.ch.info;
+						} else {
+							this.info = pageData.en.info;
 						}
 					},
 					onCateCatch: function() {
@@ -134,6 +136,8 @@ html
 							this.category = pageData.en.category;
 						} else if(this.len === '中') {
 							this.category = pageData.ch.category;
+						} else {
+							this.category = pageData.en.category;
 						}
 					},
 					onLenCatch: function() {
@@ -153,8 +157,12 @@ html
 				props:['list'],
 				methods: {
 					openNot: function(i) {
-						console.log(i)
-						this.activeItem = i;
+						if(this.activeItem === i) {
+							this.activeItem = null;
+						} else {
+							console.log('2')
+							this.activeItem = i;
+						}
 					}
 				}
 			});

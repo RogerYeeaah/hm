@@ -1487,6 +1487,7 @@ input:checked + .slider:before {
   margin-left: 5px;
   display: inline-block;
   width: 10vw;
+  max-width: 80px;
   min-width: 65px;
   padding-bottom: 23%;
   background-image: url(./img/logo.png);
@@ -1671,6 +1672,8 @@ input:checked + .slider:before {
   margin: 0;
   position: relative;
   height: calc(100vw - 40px);
+  max-height: 800px;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
