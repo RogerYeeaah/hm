@@ -45,18 +45,18 @@ html
 					.img(style="background-image: url(./img/icons/Social.png)")
 
 				.avr-score.sp
-					.title Average score: 23.5
-						.status.style1 Not Well
-						//- .status.style2 Average
-						//- .status.style3 Pretty Well
-						//- .status.style4 Very Well
+					.title Average score: {{ this.averScore }}
+						.status.style1(v-if="this.averScore >= 0 && this.averScore < 39") Not Well
+						.status.style2(v-if="this.averScore >= 39 && this.averScore < 59") Average
+						.status.style3(v-if="this.averScore >= 59 && this.averScore <= 79") Pretty Well
+						.status.style4(v-if="this.averScore >= 80") Very Well
 					.content That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out 
 						a(href="www.nesswellness.com") www.nesswellness.com 
 
 				.avr-score
-					.title Balance score: 23.5
-						.status.style1 Unbalanced
-						//- .status.style4 Well Balanced
+					.title Balance score: {{ this. balScore }}
+						.status.style1(v-if="this.balScore <= 11") Unbalanced
+						.status.style4(v-if="this.balScore >= 12") Well Balanced
 					.content Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus.  
 				
 				.about
@@ -98,6 +98,8 @@ html
 				data() {
 					return {
 						category: [],
+						averScore: 50,
+						balScore: 12,
 						emo: localStorage.emo,
 						phy: localStorage.phy,
 						spi: localStorage.spi,

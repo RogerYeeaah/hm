@@ -115,14 +115,18 @@
           <div class="img" style="background-image: url(./img/icons/Social.png)"></div>
         </div>
         <div class="avr-score sp">
-          <div class="title">Average score: 23.5
-            <div class="status style1">Not Well</div>
+          <div class="title">Average score: {{ this.averScore }}
+            <div class="status style1" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39">Not Well</div>
+            <div class="status style2" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">Average</div>
+            <div class="status style3" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">Pretty Well</div>
+            <div class="status style4" v-if="this.averScore &gt;= 80">Very Well</div>
           </div>
           <div class="content">That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href="www.nesswellness.com">www.nesswellness.com </a></div>
         </div>
         <div class="avr-score">
-          <div class="title">Balance score: 23.5
-            <div class="status style1">Unbalanced</div>
+          <div class="title">Balance score: {{ this. balScore }}
+            <div class="status style1" v-if="this.balScore &lt;= 11">Unbalanced</div>
+            <div class="status style4" v-if="this.balScore &gt;= 12">Well Balanced</div>
           </div>
           <div class="content">Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus.  </div>
         </div>
@@ -154,6 +158,8 @@
       	data() {
       		return {
       			category: [],
+      			averScore: 50,
+      			balScore: 12,
       			emo: localStorage.emo,
       			phy: localStorage.phy,
       			spi: localStorage.spi,

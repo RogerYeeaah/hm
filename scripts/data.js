@@ -668,14 +668,14 @@ var pageData = {
 // 浮點數相加
 function addFloat(num1,num2){
     var r1, r2, m;
-    try{ 
+    try { 
         r1 = num1.toString().split(".")[1].length; 
-    }catch(e){
+    } catch(e) {
         r1 = 0; 
     }
-    try{
+    try {
         r2 = num2.toString().split(".")[1].length;
-    } catch(e){
+    } catch(e) {
         r2 = 0;
     }
     m = Math.pow(10, Math.max(r1, r2));
@@ -685,14 +685,14 @@ function addFloat(num1,num2){
 // 浮點數相減
 function subFloat(num1,num2){
     var r1, r2, m, n;
-    try{ 
+    try { 
         r1 = num1.toString().split(".")[1].length; 
-    }catch(e){
+    } catch(e){
         r1 = 0; 
     }
-    try{
+    try {
         r2 = num2.toString().split(".")[1].length;
-    } catch(e){
+    } catch(e) {
         r2 = 0;
     }
     m = Math.pow(10, Math.max(r1, r2));
@@ -703,12 +703,12 @@ function subFloat(num1,num2){
 // 浮點數相乘
 function mulFloat(num1,num2){
     var m = 0, s1 = num1.toString(), s2 = num2.toString();
-    try{ 
+    try {
         m += s1.split(".")[1].length; 
-    }catch(e){ }
-    try{
+    } catch(e) { }
+    try {
         m += s2.toString().split(".")[1].length;
-    } catch(e){ }
+    } catch(e) { }
 
     return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
 }
@@ -716,13 +716,13 @@ function mulFloat(num1,num2){
 // 浮點數相除
 function divFloat(num1,num2){
     var r1, r2, t1 = 0, t2 = 0;
-    try{ 
+    try { 
         t1 = num1.toString().split(".")[1].length; 
-    }catch(e){ }
-    try{
+    } catch(e) { }
+    try {
         t2 = num2.toString().split(".")[1].length;
-    } catch(e){ }
-    with(Math){
+    } catch(e) { }
+    with(Math) {
         r1 = Number(num1.toString().replace(".", ""));
         r2 = Number(num2.toString().replace(".", ""));
         return (r1 / r2) * pow(10, t2 - t1);
