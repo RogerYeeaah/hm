@@ -51,9 +51,11 @@
       <div class="q-card" v-for="(items, index) in qc" :key="index">
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
-          <p>Rarely</p>
+          <p v-show="qcs.len === 'en'">Rarely</p>
+          <p v-show="qcs.len === '中'">很常</p>
           <sp :sp="items" :qc="qc" :qcc="qcs" @childEvent="parentEvent"></sp>
-          <p>Always</p>
+          <p class="right" v-show="qcs.len === 'en'">Always</p>
+          <p class="right" v-show="qcs.len === '中'">不常</p>
         </div>
       </div>
     </script>
@@ -70,12 +72,12 @@
       			questions: [],
       			result: [],
       			curQ: 0,
-      			totalQ: 0
+      			totalQ: 0,
+      			len: localStorage.len
       		}
       	},
       	created: function() {
       		this.onContentCatch();
-      		this.onHeaderCatch();
       	},
       	mounted: function() {
       		var swiper = new Swiper(".mySwiper", {
@@ -102,34 +104,61 @@
       	},
       	methods: {
       		onContentCatch: function() {
-      			this.questions = pageData.en.questions;
-      		},
-      		onHeaderCatch: function() {
-      			this.menu = pageData.en.menu;
+      			if(this.len === 'en') {
+      				this.questions = pageData.en.questions;
+      			} else if(this.len === '中') {
+      				this.questions = pageData.ch.questions;
+      			} else {
+      				this.questions = pageData.en.questions;
+      			}
       		},
       		cul: function(e) {
       			var active = window.document.querySelectorAll('.active'),
       				actives = window.document.querySelectorAll('.active').length,
-      				emo,
-      				phy,
-      				spi,
-      				int,
-      				soc,
-      				env,
-      				occ,
-      				fin,
+      				emo = 0,
+      				phy = 0,
+      				spi = 0,
+      				int = 0,
+      				soc = 0,
+      				env = 0,
+      				occ = 0,
+      				fin = 0,
       				index;
       			
       			for (i = 0; i < actives; i++) {
-      				var input = active[i].querySelector('input');
+      				var input = active[i].querySelector('input'),
+      					tPer = input.dataset.percentage,
+      					tOption = input.dataset.option * 10 / 7,
+      					tScore = mulFloat(tPer, tOption);
+      
+      				console.log(tPer, tOption, tScore);
       				if(input.dataset.cate === '1') {
-      					var tPer = input.dataset.percentage,
-      						tOption = input.dataset.option,
-      						tScore = mulFloat(tPer, tOption);
       					emo += tScore;
+      				} else if (input.dataset.cate === '2') {
+      					phy += tScore;
+      				} else if (input.dataset.cate === '3') {
+      					spi += tScore;
+      				} else if (input.dataset.cate === '4') {
+      					int += tScore;
+      				} else if (input.dataset.cate === '5') {
+      					soc += tScore;
+      				} else if (input.dataset.cate === '6') {
+      					env += tScore;
+      				} else if (input.dataset.cate === '7') {
+      					occ += tScore;
+      				} else if (input.dataset.cate === '8') {
+      					fin += tScore;
       				}
-      				console.log(emo, tPer, tOption, tScore);
       			}
+      			localStorage.emo = emo = emo.toFixed(2);
+      			localStorage.phy = phy = phy.toFixed(2);
+      			localStorage.spi = spi = spi.toFixed(2);
+      			localStorage.int = int = int.toFixed(2);
+      			localStorage.soc = soc = soc.toFixed(2);
+      			localStorage.env = env = env.toFixed(2);
+      			localStorage.occ = occ = occ.toFixed(2);
+      			localStorage.fin = fin = fin.toFixed(2);
+      			console.log(emo, phy, spi, int, soc, env, occ, fin);
       		}
       	},
       	computed: {

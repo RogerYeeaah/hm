@@ -35,12 +35,12 @@
           <div class="col-1 m-B-30 flex">
             <div class="title">{{ info.gender }}</div>
             <div class="radio">
-              <label :for="info.genderOpt[0]">{{ info.genderOpt[0] }}</label>
               <input :id="info.genderOpt[0]" type="radio" name="gender" v-model="gender" value="Male" required>
-              <label :for="info.genderOpt[1]">{{ info.genderOpt[1] }}</label>
+              <label :for="info.genderOpt[0]">{{ info.genderOpt[0] }}</label>
               <input :id="info.genderOpt[1]" type="radio" name="gender" v-model="gender" value="Female" required>
-              <label :for="info.genderOpt[2]">{{ info.genderOpt[2] }}</label>
+              <label :for="info.genderOpt[1]">{{ info.genderOpt[1] }}</label>
               <input :id="info.genderOpt[2]" type="radio" name="gender" v-model="gender" value="Other" required>
+              <label :for="info.genderOpt[2]">{{ info.genderOpt[2] }}</label>
             </div>
           </div><a class="m-H-40">
             <input type="submit" value="Submit" @click="dataPost"></a>
@@ -63,6 +63,7 @@
       			email: '',
       			date: '',
       			gender: '',
+      			len: localStorage.len,
       			personInfo: []
       		}
       	},
@@ -93,7 +94,13 @@
       	},
       	methods: {
       		onContentCatch: function() {
-      			this.info = pageData.en.info;
+      			if(this.len === 'en') {
+      				this.info = pageData.en.info;
+      			} else if(this.len === '中') {
+      				this.info = pageData.ch.info;
+      			} else {
+      				this.info = pageData.en.info;
+      			}
       		},
       		dataPost: function() {
       			console.log(this.email, this.name, this.date, this.gender)

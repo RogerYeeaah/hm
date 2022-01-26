@@ -169,6 +169,7 @@ input:focus + .slider
 input:checked + .slider:before
 	transform: translateX(22px)
 
+
 /* Rounded sliders */
 .slider.round
 	border-radius: 34px
@@ -283,7 +284,7 @@ input:checked + .slider:before
 						font-size: 12px
 						font-weight: 400
 
-						&:last-child
+						&.right
 							left: auto
 							right: 0
 
@@ -451,6 +452,7 @@ input:checked + .slider:before
 .form
 	.title-box
 		.title
+			margin-bottom: 20px
 			font-size: 40px
 	form
 		padding: 0 20px
@@ -500,6 +502,11 @@ input:checked + .slider:before
 				
 			input
 				display: none
+
+				&:checked
+					+ label
+						color: white
+						background: #2d26e8
 
 		a
 			padding: 10px 0

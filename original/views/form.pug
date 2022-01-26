@@ -34,12 +34,12 @@ html
 					.col-1.m-B-30.flex
 						.title {{ info.gender }}
 						.radio
-							label(:for="info.genderOpt[0]") {{ info.genderOpt[0] }}
 							input(:id="info.genderOpt[0]" type="radio" name="gender" v-model="gender" value="Male" required)
-							label(:for="info.genderOpt[1]") {{ info.genderOpt[1] }}
+							label(:for="info.genderOpt[0]") {{ info.genderOpt[0] }}
 							input(:id="info.genderOpt[1]" type="radio" name="gender" v-model="gender" value="Female" required)
-							label(:for="info.genderOpt[2]") {{ info.genderOpt[2] }}
+							label(:for="info.genderOpt[1]") {{ info.genderOpt[1] }}
 							input(:id="info.genderOpt[2]" type="radio" name="gender" v-model="gender" value="Other" required)
+							label(:for="info.genderOpt[2]") {{ info.genderOpt[2] }}
 					a.m-H-40
 						input(type="submit" value="Submit" @click="dataPost")
 
@@ -54,6 +54,7 @@ html
 						email: '',
 						date: '',
 						gender: '',
+						len: localStorage.len,
 						personInfo: []
 					}
 				},
@@ -84,7 +85,13 @@ html
 				},
 				methods: {
 					onContentCatch: function() {
-						this.info = pageData.en.info;
+						if(this.len === 'en') {
+							this.info = pageData.en.info;
+						} else if(this.len === '中') {
+							this.info = pageData.ch.info;
+						} else {
+							this.info = pageData.en.info;
+						}
 					},
 					dataPost: function() {
 						console.log(this.email, this.name, this.date, this.gender)

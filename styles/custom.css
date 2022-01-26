@@ -1088,7 +1088,7 @@ input:checked + .slider:before {
   font-size: 12px;
   font-weight: 400;
 }
-.question-page .swiper .swiper-slide .q-card .option-box p:last-child {
+.question-page .swiper .swiper-slide .q-card .option-box p.right {
   left: auto;
   right: 0;
 }
@@ -1250,6 +1250,7 @@ input:checked + .slider:before {
 }
 
 .form .title-box .title {
+  margin-bottom: 20px;
   font-size: 40px;
 }
 .form form {
@@ -1321,6 +1322,10 @@ input:checked + .slider:before {
 }
 .form form .radio input {
   display: none;
+}
+.form form .radio input:checked + label {
+  color: white;
+  background: #2d26e8;
 }
 .form form a {
   padding: 10px 0;
