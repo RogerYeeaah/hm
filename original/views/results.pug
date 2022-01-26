@@ -22,8 +22,9 @@ html
 
 		#app.results
 			.container
-				p.name Hi Melody,
-				.title Here are your ness Wellness Wheel results
+				p.name(v-if="this.len === 'en'") {{ 'Hi ' + results.name }},
+				p.name(v-if="this.len === '中'") {{ '嗨 ' + results.name }},
+				.title {{ results.title }}
 				div.result-canvas
 					//- .avg
 					//- 	span 7.5
@@ -36,7 +37,7 @@ html
 						iframe(src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&width=68&height=28&appId" width="68" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
 					a.download(href="#")
 						img(src="./img/icons/download-w.png")
-				p.ps Let's take a look at how you're doing overall
+				p.ps {{ results.ps }}
 				.card
 					.img(style="background-image: url(./img/icons/Emotional.png)")
 					span You scored highest on emotional health
@@ -45,20 +46,24 @@ html
 					.img(style="background-image: url(./img/icons/Social.png)")
 
 				.avr-score.sp
-					.title Average score: {{ this.averScore }}
+					.title {{ results.averScore + this.averScore }}
 						.status.style1(v-if="this.averScore >= 0 && this.averScore < 39") Not Well
 						.status.style2(v-if="this.averScore >= 39 && this.averScore < 59") Average
 						.status.style3(v-if="this.averScore >= 59 && this.averScore <= 79") Pretty Well
 						.status.style4(v-if="this.averScore >= 80") Very Well
-					.content That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out 
-						a(href="www.nesswellness.com") www.nesswellness.com 
+					.content(v-if="this.averScore >= 0 && this.averScore < 39" v-html="results.averContent[4]") 
+					.content(v-if="this.averScore >= 39 && this.averScore < 59") No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out
+						a(href="www.nesswellness.com") www.nesswellness.com  
+					.content(v-if="this.averScore >= 59 && this.averScore <= 79") Good job! Your wellness journey is off to a great start. You may see some areas in need of improvement, which is a good place to start. Take some time to reflect on how you can improve these areas or head to ness wellness for some inspiration and tips.
+					.content(v-if="this.averScore >= 80") Nice! Your total score is above average which means you rank high in most of the eight wellness dimensions. 
 
 				.avr-score
-					.title Balance score: {{ this. balScore }}
+					.title {{ results.balScore + this.balScore }}
 						.status.style1(v-if="this.balScore <= 11") Unbalanced
 						.status.style4(v-if="this.balScore >= 12") Well Balanced
-					.content Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus.  
-				
+					.content(v-if="this.balScore <= 11") Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions. 
+					.content(v-if="this.balScore >= 12") Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus. 
+
 				.about
 					.title About the ness
 						br
@@ -98,7 +103,9 @@ html
 				data() {
 					return {
 						category: [],
-						averScore: 50,
+						results: [],
+						len: localStorage.len,
+						averScore: 20,
 						balScore: 12,
 						emo: localStorage.emo,
 						phy: localStorage.phy,
@@ -209,7 +216,16 @@ html
 				},
 				methods: {
 					onCateCatch: function() {
-						this.category = pageData.en.info.category;
+						if(this.len === 'en') {
+							this.category = pageData.en.info.category;
+							this.results = pageData.en.results;
+						} else if(this.len === '中') {
+							this.category = pageData.ch.info.category;
+							this.results = pageData.ch.results;
+						} else {
+							this.category = pageData.en.info.category;
+							this.results = pageData.en.results;
+						}
 					}
 				},
 			});

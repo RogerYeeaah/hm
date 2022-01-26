@@ -96,8 +96,9 @@
     </div>
     <div class="results" id="app">
       <div class="container">
-        <p class="name">Hi Melody,</p>
-        <div class="title">Here are your ness Wellness Wheel results</div>
+        <p class="name" v-if="this.len === 'en'">{{ 'Hi ' + results.name }},</p>
+        <p class="name" v-if="this.len === '中'">{{ '嗨 ' + results.name }},</p>
+        <div class="title">{{ results.title }}</div>
         <div class="result-canvas">
           <canvas id="polarChart"></canvas>
         </div>
@@ -107,7 +108,7 @@
           </label><a class="fbshare" href="#">
             <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;layout=button&amp;size=large&amp;width=68&amp;height=28&amp;appId" width="68" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></a><a class="download" href="#"><img src="./img/icons/download-w.png"></a>
         </div>
-        <p class="ps">Let's take a look at how you're doing overall</p>
+        <p class="ps">{{ results.ps }}</p>
         <div class="card">
           <div class="img" style="background-image: url(./img/icons/Emotional.png)"></div><span>You scored highest on emotional health</span>
         </div>
@@ -115,20 +116,24 @@
           <div class="img" style="background-image: url(./img/icons/Social.png)"></div>
         </div>
         <div class="avr-score sp">
-          <div class="title">Average score: {{ this.averScore }}
+          <div class="title">{{ results.averScore + this.averScore }}
             <div class="status style1" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39">Not Well</div>
             <div class="status style2" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">Average</div>
             <div class="status style3" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">Pretty Well</div>
             <div class="status style4" v-if="this.averScore &gt;= 80">Very Well</div>
           </div>
-          <div class="content">That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href="www.nesswellness.com">www.nesswellness.com </a></div>
+          <div class="content" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39" v-html="results.averContent[4]"> </div>
+          <div class="content" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out<a href="www.nesswellness.com">www.nesswellness.com  </a></div>
+          <div class="content" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">Good job! Your wellness journey is off to a great start. You may see some areas in need of improvement, which is a good place to start. Take some time to reflect on how you can improve these areas or head to ness wellness for some inspiration and tips.</div>
+          <div class="content" v-if="this.averScore &gt;= 80">Nice! Your total score is above average which means you rank high in most of the eight wellness dimensions. </div>
         </div>
         <div class="avr-score">
-          <div class="title">Balance score: {{ this. balScore }}
+          <div class="title">{{ results.balScore + this.balScore }}
             <div class="status style1" v-if="this.balScore &lt;= 11">Unbalanced</div>
             <div class="status style4" v-if="this.balScore &gt;= 12">Well Balanced</div>
           </div>
-          <div class="content">Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus.  </div>
+          <div class="content" v-if="this.balScore &lt;= 11">Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions. </div>
+          <div class="content" v-if="this.balScore &gt;= 12">Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus. </div>
         </div>
         <div class="about">
           <div class="title">About the ness<br>Wellness Wheel</div>
@@ -158,7 +163,9 @@
       	data() {
       		return {
       			category: [],
-      			averScore: 50,
+      			results: [],
+      			len: localStorage.len,
+      			averScore: 20,
       			balScore: 12,
       			emo: localStorage.emo,
       			phy: localStorage.phy,
@@ -269,7 +276,16 @@
       	},
       	methods: {
       		onCateCatch: function() {
-      			this.category = pageData.en.info.category;
+      			if(this.len === 'en') {
+      				this.category = pageData.en.info.category;
+      				this.results = pageData.en.results;
+      			} else if(this.len === '中') {
+      				this.category = pageData.ch.info.category;
+      				this.results = pageData.ch.results;
+      			} else {
+      				this.category = pageData.en.info.category;
+      				this.results = pageData.en.results;
+      			}
       		}
       	},
       });

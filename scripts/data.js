@@ -330,7 +330,20 @@ var pageData = {
 					"title": "I feel content in my environments (home, work, school, etc.)."
 				},
 			]
-		]
+		],
+		"results": {
+			"name": "Melody",
+			"title": "Here are your ness Wellness Wheel results",
+			"ps": "Let's take a look at how you're doing overall",
+			"averScore": "Average score: ",
+			"averContent" : {
+				"verywell": "",
+				"prettywell": "",
+				"average": "",
+				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href="www.nesswellness.com">www.nesswellness.com</a>",
+			},
+			"balScore": "Balance score: "
+		}
 	},
 	"ch": {
 		"menu": [
