@@ -60,7 +60,7 @@
     <script id="sp" type="text/x-template">
       <div class="box" :class="activeClass == index ? 'option active':'option'" v-for="index in 7" @click="onAnswerClick(index)">
         <label :for="sp.categoryId + '-' + sp.questionId + '-' + index"></label>
-        <input :id="sp.categoryId + '-' + sp.questionId + '-' + index" type="radio" :value="((index*10000)*(sp.percentage*10000))/100000000" :key="index" :name="sp.categoryId">
+        <input :id="sp.categoryId + '-' + sp.questionId + '-' + index" :key="index" type="radio" :data-cate="sp.categoryId" :data-percentage="sp.percentage" :data-option="index" :name="sp.categoryId+ '-' + sp.questionId">
       </div>
     </script>
     <script>
@@ -110,18 +110,26 @@
       		cul: function(e) {
       			var active = window.document.querySelectorAll('.active'),
       				actives = window.document.querySelectorAll('.active').length,
-      				e = [[],[],[],[],[],[],[],[]],
+      				emo,
+      				phy,
+      				spi,
+      				int,
+      				soc,
+      				env,
+      				occ,
+      				fin,
       				index;
       			
       			for (i = 0; i < actives; i++) {
-      				index = active[i].querySelector('input').name - 1;
-      				
-      				console.log(index, active[i].querySelector('input').value);
-      				e[index].push(active[i].querySelector('input').value);
+      				var input = active[i].querySelector('input');
+      				if(input.dataset.cate === '1') {
+      					var tPer = input.dataset.percentage,
+      						tOption = input.dataset.option,
+      						tScore = mulFloat(tPer, tOption);
+      					emo += tScore;
+      				}
+      				console.log(emo, tPer, tOption, tScore);
       			}
-      			recordCount(e);
-      		},
-      		recordCount: function(e) {
       		}
       	},
       	computed: {
