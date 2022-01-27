@@ -11,6 +11,7 @@
     <script src="./scripts/chart/chart.min.js"></script>
     <script src="./scripts/chart/chartjs-plugin-datalabels.js"></script>
     <script src="./scripts/data.js"></script>
+    <script src="./scripts/mathjs/math.min.js"></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&amp;version=v12.0" nonce="3wIFGc8b"></script>
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/custom.css">
@@ -116,24 +117,24 @@
           <div class="img" style="background-image: url(./img/icons/Social.png)"></div>
         </div>
         <div class="avr-score sp">
-          <div class="title">{{ results.averScore + this.averScore }}
+          <div class="title">{{ results.averScore + averScore }}
             <div class="status style1" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39">Not Well</div>
             <div class="status style2" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">Average</div>
             <div class="status style3" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">Pretty Well</div>
             <div class="status style4" v-if="this.averScore &gt;= 80">Very Well</div>
           </div>
-          <div class="content" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39" v-html="results.averContent[4]"> </div>
-          <div class="content" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out<a href="www.nesswellness.com">www.nesswellness.com  </a></div>
-          <div class="content" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">Good job! Your wellness journey is off to a great start. You may see some areas in need of improvement, which is a good place to start. Take some time to reflect on how you can improve these areas or head to ness wellness for some inspiration and tips.</div>
-          <div class="content" v-if="this.averScore &gt;= 80">Nice! Your total score is above average which means you rank high in most of the eight wellness dimensions. </div>
+          <div class="content" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39" v-html="results.averContent.notwell"> </div>
+          <div class="content" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59" v-html="results.averContent.average"></div>
+          <div class="content" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79" v-html="results.averContent.prettywell"></div>
+          <div class="content" v-if="this.averScore &gt;= 80" v-html="results.averContent.verywell"> </div>
         </div>
         <div class="avr-score">
-          <div class="title">{{ results.balScore + this.balScore }}
-            <div class="status style1" v-if="this.balScore &lt;= 11">Unbalanced</div>
-            <div class="status style4" v-if="this.balScore &gt;= 12">Well Balanced</div>
+          <div class="title">{{ results.balScore + balScore }}
+            <div class="status style1" v-if="this.balScore &gt;= 12">Unbalanced</div>
+            <div class="status style4" v-if="this.balScore &lt;= 11">Well Balanced</div>
           </div>
-          <div class="content" v-if="this.balScore &lt;= 11">Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions. </div>
-          <div class="content" v-if="this.balScore &gt;= 12">Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus. </div>
+          <div class="content" v-if="this.balScore &gt;= 12" v-html="results.balContent.Unbalanced"> </div>
+          <div class="content" v-if="this.balScore &lt;= 11" v-html="results.balContent.wellbalance"> </div>
         </div>
         <div class="about">
           <div class="title">About the ness<br>Wellness Wheel</div>
@@ -165,8 +166,6 @@
       			category: [],
       			results: [],
       			len: localStorage.len,
-      			averScore: 20,
-      			balScore: 12,
       			emo: localStorage.emo,
       			phy: localStorage.phy,
       			spi: localStorage.spi,
@@ -201,6 +200,7 @@
       			}],
       			labels: ["Intellectual", "Social", "Environmental", "Occupational", "Financial", "Spiritual", "physical", "Emotional"]
       		}
+      
       		var options = {
       			plugins: {
       				legend: {
@@ -288,6 +288,23 @@
       			}
       		}
       	},
+      	computed: {
+      		averScore() {
+      			var emoH = parseInt(this.emo*10),
+      				phyH = parseInt(this.phy*10),
+      				spiH = parseInt(this.spi*10),
+      				intH = parseInt(this.int*10),
+      				socH = parseInt(this.soc*10),
+      				envH = parseInt(this.env*10),
+      				occH = parseInt(this.occ*10),
+      				finH = parseInt(this.fin*10),
+      				aver = (emoH + phyH + spiH + intH + socH + envH + occH + finH);
+      			return aver/8
+      		},
+      		balScore() {
+      			return math.std([this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin]).toFixed(2);
+      		}
+      	}
       });
       
       app.component('list', {
@@ -301,7 +318,11 @@
       	props:['list'],
       	methods: {
       		openNot: function(i) {
-      			this.activeItem = i;
+      			if(this.activeItem != i) {
+      				this.activeItem = i;
+      			} else {
+      				this.activeItem = !this.activeItem;
+      			}
       		}
       	}
       });

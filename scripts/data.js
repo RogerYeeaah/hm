@@ -337,12 +337,16 @@ var pageData = {
 			"ps": "Let's take a look at how you're doing overall",
 			"averScore": "Average score: ",
 			"averContent" : {
-				"verywell": "",
-				"prettywell": "",
-				"average": "",
-				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href="www.nesswellness.com">www.nesswellness.com</a>",
+				"verywell": "Nice! Your total score is above average which means you rank high in most of the eight wellness dimensions.",
+				"prettywell": "Good job! Your wellness journey is off to a great start. You may see some areas in need of improvement, which is a good place to start. Take some time to reflect on how you can improve these areas or head to ness wellness for some inspiration and tips.",
+				"average": " No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
+				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 			},
-			"balScore": "Balance score: "
+			"balScore": "Balance score: ",
+			"balContent" : {
+				"Unbalanced": "Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions.",
+				"wellbalance": "Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus."
+			}
 		}
 	},
 	"ch": {
