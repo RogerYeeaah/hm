@@ -10,6 +10,7 @@
     <script src="./scripts/jquery/jquery.min.js"></script>
     <script src="./scripts/swiper/swiper-bundle.min.js"></script>
     <script src="./scripts/data.js"></script>
+    <script src="./scripts/mathjs/math.min.js"></script>
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/swiper/swiper.min.css">
     <link rel="stylesheet" href="./styles/custom.css">
@@ -131,7 +132,6 @@
       					tOption = input.dataset.option * 10 / 7,
       					tScore = mulFloat(tPer, tOption);
       
-      				console.log(tPer, tOption, tScore);
       				if(input.dataset.cate === '1') {
       					emo += tScore;
       				} else if (input.dataset.cate === '2') {
@@ -158,7 +158,8 @@
       			localStorage.env = env = env.toFixed(2);
       			localStorage.occ = occ = occ.toFixed(2);
       			localStorage.fin = fin = fin.toFixed(2);
-      			console.log(emo, phy, spi, int, soc, env, occ, fin);
+      		
+      			console.log('all cate:', [emo, phy, spi, int, soc, env, occ, fin] ,'標準差 : ', math.std([emo, phy, spi, int, soc, env, occ, fin]).toFixed(5));
       		}
       	},
       	computed: {

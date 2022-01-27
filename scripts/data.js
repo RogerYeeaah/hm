@@ -752,7 +752,8 @@ function test(){
 		let t = 0;
 		console.log('===============================');
 		for(let i = 0;i < d.length;i++){			
-			t = addFloat(t ,d[i].percentage);
+			// t = addFloat(t ,d[i].percentage);
+			t = math.format(math.add(t ,d[i].percentage), {precision: 14});
 			console.log(d[i].percentage);
 			// if(d[i].categoryId == 1){
 			// 	a1 += d[i].percentage;
