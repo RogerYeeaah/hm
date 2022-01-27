@@ -340,7 +340,7 @@ var pageData = {
 				"verywell": "",
 				"prettywell": "",
 				"average": "",
-				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href="www.nesswellness.com">www.nesswellness.com</a>",
+				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 			},
 			"balScore": "Balance score: "
 		}
@@ -748,7 +748,8 @@ function test(){
 		let t = 0;
 		console.log('===============================');
 		for(let i = 0;i < d.length;i++){			
-			t = addFloat(t ,d[i].percentage);
+			// t = addFloat(t ,d[i].percentage);
+			t = math.format(math.add(t ,d[i].percentage), {precision: 14});
 			console.log(d[i].percentage);
 			// if(d[i].categoryId == 1){
 			// 	a1 += d[i].percentage;
