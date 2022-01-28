@@ -23,8 +23,8 @@ html
 
 		#app.results
 			.container
-				p.name(v-if="this.len === 'en'") {{ 'Hi ' + this.name }},
-				p.name(v-if="this.len === '中'") {{ '嗨 ' + name.name }},
+				p.name(v-if="this.len === 'en'") {{ 'Hi ' + name }},
+				p.name(v-if="this.len === '中'") {{ '嗨 ' + name }},
 				.title {{ results.title }}
 				div.result-canvas
 					//- .avg

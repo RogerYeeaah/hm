@@ -73,7 +73,7 @@
       			questions: [],
       			result: [],
       			curQ: 0,
-      			totalQ: 0,
+      			totalQ: 40,
       			len: localStorage.len
       		}
       	},
@@ -81,6 +81,8 @@
       		this.onContentCatch();
       	},
       	mounted: function() {
+      		var self = this;
+      
       		var swiper = new Swiper(".mySwiper", {
       			slidePerView: '1',
       			pagination: {
@@ -102,6 +104,16 @@
       				$('.submit-box').removeClass('show');
       			}
       		});
+      
+      		$('#submit').on('click', function() {
+      			if(self.curQ != self.totalQ && localStorage.len === 'en') {
+      				alert('There are still unfilled questions');
+      			} else if(self.curQ != self.totalQ && localStorage.len === '中') {
+      				alert('尚有題目未完成');
+      			} else {
+      				window.location.href = './results.html';
+      			}
+      		})
       	},
       	methods: {
       		onContentCatch: function() {
