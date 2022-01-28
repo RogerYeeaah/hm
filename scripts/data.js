@@ -332,7 +332,6 @@ var pageData = {
 			]
 		],
 		"results": {
-			"name": "Melody",
 			"title": "Here are your ness Wellness Wheel results",
 			"ps": "Let's take a look at how you're doing overall",
 			"averScore": "Average score: ",

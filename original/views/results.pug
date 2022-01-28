@@ -23,8 +23,8 @@ html
 
 		#app.results
 			.container
-				p.name(v-if="this.len === 'en'") {{ 'Hi ' + results.name }},
-				p.name(v-if="this.len === '中'") {{ '嗨 ' + results.name }},
+				p.name(v-if="this.len === 'en'") {{ 'Hi ' + this.name }},
+				p.name(v-if="this.len === '中'") {{ '嗨 ' + name.name }},
 				.title {{ results.title }}
 				div.result-canvas
 					//- .avg
@@ -59,9 +59,9 @@ html
 
 				.avr-score
 					.title {{ results.balScore + balScore }}
-						.status.style1(v-if="this.balScore >= 12") Unbalanced
+						.status.style1(v-if="this.balScore > 11") Unbalanced
 						.status.style4(v-if="this.balScore <= 11") Well Balanced
-					.content(v-if="this.balScore >= 12" v-html="results.balContent.Unbalanced") 
+					.content(v-if="this.balScore > 11" v-html="results.balContent.Unbalanced") 
 					.content(v-if="this.balScore <= 11" v-html="results.balContent.wellbalance") 
 
 				.about
@@ -104,6 +104,7 @@ html
 					return {
 						category: [],
 						results: [],
+						name: localStorage.name,
 						len: localStorage.len,
 						emo: localStorage.emo,
 						phy: localStorage.phy,
@@ -241,7 +242,8 @@ html
 						return aver/8
 					},
 					balScore() {
-						return math.std([this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin]).toFixed(2);
+						var result = math.std([this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin])*10
+						return result.toFixed(2);
 					}
 				}
 			});

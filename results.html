@@ -97,8 +97,8 @@
     </div>
     <div class="results" id="app">
       <div class="container">
-        <p class="name" v-if="this.len === 'en'">{{ 'Hi ' + results.name }},</p>
-        <p class="name" v-if="this.len === '中'">{{ '嗨 ' + results.name }},</p>
+        <p class="name" v-if="this.len === 'en'">{{ 'Hi ' + this.name }},</p>
+        <p class="name" v-if="this.len === '中'">{{ '嗨 ' + name.name }},</p>
         <div class="title">{{ results.title }}</div>
         <div class="result-canvas">
           <canvas id="polarChart"></canvas>
@@ -130,10 +130,10 @@
         </div>
         <div class="avr-score">
           <div class="title">{{ results.balScore + balScore }}
-            <div class="status style1" v-if="this.balScore &gt;= 12">Unbalanced</div>
+            <div class="status style1" v-if="this.balScore &gt; 11">Unbalanced</div>
             <div class="status style4" v-if="this.balScore &lt;= 11">Well Balanced</div>
           </div>
-          <div class="content" v-if="this.balScore &gt;= 12" v-html="results.balContent.Unbalanced"> </div>
+          <div class="content" v-if="this.balScore &gt; 11" v-html="results.balContent.Unbalanced"> </div>
           <div class="content" v-if="this.balScore &lt;= 11" v-html="results.balContent.wellbalance"> </div>
         </div>
         <div class="about">
@@ -165,6 +165,7 @@
       		return {
       			category: [],
       			results: [],
+      			name: localStorage.name,
       			len: localStorage.len,
       			emo: localStorage.emo,
       			phy: localStorage.phy,
@@ -302,7 +303,8 @@
       			return aver/8
       		},
       		balScore() {
-      			return math.std([this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin]).toFixed(2);
+      			var result = math.std([this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin])*10
+      			return result.toFixed(2);
       		}
       	}
       });
