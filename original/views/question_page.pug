@@ -44,20 +44,20 @@ html
 		script#qs(type="text/x-template")
 			.swiper-slide(:class="index === qs.questions.length - 1 ? 'last-one':''" v-for="(items, index) in qs.questions" :key="index")
 				.scroll-box
-					qc(:qc="qs.questions[index]" :qcs="qs")
+					qc(:qc="qs.questions[index]" :qcs="qs" :page="index+1")
 		
 		script#qc(type="text/x-template")
-			.q-card(v-for="(items, index) in qc" :key="index")
+			.q-card(v-for="(items, index) in qc" :key="index" :id="'anchor-' + page + '-' + index")
 				.question {{ items.title }}
-				.option-box
+				.option-box(:name="'anchor' + index")
 					p(v-show="qcs.len === 'en'") Rarely
 					p(v-show="qcs.len === '中'") 很常
-					sp(:sp="items" :qc="qc" :qcc="qcs" @childEvent="parentEvent")
+					sp(:sp="items" :qc="qc" :qcc="qcs" :sPage="page" :qIndex="index+1" @childEvent="parentEvent")
 					p.right(v-show="qcs.len === 'en'") Always
 					p.right(v-show="qcs.len === '中'") 不常
 
 		script#sp(type="text/x-template")
-			.box(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" @click="onAnswerClick(index)")
+			a.box(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" @click="onAnswerClick(index, qIndex, sPage)")
 				label(:for="sp.categoryId + '-' + sp.questionId + '-' + index")
 				input(:id="sp.categoryId + '-' + sp.questionId + '-' + index" :key="index" type="radio" :data-cate="sp.categoryId" :data-percentage="sp.percentage" :data-option="index" :name="sp.categoryId+ '-' + sp.questionId")
 
@@ -187,7 +187,7 @@ html
 
 			app.component('qc', {
 				template: '#qc',
-				props:['qc', 'qcs']
+				props:['qc', 'qcs', 'page']
 			});
 
 			app.component('sp', {
@@ -197,11 +197,20 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp', 'qc', 'qcc'],
+				props:['sp', 'qc', 'qcc', 'qIndex', 'sPage'],
 				methods: {
-					onAnswerClick: function(index){
+					onAnswerClick: function(index, qIndex, sPage){
 						this.activeClass = index;
 						this.qcc.curQ = window.document.querySelectorAll('.active').length;
+
+						var hrefLink = '#anchor-' + sPage + '-' + qIndex;
+						//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
+						$("body").animate(
+							{
+								scrollTop: $(hrefLink).offset().top //直接到相對位置
+							},
+							800
+						);
 					},
 					add: function(){
 						this.$emit("childEvent", this.age);

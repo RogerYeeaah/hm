@@ -39,8 +39,8 @@
               <label :for="info.genderOpt[0]">{{ info.genderOpt[0] }}</label>
               <input :id="info.genderOpt[1]" type="radio" name="gender" v-model="gender" value="Female" required>
               <label :for="info.genderOpt[1]">{{ info.genderOpt[1] }}</label>
-              <label :for="info.genderOpt[2]">{{ info.genderOpt[2] }}</label>
               <input :id="info.genderOpt[2]" type="radio" name="gender" v-model="gender" value="Other" required>
+              <label :for="info.genderOpt[2]">{{ info.genderOpt[2] }}</label>
             </div>
           </div><a class="m-H-40">
             <input type="submit" value="Submit" @click="dataPost"></a>
