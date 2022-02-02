@@ -1929,11 +1929,20 @@ input:checked + .slider:before {
   font-size: 14px;
   line-height: 20px;
 }
+.results .stairs {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 70%;
+}
 .results .avr-score {
   margin-bottom: 80px;
   position: relative;
 }
 .results .avr-score.sp {
+  margin-top: 20px;
   margin-bottom: 120px;
 }
 .results .avr-score.sp:after {

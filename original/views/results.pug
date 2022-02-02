@@ -39,12 +39,13 @@ html
 					a.download(href="#")
 						img(src="./img/icons/download-w.png")
 				p.ps {{ results.ps }}
-				.card
-					.img(style="background-image: url(./img/icons/Emotional.png)")
-					span You scored highest on emotional health
-				.card
-					span ...and have the most room for improvement in social health
-					.img(style="background-image: url(./img/icons/Social.png)")
+				.card.highest(v-for="(items, index) in this.maxIndex" key="index")
+					.img(:style="'background-image: url(./img/icons/' + items + '.png)'")
+					span You scored highest on {{ items }} health
+				span.stairs(style="background-image: url(./img/stairs.png)")
+				.card.lowest(v-for="(items, index) in this.minIndex" key="index")
+					span ... and have the most room for improvement in {{ items }} health
+					.img(:style="'background-image: url(./img/icons/' + items + '.png)'")
 
 				.avr-score.sp
 					.title {{ results.averScore + averScore }}
@@ -113,7 +114,10 @@ html
 						soc: localStorage.soc,
 						env: localStorage.env,
 						occ: localStorage.occ,
-						fin: localStorage.fin
+						fin: localStorage.fin,
+						maxIndex: [],
+						minIndex: []
+
 					}
 				},
 				created: function() {
@@ -213,6 +217,48 @@ html
 						data: data,
 						options: options
 					});
+
+					var results = [this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin];
+					var maxIndex = [];
+					var minIndex = [];
+					var mMax = Math.max(...results);
+					var mMin = Math.min(...results);
+
+					results.forEach(function(element, i) {
+						var cate;
+						if(i == 0) {
+							cate = 'Emotional';
+						} else if(i == 1) {
+							cate = 'Physical';
+						} else if(i == 2) {
+							cate = 'Spiritual';
+						} else if(i == 3) {
+							cate = 'Intellectual';
+						} else if(i == 4) {
+							cate = 'Social';
+						} else if(i == 5) {
+							cate = 'Environmental';
+						} else if(i == 6) {
+							cate = 'Occupational';
+						} else if(i == 7) {
+							cate = 'Financial';
+						} else {
+							console.log('error')
+						}
+
+						if (element == mMax) {
+							maxIndex.push(cate);
+						}
+
+						if (element == mMin) {
+							minIndex.push(cate);
+						}
+					});
+
+					this.maxIndex = maxIndex;
+					this.minIndex = minIndex;
+
+					console.log(results, this.maxIndex, this.minIndex)
 				},
 				methods: {
 					onCateCatch: function() {

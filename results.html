@@ -110,11 +110,11 @@
             <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;layout=button&amp;size=large&amp;width=68&amp;height=28&amp;appId" width="68" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></a><a class="download" href="#"><img src="./img/icons/download-w.png"></a>
         </div>
         <p class="ps">{{ results.ps }}</p>
-        <div class="card">
-          <div class="img" style="background-image: url(./img/icons/Emotional.png)"></div><span>You scored highest on emotional health</span>
-        </div>
-        <div class="card"><span>...and have the most room for improvement in social health</span>
-          <div class="img" style="background-image: url(./img/icons/Social.png)"></div>
+        <div class="card highest" v-for="(items, index) in this.maxIndex" key="index">
+          <div class="img" :style="'background-image: url(./img/icons/' + items + '.png)'"></div><span>You scored highest on {{ items }} health</span>
+        </div><span class="stairs" style="background-image: url(./img/stairs.png)"></span>
+        <div class="card lowest" v-for="(items, index) in this.minIndex" key="index"><span>... and have the most room for improvement in {{ items }} health</span>
+          <div class="img" :style="'background-image: url(./img/icons/' + items + '.png)'"></div>
         </div>
         <div class="avr-score sp">
           <div class="title">{{ results.averScore + averScore }}
@@ -174,7 +174,10 @@
       			soc: localStorage.soc,
       			env: localStorage.env,
       			occ: localStorage.occ,
-      			fin: localStorage.fin
+      			fin: localStorage.fin,
+      			maxIndex: [],
+      			minIndex: []
+      
       		}
       	},
       	created: function() {
@@ -274,6 +277,48 @@
       			data: data,
       			options: options
       		});
+      
+      		var results = [this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin];
+      		var maxIndex = [];
+      		var minIndex = [];
+      		var mMax = Math.max(...results);
+      		var mMin = Math.min(...results);
+      
+      		results.forEach(function(element, i) {
+      			var cate;
+      			if(i == 0) {
+      				cate = 'Emotional';
+      			} else if(i == 1) {
+      				cate = 'Physical';
+      			} else if(i == 2) {
+      				cate = 'Spiritual';
+      			} else if(i == 3) {
+      				cate = 'Intellectual';
+      			} else if(i == 4) {
+      				cate = 'Social';
+      			} else if(i == 5) {
+      				cate = 'Environmental';
+      			} else if(i == 6) {
+      				cate = 'Occupational';
+      			} else if(i == 7) {
+      				cate = 'Financial';
+      			} else {
+      				console.log('error')
+      			}
+      
+      			if (element == mMax) {
+      				maxIndex.push(cate);
+      			}
+      
+      			if (element == mMin) {
+      				minIndex.push(cate);
+      			}
+      		});
+      
+      		this.maxIndex = maxIndex;
+      		this.minIndex = minIndex;
+      
+      		console.log(results, this.maxIndex, this.minIndex)
       	},
       	methods: {
       		onCateCatch: function() {

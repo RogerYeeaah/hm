@@ -49,9 +49,9 @@
       </div>
     </script>
     <script id="qc" type="text/x-template">
-      <div class="q-card" v-for="(items, index) in qc" :key="index" :id="'anchor-' + page + '-' + index">
+      <div class="q-card" v-for="(items, index) in qc" :key="index" :id="'anchor-' + page + '-' + index" :name="'anchor-' + page + '-' + index">
         <div class="question">{{ items.title }}</div>
-        <div class="option-box" :name="'anchor' + index">
+        <div class="option-box">
           <p v-show="qcs.len === 'en'">Rarely</p>
           <p v-show="qcs.len === '中'">很常</p>
           <sp :sp="items" :qc="qc" :qcc="qcs" :sPage="page" :qIndex="index+1" @childEvent="parentEvent"></sp>
@@ -206,13 +206,13 @@
       			this.qcc.curQ = window.document.querySelectorAll('.active').length;
       
       			var hrefLink = '#anchor-' + sPage + '-' + qIndex;
-      			window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
-      			$("body").animate(
+      			console.log(hrefLink);
+      			//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
+      			
+      			$("body, .scroll-box").animate(
       				{
-      					scrollTop: $(hrefLink).offset().top //直接到相對位置
-      					//- console.log(hrefLink)
-      				},
-      				800
+      					scrollTop: $(hrefLink).offset().top - 100
+      				}, 300
       			);
       		},
       		add: function(){
