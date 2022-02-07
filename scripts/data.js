@@ -700,17 +700,21 @@ var pageData = {
 				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 			},
 			"balScore": "Balance score: ",
-			"balContent" : {
+			"balContent": {
 				"Unbalanced": "Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions.",
 				"wellbalance": "Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus."
 			},
+			"resources": {
+				"title": "More wellness</br>resources",
+				"content": "ness wellness offers events, experiences and classes and centered around wellness including: mindfulness, meditation, sound healing, wellness coaching, career coaching, as well as many others."
+			},
 			"TBC": [
-				{"title": "test1", "img": "img/icons/Emotional.png", "href": "https://www.nesswellness.com/experiences"},
-				{"title": "test2", "img": "img/icons/Emotional.png", "href": "https://www.nesswellness.com/experiences"},
-				{"title": "test3", "img": "img/icons/Emotional.png", "href": "https://www.nesswellness.com/experiences"},
-				{"title": "test4", "img": "img/icons/Emotional.png", "href": "https://www.nesswellness.com/experiences"},
-				{"title": "test5", "img": "img/icons/Emotional.png", "href": "https://www.nesswellness.com/experiences"},
-				{"title": "test6", "img": "img/icons/Emotional.png", "href": "https://www.nesswellness.com/experiences"}
+				{"title": "MINDRULNESS", "img": "img/tbc/1.png", "href": "https://www.nesswellness.com/experiences"},
+				{"title": "MEDITATION", "img": "img/tbc/2.png", "href": "https://www.nesswellness.com/experiences"},
+				{"title": "SOUND HEALING", "img": "img/tbc/3.png", "href": "https://www.nesswellness.com/experiences"},
+				{"title": "WELLNESS", "img": "img/tbc/4.png", "href": "https://www.nesswellness.com/experiences"},
+				{"title": "CAREER COACHING", "img": "img/tbc/5.png", "href": "https://www.nesswellness.com/experiences"},
+				{"title": "MOVEMENT", "img": "img/tbc/6.png", "href": "https://www.nesswellness.com/experiences"}
 			]
 		}
 	},
