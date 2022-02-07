@@ -346,6 +346,10 @@ var pageData = {
 				"Unbalanced": "Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions.",
 				"wellbalance": "Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus."
 			},
+			"resources": {
+				"title": "More wellness</br>resources",
+				"content": "ness wellness offers events, experiences and classes and centered around wellness including: mindfulness, meditation, sound healing, wellness coaching, career coaching, as well as many others."
+			},
 			"TBC": [
 				{"title": "MINDRULNESS", "img": "img/tbc/1.png", "href": "https://www.nesswellness.com/experiences"},
 				{"title": "MEDITATION", "img": "img/tbc/2.png", "href": "https://www.nesswellness.com/experiences"},

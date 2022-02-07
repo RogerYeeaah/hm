@@ -1769,9 +1769,6 @@ input:checked + .slider:before {
   margin-bottom: 10px;
   position: relative;
 }
-.index .article .dimensions li.active span {
-  height: auto;
-}
 .index .article .dimensions p {
   margin: 0;
   padding: 10px 10px;
@@ -1805,8 +1802,13 @@ input:checked + .slider:before {
 .index .article .dimensions span {
   padding: 0 20px;
   padding-top: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
   position: relative;
-  height: 0;
+  top: 0;
+  line-height: 15px;
+  font-size: 12px;
+  font-weight: 500;
   text-align: left;
 }
 
@@ -2000,6 +2002,7 @@ input:checked + .slider:before {
   margin-bottom: 20px;
   font-size: 13px;
   line-height: 20px;
+  text-align: center;
 }
 .results .about .sp,
 .results .balance .sp,
@@ -2101,9 +2104,6 @@ input:checked + .slider:before {
   margin-bottom: 10px;
   position: relative;
 }
-.results .dimensions li.active span {
-  height: auto;
-}
 .results .dimensions p {
   margin: 0;
   padding: 10px 10px;
@@ -2136,15 +2136,14 @@ input:checked + .slider:before {
   height: 40px;
 }
 .results .dimensions span {
+  padding: 0 20px;
+  padding-top: 20px;
   margin-bottom: 20px;
   display: inline-block;
+  position: relative;
   line-height: 15px;
   font-size: 12px;
   font-weight: 500;
-  padding: 0 20px;
-  padding-top: 20px;
-  position: relative;
-  height: 0;
   text-align: left;
 }
 
@@ -2293,5 +2292,18 @@ input:checked + .slider:before {
   -webkit-transform: translateX(10px);
       -ms-transform: translateX(10px);
           transform: translateX(10px);
+  opacity: 0;
+}
+
+.slideDown-enter-active,
+.slideDown-leave-active {
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.slideDown-enter-from,
+.slideDown-leave-to {
+  height: 0;
   opacity: 0;
 }

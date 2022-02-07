@@ -105,7 +105,8 @@ html
 					img(:src="items.logo", alt="")
 					|  {{ items.title }}
 				.arrow(:style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'")
-				span(v-if="i === activeItem? show:!show") {{ items.info }}
+				transition(name="slideDown")
+					span(v-if="i === activeItem? show:!show") {{ items.info }}
 
 		script.
 			const app = Vue.createApp({

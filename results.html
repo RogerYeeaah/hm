@@ -148,8 +148,9 @@
           <div class="content">If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.<br>Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.</div>
         </div>
         <div class="other">
-          <div class="title">More wellness<br>resources</div>
-          <ul class="sp"><a v-for="(items, index) in results.TBC" key="index" href="items.href">
+          <div class="title" v-html="results.resources.title"></div>
+          <div class="content">{{ results.resources.content }}</div>
+          <ul class="sp"><a v-for="(items, index) in results.TBC" key="index" :href="items.href" target="_blank">
               <div class="title">{{ items.title }}</div>
               <div class="img" :style="'background-image: url(' + items.img + ')'"></div></a></ul>
         </div>
@@ -172,7 +173,8 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt="">{{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
+        <transition name="slideDown"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition>
       </li>
     </script>
     <script>

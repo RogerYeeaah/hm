@@ -81,11 +81,10 @@ html
 						| Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.
 
 				.other
-					.title More wellness
-						br
-						|resources
+					.title(v-html="results.resources.title")
+					.content {{ results.resources.content }}
 					ul.sp
-						a(v-for="(items, index) in results.TBC" key="index" href="items.href")
+						a(v-for="(items, index) in results.TBC" key="index" :href="items.href" target="_blank")
 							.title {{ items.title }}
 							.img(:style="'background-image: url(' + items.img + ')'")
 
@@ -102,7 +101,8 @@ html
 					img(:src="items.logo", alt="")
 					| {{ items.title }}
 				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
-				span(v-if="i === activeItem? show:!show") {{ items.info }}
+				transition(name="slideDown")
+					span(v-if="i === activeItem? show:!show") {{ items.info }}
 
 		script.
 			const app = Vue.createApp({
