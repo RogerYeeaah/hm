@@ -1941,13 +1941,6 @@ input:checked + .slider:before {
   margin-bottom: 80px;
   position: relative;
 }
-.results .avr-score.sp {
-  margin-top: 20px;
-  margin-bottom: 120px;
-}
-.results .avr-score.sp:after {
-  bottom: -60px;
-}
 .results .avr-score:after {
   content: "";
   position: absolute;
@@ -2012,9 +2005,76 @@ input:checked + .slider:before {
 .results .balance .sp,
 .results .other .sp {
   margin-bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 50px;
   font-weight: bold;
   text-align: center;
+}
+.results .about .sp a,
+.results .balance .sp a,
+.results .other .sp a {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  width: calc(33.333% - 13.3333333333px);
+  border-radius: 14%;
+  border: 5px solid #d4d4d4;
+  overflow: hidden;
+}
+.results .about .sp a:nth-child(3n),
+.results .balance .sp a:nth-child(3n),
+.results .other .sp a:nth-child(3n) {
+  margin-right: 0px;
+}
+@media only screen and (max-width: 580px) {
+  .results .about .sp a,
+.results .balance .sp a,
+.results .other .sp a {
+    margin-right: 10px;
+    width: calc(50% - 10px);
+  }
+  .results .about .sp a:nth-child(3n),
+.results .balance .sp a:nth-child(3n),
+.results .other .sp a:nth-child(3n) {
+    margin-right: 10px;
+  }
+  .results .about .sp a:nth-child(2n),
+.results .balance .sp a:nth-child(2n),
+.results .other .sp a:nth-child(2n) {
+    margin-right: 0px;
+  }
+}
+.results .about .sp a .title,
+.results .balance .sp a .title,
+.results .other .sp a .title {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+.results .about .sp a .img,
+.results .balance .sp a .img,
+.results .other .sp a .img {
+  padding-bottom: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .results .other {
   margin-top: 150px;

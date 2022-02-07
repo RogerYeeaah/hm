@@ -84,7 +84,12 @@ html
 					.title More wellness
 						br
 						|resources
-					.sp TBC
+					ul.sp
+						a(v-for="(items, index) in results.TBC" key="index" href="items.href")
+							.title {{ items.title }}
+							.img(:style="'background-image: url(' + items.img + ')'")
+
+				include ./include/inline_footer
 
 			//- div.socialShare
 			//- 	div.sbutton.facebook-cresta-share.cresta-float-shadow#shareF
@@ -95,7 +100,7 @@ html
 			li(v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}")
 				p
 					img(:src="items.logo", alt="")
-					|  {{ items.title }}
+					| {{ items.title }}
 				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
 				span(v-if="i === activeItem? show:!show") {{ items.info }}
 

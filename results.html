@@ -149,13 +149,29 @@
         </div>
         <div class="other">
           <div class="title">More wellness<br>resources</div>
-          <div class="sp">TBC</div>
+          <ul class="sp"><a v-for="(items, index) in results.TBC" key="index" href="items.href">
+              <div class="title">{{ items.title }}</div>
+              <div class="img" :style="'background-image: url(' + items.img + ')'"></div></a></ul>
+        </div>
+        <div class="footer inline">
+          <div class="container">
+            <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
+              <div class="detail">
+                <p>Tag us on your Wellness Wheel</p>
+                <p>@<a href="https://www.instagram.com/nesswellnesswheel">nesswellnesswheel</a>@<a href="https://www.instagram.com/ness.wellness">ness.wellness</a></p>
+              </div>
+            </div>
+            <div class="logo-box"><span>Powered by</span>
+              <div class="logo" style="background-image: url(./img/logo.png)"></div>
+            </div>
+            <div class="right">Wheel of Wellness by ness wellness© All rights reserved 2022</div>
+          </div>
         </div>
       </div>
     </div>
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}">
-        <p><img :src="items.logo" alt=""> {{ items.title }}</p>
+        <p><img :src="items.logo" alt="">{{ items.title }}</p>
         <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div><span v-if="i === activeItem? show:!show">{{ items.info }}</span>
       </li>
     </script>

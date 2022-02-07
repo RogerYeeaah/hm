@@ -1041,13 +1041,6 @@ input:checked + .slider:before
 		margin-bottom: 80px
 		position: relative
 
-		&.sp
-			margin-top: 20px
-			margin-bottom: 120px
-
-			&:after
-				bottom: -60px
-
 		&:after
 			content: ''
 			position: absolute
@@ -1107,9 +1100,53 @@ input:checked + .slider:before
 
 		.sp
 			margin-bottom: 50px
+			display: flex
+			flex-wrap: wrap
+			justify-content: center
+			align-items: center
 			font-size: 50px
 			font-weight: bold
 			text-align: center
+
+			a
+				margin-right: 20px
+				margin-bottom: 20px
+				position: relative
+				width: calc(33.333% - 20px*2/3)
+				border-radius: 14%
+				border: 5px solid #d4d4d4
+				overflow: hidden
+
+				&:nth-child(3n)
+					margin-right: 0px
+
+				+breakpoint(mobile-landscape)
+					margin-right: 10px
+					width: calc(50% - 10px)
+
+					&:nth-child(3n)
+						margin-right: 10px						
+
+					&:nth-child(2n)
+						margin-right: 0px
+
+
+				.title
+					position: absolute
+					top: 50%
+					width: 100%
+					transform: translateY(-50%)
+					color: white
+					font-size: 14px
+					text-align: center
+				
+				.img
+					padding-bottom: 100%
+					width: 100%
+					background-repeat: no-repeat
+					background-size: cover
+					background-position: center
+
 
 	.other
 		margin-top: 150px
