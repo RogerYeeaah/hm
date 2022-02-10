@@ -205,15 +205,16 @@ html
 						this.qcc.curQ = window.document.querySelectorAll('.active').length;
 
 						var hrefLink = '#anchor-' + sPage + '-' + qIndex;
-						var hrefH = $(hrefLink).outerHeight()
-						console.log(hrefLink, hrefH);
+
+						console.log(hrefLink, $(".swiper-slide:first-child .scroll-box"));
 						//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
 						
-						$(".scroll-box").animate(
+						$(".swiper-slide:first-child .scroll-box").animate(
 							{
-								scrollTop: hrefH + 40
+								scrollTop: $(hrefLink).offset().top - 100
 							}, 300
 						);
+						console.log($(hrefLink).offset().top - 100)
 					},
 					add: function(){
 						this.$emit("childEvent", this.age);

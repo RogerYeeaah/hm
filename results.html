@@ -104,8 +104,8 @@
           <canvas id="polarChart"></canvas>
         </div>
         <div class="function">
-          <label class="switch d-none">
-            <input type="checkbox"><span class="slider round"></span>
+          <label class="switch" for="checkbox">
+            <input type="checkbox" id="checkbox" v-model="check" @click="chartSwitch(check)"><span class="slider round"></span>
           </label><a class="fbshare" href="#">
             <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;layout=button&amp;size=large&amp;width=68&amp;height=28&amp;appId" width="68" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></a><a class="download" href="#"><img src="./img/icons/download-w.png"></a>
         </div>
@@ -194,15 +194,18 @@
       			occ: localStorage.occ,
       			fin: localStorage.fin,
       			maxIndex: [],
-      			minIndex: []
-      
+      			minIndex: [],
+      			check: localStorage.check
       		}
       	},
       	created: function() {
       		this.onCateCatch();
+      		this.chartCheck();
       	},
       	mounted: function() {
+      		var self = this;
       		var ctx = document.getElementById("polarChart").getContext("2d");
+      
       		var data = {
       			datasets: [{
       				backgroundColor: [
@@ -264,28 +267,38 @@
       					ctx.textAlign = 'center';
       					ctx.textBaseline = 'bottom';
       	
-      					console.log('!!!!');
-      					console.log(this.getDatasetMeta(0));
+      					//- console.log('!!!!');
+      					//- console.log(this.getDatasetMeta(0));
       					let _meta = this.getDatasetMeta(0);
-      					this.data.datasets.forEach(function (dataset) {
+      					if(localStorage.check === 'true') {
+      						let ctx = this.ctx;
+      						ctx.font = '8px "Montserrat"';
+      						ctx.textAlign = 'center';
+      						ctx.textBaseline = 'bottom';
+      		
+      						//- console.log('!!!!');
+      						//- console.log(this.getDatasetMeta(0));
+      						let _meta = this.getDatasetMeta(0);
+      						this.data.datasets.forEach(function (dataset) {
       
-      						for (let i = 0; i < dataset.data.length; i++) {
-      							let model = _meta.data[i],
-      								mid_radius = model.innerRadius + (110 - model.innerRadius)/2 + 50,
-      								start_angle = model.startAngle,
-      								end_angle = model.endAngle,
-      								mid_angle = start_angle + (end_angle - start_angle)/2;
-      							console.log('=======' + i + '=======');
-      							console.log('model.innerRadius :' + model.innerRadius);
-      							console.log('model.outerRadius :' + model.outerRadius);
-      							console.log('model.startAngle :' + model.startAngle);
-      							console.log('model.endAngle :' + model.endAngle);
-      							let x = mid_radius * Math.cos(mid_angle);
-      							let y = mid_radius * Math.sin(mid_angle) + 8;
-      							let t = dataset.data[i];
-      							ctx.fillText(t, model.x + x, model.y + y);
-      						}
-      					});
+      							for (let i = 0; i < dataset.data.length; i++) {
+      								let model = _meta.data[i],
+      									mid_radius = model.innerRadius + (110 - model.innerRadius)/2 + 50,
+      									start_angle = model.startAngle,
+      									end_angle = model.endAngle,
+      									mid_angle = start_angle + (end_angle - start_angle)/2;
+      								//- console.log('=======' + i + '=======');
+      								//- console.log('model.innerRadius :' + model.innerRadius);
+      								//- console.log('model.outerRadius :' + model.outerRadius);
+      								//- console.log('model.startAngle :' + model.startAngle);
+      								//- console.log('model.endAngle :' + model.endAngle);
+      								let x = mid_radius * Math.cos(mid_angle);
+      								let y = mid_radius * Math.sin(mid_angle) + 8;
+      								let t = dataset.data[i];
+      								ctx.fillText(t, model.x + x, model.y + y);
+      							}
+      						});
+      					}
       				}
       			}
       		};
@@ -335,8 +348,6 @@
       
       		this.maxIndex = maxIndex;
       		this.minIndex = minIndex;
-      
-      		console.log(results, this.maxIndex, this.minIndex)
       	},
       	methods: {
       		onCateCatch: function() {
@@ -350,6 +361,21 @@
       				this.category = pageData.en.info.category;
       				this.results = pageData.en.results;
       			}
+      		},
+      		chartCheck: function() {
+      			if(localStorage.check === 'false') {
+      				this.check = false;
+      			} else if (localStorage.check === 'true') {
+      				this.check = true;
+      			} else {
+      				this.check = true;
+      				localStorage.check = this.check;
+      			}
+      		},
+      		chartSwitch: function() {
+      			this.check = !this.check;
+      			localStorage.check = this.check;
+      			location. reload();
       		}
       	},
       	computed: {

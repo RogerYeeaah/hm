@@ -2004,8 +2004,9 @@ input:checked + .slider:before {
   line-height: 20px;
   text-align: center;
 }
-.results .about .sp,
-.results .balance .sp,
+.results .other {
+  margin-top: 150px;
+}
 .results .other .sp {
   margin-bottom: 50px;
   display: -webkit-box;
@@ -2023,8 +2024,6 @@ input:checked + .slider:before {
   font-weight: bold;
   text-align: center;
 }
-.results .about .sp a,
-.results .balance .sp a,
 .results .other .sp a {
   margin-right: 20px;
   margin-bottom: 20px;
@@ -2034,31 +2033,21 @@ input:checked + .slider:before {
   border: 5px solid #d4d4d4;
   overflow: hidden;
 }
-.results .about .sp a:nth-child(3n),
-.results .balance .sp a:nth-child(3n),
 .results .other .sp a:nth-child(3n) {
   margin-right: 0px;
 }
 @media only screen and (max-width: 580px) {
-  .results .about .sp a,
-.results .balance .sp a,
-.results .other .sp a {
-    margin-right: 10px;
-    width: calc(50% - 10px);
+  .results .other .sp a {
+    margin-right: 20px;
+    width: calc(50% - 20px);
   }
-  .results .about .sp a:nth-child(3n),
-.results .balance .sp a:nth-child(3n),
-.results .other .sp a:nth-child(3n) {
-    margin-right: 10px;
+  .results .other .sp a:nth-child(3n) {
+    margin-right: 20px;
   }
-  .results .about .sp a:nth-child(2n),
-.results .balance .sp a:nth-child(2n),
-.results .other .sp a:nth-child(2n) {
+  .results .other .sp a:nth-child(2n) {
     margin-right: 0px;
   }
 }
-.results .about .sp a .title,
-.results .balance .sp a .title,
 .results .other .sp a .title {
   position: absolute;
   top: 50%;
@@ -2067,20 +2056,15 @@ input:checked + .slider:before {
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
 }
-.results .about .sp a .img,
-.results .balance .sp a .img,
 .results .other .sp a .img {
   padding-bottom: 100%;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
-.results .other {
-  margin-top: 150px;
 }
 .results .dimensions {
   padding: 0;
@@ -2288,7 +2272,6 @@ input:checked + .slider:before {
 
 .slide-enter,
 .slide-leave-to {
-  height: auto;
   -webkit-transform: translateX(10px);
       -ms-transform: translateX(10px);
           transform: translateX(10px);
@@ -2304,6 +2287,5 @@ input:checked + .slider:before {
 
 .slideDown-enter-from,
 .slideDown-leave-to {
-  height: 0;
   opacity: 0;
 }

@@ -1100,6 +1100,9 @@ input:checked + .slider:before
 			line-height: 20px
 			text-align: center
 
+	.other
+		margin-top: 150px
+
 		.sp
 			margin-bottom: 50px
 			display: flex
@@ -1123,11 +1126,11 @@ input:checked + .slider:before
 					margin-right: 0px
 
 				+breakpoint(mobile-landscape)
-					margin-right: 10px
-					width: calc(50% - 10px)
+					margin-right: 20px
+					width: calc(50% - 20px)
 
 					&:nth-child(3n)
-						margin-right: 10px						
+						margin-right: 20px						
 
 					&:nth-child(2n)
 						margin-right: 0px
@@ -1139,7 +1142,7 @@ input:checked + .slider:before
 					width: 100%
 					transform: translateY(-50%)
 					color: white
-					font-size: 14px
+					font-size: 12px
 					text-align: center
 				
 				.img
@@ -1148,9 +1151,6 @@ input:checked + .slider:before
 					background-repeat: no-repeat
 					background-size: cover
 					background-position: center
-
-	.other
-		margin-top: 150px
 
 	.dimensions
 		padding: 0
@@ -1276,7 +1276,6 @@ input:checked + .slider:before
 
 .slide-enter,
 .slide-leave-to
-	height: auto
 	transform: translateX(10px)
 	opacity: 0
 		
@@ -1286,5 +1285,4 @@ input:checked + .slider:before
 
 .slideDown-enter-from,
 .slideDown-leave-to
-	height: 0
 	opacity: 0
