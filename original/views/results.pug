@@ -88,6 +88,21 @@ html
 							.title {{ items.title }}
 							.img(:style="'background-image: url(' + items.img + ')'")
 
+				.cut-area
+					div.result-canvas
+						//- .avg
+						//- 	span 7.5
+						canvas#polarChartCutArea
+
+					.instagram
+						img(src="./img/icons/instagram-c.png" alt="")
+						.detail
+							p Tag us on your Wellness Wheel
+							p @
+								a(href="https://www.instagram.com/nesswellnesswheel") nesswellnesswheel
+								| @
+								a(href="https://www.instagram.com/ness.wellness") ness.wellness
+
 				include ./include/inline_footer
 
 			//- div.socialShare
@@ -132,6 +147,7 @@ html
 				mounted: function() {
 					var self = this;
 					var ctx = document.getElementById("polarChart").getContext("2d");
+					var	ctxCutArea = document.getElementById("polarChartCutArea").getContext("2d");
 
 					var data = {
 						datasets: [{
@@ -190,6 +206,7 @@ html
 							easing: "easeOutQuart",
 							onComplete: function () {
 								let ctx = this.ctx;
+
 								ctx.font = '8px "Montserrat"';
 								ctx.textAlign = 'center';
 								ctx.textBaseline = 'bottom';
@@ -235,6 +252,12 @@ html
 						data: data,
 						options: options
 					});
+
+					var myChart = new Chart(ctxCutArea, {
+						type: 'polarArea',
+						data: data,
+						options: options
+					})
 
 					var results = [this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin];
 					var maxIndex = [];

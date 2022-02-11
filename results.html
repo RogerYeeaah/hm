@@ -154,6 +154,17 @@
               <div class="title">{{ items.title }}</div>
               <div class="img" :style="'background-image: url(' + items.img + ')'"></div></a></ul>
         </div>
+        <div class="cut-area">
+          <div class="result-canvas">
+            <canvas id="polarChartCutArea"></canvas>
+          </div>
+          <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
+            <div class="detail">
+              <p>Tag us on your Wellness Wheel</p>
+              <p>@<a href="https://www.instagram.com/nesswellnesswheel">nesswellnesswheel</a>@<a href="https://www.instagram.com/ness.wellness">ness.wellness</a></p>
+            </div>
+          </div>
+        </div>
         <div class="footer inline">
           <div class="container">
             <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
@@ -205,6 +216,7 @@
       	mounted: function() {
       		var self = this;
       		var ctx = document.getElementById("polarChart").getContext("2d");
+      		var	ctxCutArea = document.getElementById("polarChartCutArea").getContext("2d");
       
       		var data = {
       			datasets: [{
@@ -263,6 +275,7 @@
       				easing: "easeOutQuart",
       				onComplete: function () {
       					let ctx = this.ctx;
+      
       					ctx.font = '8px "Montserrat"';
       					ctx.textAlign = 'center';
       					ctx.textBaseline = 'bottom';
@@ -308,6 +321,12 @@
       			data: data,
       			options: options
       		});
+      
+      		var myChart = new Chart(ctxCutArea, {
+      			type: 'polarArea',
+      			data: data,
+      			options: options
+      		})
       
       		var results = [this.emo, this.phy, this.spi, this.int, this.soc, this.env, this.occ, this.fin];
       		var maxIndex = [];

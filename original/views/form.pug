@@ -27,7 +27,7 @@ html
 					.col-1.m-B-30.flex
 						input#name(type="text" v-model="name" :placeholder="info.name" required)
 					.col-1.m-B-30.flex
-						input(type="email" v-model="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+						input(type="email" v-model="email" required="required" :placeholder="info.email" pattern="^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$")
 					.col-1.m-B-30.flex
 						.title {{ info.birthday }}
 						input#datepicker(type="text" v-model="date" name="date" placeholder="YYYY / MM / DD")
@@ -41,7 +41,7 @@ html
 							input(:id="info.genderOpt[2]" type="radio" name="gender" v-model="gender" value="Other" required)
 							label(:for="info.genderOpt[2]") {{ info.genderOpt[2] }}
 					a.m-H-40
-						input(type="submit" value="Submit" @click="dataPost")
+						input(type="submit" value="Submit")
 
 		include ./include/footer
 		
@@ -81,8 +81,8 @@ html
 							this.reportValidity();
 							return;
 						}
-						window.location.href = './question_page.html';
-						localStorage.name = self.name
+						self.dataPost();
+						localStorage.name = self.name;
 					});
 				},
 				methods: {
@@ -97,19 +97,19 @@ html
 					},
 					dataPost: function() {
 						console.log(this.email, this.name, this.date, this.gender)
-						axios({
-							method: 'post',
-							url: pageData.DBurl,
-							headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+						$.ajax({
+							type: "post",
+							url: "https://script.google.com/macros/s/AKfycbxVVzKa8l69upXg_caUucSd3Po7DAMLIQLwpNrQCCIbRO59Oel3dIYjyqmAkaS8fbXS/exec",
 							data: {
-								"email": this.email,
-								"name": this.name,
-								"birthday": this.date,
-								"gender": this.gender
+								"user_email": this.email,
+								"user_name": this.name,
+								"user_birthday": this.date,
+								"user_gender": this.gender
+							},
+							success: function() {
+								window.location.href = './question_page.html';
 							}
-						})
-						.then( (response) => console.log(window.location.href))
-						.catch( (error) => console.log(error));
+						});
 					}
 				}
 			});

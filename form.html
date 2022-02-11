@@ -26,7 +26,7 @@
             <input id="name" type="text" v-model="name" :placeholder="info.name" required>
           </div>
           <div class="col-1 m-B-30 flex">
-            <input type="email" v-model="email" required="required" :placeholder="info.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+            <input type="email" v-model="email" required="required" :placeholder="info.email" pattern="^[A-Za-z0-9]+([_.][A-Za-z0-9]+)*@([A-Za-z0-9-]+.)+[A-Za-z]{2,6}$">
           </div>
           <div class="col-1 m-B-30 flex">
             <div class="title">{{ info.birthday }}</div>
@@ -43,7 +43,7 @@
               <label :for="info.genderOpt[2]">{{ info.genderOpt[2] }}</label>
             </div>
           </div><a class="m-H-40">
-            <input type="submit" value="Submit" @click="dataPost"></a>
+            <input type="submit" value="Submit"></a>
         </form>
       </div>
     </div>
@@ -90,8 +90,8 @@
       				this.reportValidity();
       				return;
       			}
-      			window.location.href = './question_page.html';
-      			localStorage.name = self.name
+      			self.dataPost();
+      			localStorage.name = self.name;
       		});
       	},
       	methods: {
@@ -106,19 +106,19 @@
       		},
       		dataPost: function() {
       			console.log(this.email, this.name, this.date, this.gender)
-      			axios({
-      				method: 'post',
-      				url: pageData.DBurl,
-      				headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
+      			$.ajax({
+      				type: "post",
+      				url: "https://script.google.com/macros/s/AKfycbxVVzKa8l69upXg_caUucSd3Po7DAMLIQLwpNrQCCIbRO59Oel3dIYjyqmAkaS8fbXS/exec",
       				data: {
-      					"email": this.email,
-      					"name": this.name,
-      					"birthday": this.date,
-      					"gender": this.gender
+      					"user_email": this.email,
+      					"user_name": this.name,
+      					"user_birthday": this.date,
+      					"user_gender": this.gender
+      				},
+      				success: function() {
+      					window.location.href = './question_page.html';
       				}
-      			})
-      			.then( (response) => console.log(window.location.href))
-      			.catch( (error) => console.log(error));
+      			});
       		}
       	}
       });

@@ -2029,9 +2029,18 @@ input:checked + .slider:before {
   margin-bottom: 20px;
   position: relative;
   width: calc(33.333% - 13.3333333333px);
-  border-radius: 14%;
+  background-color: lightgray;
   border: 5px solid #d4d4d4;
   overflow: hidden;
+  border-radius: 14%;
+  -webkit-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.results .other .sp a:hover {
+  border: 1px solid white;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .results .other .sp a:nth-child(3n) {
   margin-right: 0px;
@@ -2065,6 +2074,7 @@ input:checked + .slider:before {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  border-radius: 14%;
 }
 .results .dimensions {
   padding: 0;
@@ -2129,6 +2139,41 @@ input:checked + .slider:before {
   font-size: 12px;
   font-weight: 500;
   text-align: left;
+}
+.results .cut-area {
+  position: fixed;
+  bottom: 0px;
+  width: calc(100% - 80px);
+  height: auto;
+  left: 100%;
+}
+.results .cut-area .instagram {
+  margin-bottom: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  font-size: 12px;
+}
+.results .cut-area .instagram img {
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+}
+.results .cut-area .instagram a {
+  margin-right: 5px;
+  display: inline;
+  text-decoration: underline;
+  color: black;
+}
+.results .cut-area .instagram .detail p {
+  line-height: 16px;
 }
 
 @-webkit-keyframes morph {

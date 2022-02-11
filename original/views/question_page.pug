@@ -42,7 +42,7 @@ html
 		include ./include/footer
 		
 		script#qs(type="text/x-template")
-			.swiper-slide(:class="index === qs.questions.length - 1 ? 'last-one':''" v-for="(items, index) in qs.questions" :key="index")
+			.swiper-slide(:class="index === qs.questions.length - 1 ? 'last-one':''" v-for="(items, index) in qs.questions" :key="index" :id="'page' + index")
 				.scroll-box
 					qc(:qc="qs.questions[index]" :qcs="qs" :page="index+1")
 		
@@ -57,8 +57,8 @@ html
 					p.right(v-show="qcs.len === '中'") 不常
 
 		script#sp(type="text/x-template")
-			a.box(:class="activeClass == index ? 'option active':'option'" v-for="index in 7" @click="onAnswerClick(index, qIndex, sPage)")
-				label(:for="sp.categoryId + '-' + sp.questionId + '-' + index")
+			a.box(:class="activeClass == index ? 'option active':'option'" v-for="index in 7")
+				label(:for="sp.categoryId + '-' + sp.questionId + '-' + index" @click="onAnswerClick(index, qIndex, sPage)")
 				input(:id="sp.categoryId + '-' + sp.questionId + '-' + index" :key="index" type="radio" :data-cate="sp.categoryId" :data-percentage="sp.percentage" :data-option="index" :name="sp.categoryId+ '-' + sp.questionId")
 
 		script.
@@ -203,18 +203,20 @@ html
 					onAnswerClick: function(index, qIndex, sPage){
 						this.activeClass = index;
 						this.qcc.curQ = window.document.querySelectorAll('.active').length;
-
+						rQIndex = qIndex - 1;
+						rSpage = sPage - 1;
+						var thisEle = 'anchor-' + sPage + '-' + rQIndex;
+						var thisEleH = document.getElementById(thisEle).offsetHeight;
 						var hrefLink = '#anchor-' + sPage + '-' + qIndex;
 
-						console.log(hrefLink, $(".swiper-slide:first-child .scroll-box"));
+						console.log();
 						//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
 						
-						$(".swiper-slide:first-child .scroll-box").animate(
+						$(".swiper-slide[id=page" + rSpage + "] .scroll-box").animate(
 							{
-								scrollTop: $(hrefLink).offset().top - 100
+								scrollTop: thisEleH
 							}, 300
 						);
-						console.log($(hrefLink).offset().top - 100)
 					},
 					add: function(){
 						this.$emit("childEvent", this.age);
