@@ -3,9 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="XXX的測驗結果">
-    <meta property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg">
-    <title>NesswellnessWheel - Know about your self</title>
+    <meta property="fb:app_id" content="334437811929428">
+    <meta name="og:url" content="http://uat.erduo.tw/wellness_wheel/index.html">
+    <meta name="og:image" content="./img/siteShare.png">
+    <meta name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.">
+    <meta name="og:title" content="nesswellnesswheel">
+    <meta name="og:site_name" content="nesswellnesswheel">
+    <meta name="og:type" content="website">
+    <title>NesswellnessWheel</title>
     <script src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <script src="./scripts/jquery/jquery.min.js"></script>
     <script src="./scripts/chart/chart.min.js"></script>
@@ -118,34 +123,34 @@
         </div>
         <div class="avr-score sp">
           <div class="title">{{ results.averScore + averScore }}
-            <div class="status style1" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39">Not Well</div>
-            <div class="status style2" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">Average</div>
-            <div class="status style3" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">Pretty Well</div>
-            <div class="status style4" v-if="this.averScore &gt;= 80">Very Well</div>
+            <div class="status style1" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39">{{ results.averRange.D }}</div>
+            <div class="status style2" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59">{{ results.averRange.C }}</div>
+            <div class="status style3" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79">{{ results.averRange.B }}</div>
+            <div class="status style4" v-if="this.averScore &gt;= 80">{{ results.averRange.A }}</div>
           </div>
           <div class="content" v-if="this.averScore &gt;= 0 &amp;&amp; this.averScore &lt; 39" v-html="results.averContent.notwell"> </div>
           <div class="content" v-if="this.averScore &gt;= 39 &amp;&amp; this.averScore &lt; 59" v-html="results.averContent.average"></div>
           <div class="content" v-if="this.averScore &gt;= 59 &amp;&amp; this.averScore &lt;= 79" v-html="results.averContent.prettywell"></div>
-          <div class="content" v-if="this.averScore &gt;= 80" v-html="results.averContent.verywell"> </div>
+          <div class="content" v-if="this.averScore &gt;= 80" v-html="results.averContent.verywell"></div>
         </div>
         <div class="avr-score">
           <div class="title">{{ results.balScore + balScore }}
-            <div class="status style1" v-if="this.balScore &gt; 11">Unbalanced</div>
-            <div class="status style4" v-if="this.balScore &lt;= 11">Well Balanced</div>
+            <div class="status style1" v-if="this.balScore &gt; 11">{{ results.balRange.B }}</div>
+            <div class="status style4" v-if="this.balScore &lt;= 11">{{ results.balRange.A }}</div>
           </div>
           <div class="content" v-if="this.balScore &gt; 11" v-html="results.balContent.Unbalanced"> </div>
           <div class="content" v-if="this.balScore &lt;= 11" v-html="results.balContent.wellbalance"> </div>
         </div>
         <div class="about">
-          <div class="title">About the ness<br>Wellness Wheel</div>
-          <div class="content">The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life.</div>
+          <div class="title" v-html="results.about.title"></div>
+          <div class="content" v-html="results.about.content"></div>
         </div>
         <ul class="dimensions">
           <list :list="this.category"></list>
         </ul>
         <div class="balance">
-          <div class="title">Finding balance</div>
-          <div class="content">If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.<br>Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.</div>
+          <div class="title" v-html="results.balance.title"></div>
+          <div class="content" v-html="results.balance.content"></div>
         </div>
         <div class="other">
           <div class="title" v-html="results.resources.title"></div>

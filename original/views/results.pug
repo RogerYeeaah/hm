@@ -3,9 +3,14 @@ html
 	head
 		meta(charset="utf-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		meta(property="og:title" content="XXX的測驗結果")
-		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
-		title NesswellnessWheel - Know about your self
+		meta(property="fb:app_id" content="334437811929428")
+		meta(name="og:url" content="http://uat.erduo.tw/wellness_wheel/index.html")
+		meta(name="og:image" content="./img/siteShare.png")
+		meta(name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.")
+		meta(name="og:title" content="nesswellnesswheel")
+		meta(name="og:site_name" content="nesswellnesswheel")
+		meta(name="og:type" content="website")
+		title NesswellnessWheel
 
 		script(src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
@@ -49,36 +54,32 @@ html
 
 				.avr-score.sp
 					.title {{ results.averScore + averScore }}
-						.status.style1(v-if="this.averScore >= 0 && this.averScore < 39") Not Well
-						.status.style2(v-if="this.averScore >= 39 && this.averScore < 59") Average
-						.status.style3(v-if="this.averScore >= 59 && this.averScore <= 79") Pretty Well
-						.status.style4(v-if="this.averScore >= 80") Very Well
+						.status.style1(v-if="this.averScore >= 0 && this.averScore < 39") {{ results.averRange.D }}
+						.status.style2(v-if="this.averScore >= 39 && this.averScore < 59") {{ results.averRange.C }}
+						.status.style3(v-if="this.averScore >= 59 && this.averScore <= 79") {{ results.averRange.B }}
+						.status.style4(v-if="this.averScore >= 80") {{ results.averRange.A }}
 					.content(v-if="this.averScore >= 0 && this.averScore < 39" v-html="results.averContent.notwell") 
 					.content(v-if="this.averScore >= 39 && this.averScore < 59" v-html="results.averContent.average")
 					.content(v-if="this.averScore >= 59 && this.averScore <= 79" v-html="results.averContent.prettywell")
-					.content(v-if="this.averScore >= 80" v-html="results.averContent.verywell")  
+					.content(v-if="this.averScore >= 80" v-html="results.averContent.verywell")
 
 				.avr-score
 					.title {{ results.balScore + balScore }}
-						.status.style1(v-if="this.balScore > 11") Unbalanced
-						.status.style4(v-if="this.balScore <= 11") Well Balanced
+						.status.style1(v-if="this.balScore > 11") {{ results.balRange.B }}
+						.status.style4(v-if="this.balScore <= 11") {{ results.balRange.A }}
 					.content(v-if="this.balScore > 11" v-html="results.balContent.Unbalanced") 
 					.content(v-if="this.balScore <= 11" v-html="results.balContent.wellbalance") 
 
 				.about
-					.title About the ness
-						br
-						| Wellness Wheel
-					.content The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life.
+					.title(v-html="results.about.title")
+					.content(v-html="results.about.content")
 				
 				ul.dimensions
 					list(:list="this.category")
 
 				.balance
-					.title Finding balance
-					.content If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.
-						br
-						| Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement.
+					.title(v-html="results.balance.title")
+					.content(v-html="results.balance.content")
 
 				.other
 					.title(v-html="results.resources.title")

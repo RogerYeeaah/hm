@@ -4,8 +4,13 @@ html
 	head
 		meta(charset="utf-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		meta(property="og:title" content="XXX的測驗結果")
-		meta(property="og:image" content="https://rogeryeeaah.github.io/hm/img/1.jpg")
+		meta(property="fb:app_id" content="334437811929428")
+		meta(name="og:url" content="http://uat.erduo.tw/wellness_wheel/index.html")
+		meta(name="og:image" content="./img/siteShare.png")
+		meta(name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.")
+		meta(name="og:title" content="nesswellnesswheel")
+		meta(name="og:site_name" content="nesswellnesswheel")
+		meta(name="og:type" content="website")
 		title NesswellnessWheel - Know about your self
 
 		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
@@ -36,7 +41,7 @@ html
 					.swiper-next Next
 					.swiper-prev Back
 
-				.submit-box()
+				.submit-box
 					button#submit(:class="curQ === totalCount ? '':'disabled'" type="submit" value="Submit" @click="cul(result)") Submit
 
 		include ./include/footer
@@ -107,7 +112,7 @@ html
 						} else if(self.curQ != self.totalQ && localStorage.len === '中') {
 							alert('尚有題目未完成');
 						} else {
-							window.location.href = './results.html';
+							window.location.href = './results.php';
 						}
 					})
 				},
@@ -174,7 +179,7 @@ html
 					totalCount: function() {
 						var r = 0;
 						this.questions.forEach(function(d){
-							r += d.length; 
+							r += d.length;
 						})
 						return r;
 					}
@@ -188,6 +193,12 @@ html
 
 			app.component('qc', {
 				template: '#qc',
+				data: function () {
+					return {
+						activeClass: false,
+						active: ''
+					}
+				},
 				props:['qc', 'qcs', 'page']
 			});
 
@@ -202,19 +213,20 @@ html
 				methods: {
 					onAnswerClick: function(index, qIndex, sPage){
 						this.activeClass = index;
-						this.qcc.curQ = window.document.querySelectorAll('.active').length;
+
 						rQIndex = qIndex - 1;
 						rSpage = sPage - 1;
 						var thisEle = 'anchor-' + sPage + '-' + rQIndex;
 						var thisEleH = document.getElementById(thisEle).offsetHeight;
 						var hrefLink = '#anchor-' + sPage + '-' + qIndex;
+						var firstPosition = $('.scroll-box').scrollTop() + 20;
 
-						console.log();
 						//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
-						
+						console.log(firstPosition + thisEleH,$('.scroll-box').scrollTop())
+
 						$(".swiper-slide[id=page" + rSpage + "] .scroll-box").animate(
 							{
-								scrollTop: thisEleH
+								scrollTop: firstPosition + thisEleH + 20
 							}, 300
 						);
 					},

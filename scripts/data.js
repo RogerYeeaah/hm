@@ -341,10 +341,28 @@ var pageData = {
 				"average": " No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 			},
+			"averRange":{
+				"A":"Very Well",
+				"B":"Pretty Well",
+				"C":"Average",
+				"D":"Not Well",
+			},
 			"balScore": "Balance score: ",
 			"balContent": {
 				"Unbalanced": "Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions.",
 				"wellbalance": "Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus."
+			},
+			"balRange":{
+				"A":"Well Balanced",
+				"B":"Unbalanced",
+			},
+			"about": {
+				"title": "About the ness</br>Wellness Wheel",
+				"content": "The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life."
+			},
+			"balance": {
+				"title": "Finding balance",
+				"content": "If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.</br> Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement."
 			},
 			"resources": {
 				"title": "More wellness</br>resources",
@@ -699,10 +717,28 @@ var pageData = {
 				"average": " No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 			},
+			"averRange":{
+				"A":"非常好",
+				"B":"相當好",
+				"C":"表現尚可",
+				"D":"有待加強",
+			},
 			"balScore": "Balance score: ",
 			"balContent": {
 				"Unbalanced": "Your wheel is quite smooth and consistent! This means you give equal attention to each spoke and aim to create balance in all eight wellness dimensions.",
 				"wellbalance": "Your wheel has some jagged edges which means there are big differences between each dimension. Some dimensions are overlooked while others may have too much focus."
+			},
+			"balRange":{
+				"A":"均衡的",
+				"B":"失衡的",
+			},
+			"about": {
+				"title": "About the ness</br>Wellness Wheel",
+				"content": "The ness Wellness Wheel 是個自我評估工具，讓你透過身心靈健康的八個面向（情緒、生理、心靈、智能、社交、環境、職涯、財務）進行反思，直觀的了解自己的生活平衡狀態。 我們可以使用該工具定期評估自己的狀態如何隨時間產生變化，及如何影響我們的生活與人生目標。"
+			},
+			"balance": {
+				"title": "Finding balance",
+				"content": "如果其中任何面向被忽略或過度關注，The ness Wellness Wheel 就會失衡，我們的生活亦是如此。雖然不需要在每個面向都追求完美，但創造一個 ⌜圓滿⌟ 的生活樣貌，不帶過度的起伏。請記得，沒有人是完美的，但我們可以透過瞭解自己的長處及短處，邁向全方位身心靈平衡的生活。"
 			},
 			"resources": {
 				"title": "More wellness</br>resources",
@@ -718,7 +754,7 @@ var pageData = {
 			]
 		}
 	},
-	"DBurl": "https://wayne19921106.wixsite.com/my-site/_functions/info"
+	"DBurl": "https://script.google.com/macros/s/AKfycbxVVzKa8l69upXg_caUucSd3Po7DAMLIQLwpNrQCCIbRO59Oel3dIYjyqmAkaS8fbXS/exec"
 }
 
 // 浮點數相加

@@ -3,41 +3,6 @@
   src: url(../font/Lobster-Regular.ttf);
 }
 @font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 100;
-  src: url(../font/GenJyuuGothic-ExtraLight.ttf);
-}
-@font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 200;
-  src: url(../font/GenJyuuGothic-Light.ttf);
-}
-@font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 300;
-  src: url(../font/GenJyuuGothic-Normal.ttf);
-}
-@font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 400;
-  src: url(../font/GenJyuuGothic-Regular.ttf);
-}
-@font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 500;
-  src: url(../font/GenJyuuGothic-Medium.ttf);
-}
-@font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 600;
-  src: url(../font/GenJyuuGothic-Bold.ttf);
-}
-@font-face {
-  font-family: GenJyuuGothic;
-  font-weight: 700;
-  src: url(../font/GenJyuuGothic-Heavy.ttf);
-}
-@font-face {
   font-family: Montserrat;
   font-weight: 100;
   src: url(../font/Montserrat-Thin.ttf);
@@ -2146,6 +2111,7 @@ input:checked + .slider:before {
   width: calc(100% - 80px);
   height: auto;
   left: 100%;
+  background: white;
 }
 .results .cut-area .instagram {
   margin-bottom: 60px;
