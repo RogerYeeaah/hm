@@ -211,7 +211,7 @@
       			activeClass: -1
       		}
       	},
-      	props:['sp', 'qc', 'qcc', 'qIndex', 'sPage'],
+      	props:['sp', 'qc', 'qcc', 'qIndex', 'sPage', 'firstPosition'],
       	methods: {
       		onAnswerClick: function(index, qIndex, sPage){
       			this.activeClass = index;
@@ -221,10 +221,10 @@
       			var thisEle = 'anchor-' + sPage + '-' + rQIndex;
       			var thisEleH = document.getElementById(thisEle).offsetHeight;
       			var hrefLink = '#anchor-' + sPage + '-' + qIndex;
-      			var firstPosition = $('.scroll-box').scrollTop() + 20;
+      			var firstPosition = $(".swiper-slide[id=page" + rSpage + "] .scroll-box").scrollTop() + 20;
       
       			//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
-      			console.log(firstPosition + thisEleH,$('.scroll-box').scrollTop())
+      			console.log(firstPosition)
       
       			$(".swiper-slide[id=page" + rSpage + "] .scroll-box").animate(
       				{
