@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="fb:app_id" content="334437811929428">
     <meta name="og:url" content="http://uat.erduo.tw/wellness_wheel/results.php">
-    <meta name="og:image" content="http://uat.erduo.tw/wellness_wheel/resultimg/&lt;?php echo $_GET['img']; ?&gt;.png">
+    <meta name="og:image" content="http://uat.erduo.tw/wellness_wheel/resultimg/<?php echo $_GET['img']; ?>.png">
     <meta name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.">
     <meta name="og:title" content="nesswellnesswheel">
     <meta name="og:site_name" content="nesswellnesswheel">
@@ -24,8 +24,10 @@
   </head>
   <body class="result">
     <div class="header" id="header">
-      <div class="container"><a class="logo-box" href="https://www.nesswellness.com/">
-          <div class="logo" style="background-image: url(./img/logo.png)"></div></a>
+      <div class="container">
+	  	<a class="logo-box" href="https://www.nesswellness.com/">
+          <div class="logo" style="background-image: url(./img/logo.png)"></div>
+		</a>
         <div class="function-box"><a href="javascript:;" @click="lenChange()"><img src="./img/icons/globe.png" alt="">{{ len }}</a></div>
         <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
           <transition name="slide">
@@ -207,7 +209,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt="">{{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'"></div>
         <transition name="slideDown"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition>
       </li>
     </script>
@@ -419,18 +421,18 @@
       			localStorage.check = this.check;
       			location. reload();
       		},
-      		downloadImg: function() {
-      			html2canvas(document.getElementById('cut-area')).then(function(canvas) {
-      				// document.body.appendChild(canvas);
-      				console.log('123')
-      				var dataUrl = canvas.toDataURL("image/png");
-      				// console.log('dataUrl:' + dataUrl);
-      				// saveImg(dataUrl)
-      				var downloadUrl = dataUrl.replace("image/png","image/octet-stream");//圖片地址
-      				var a = document.createElement("a"); //Create <a>
-      				a.href = downloadUrl; //Image Base64 Goes here
-      				a.download = Date.now() + ".png"; //File name Here
-      				a.click(); 
+      		          downloadImg: function() {
+      		html2canvas(document.getElementById('cut-area')).then(function(canvas) {
+      			// document.body.appendChild(canvas);
+      			var dataUrl = canvas.toDataURL("image/png");
+      			// console.log('dataUrl:' + dataUrl);
+      			// saveImg(dataUrl)
+      			var downloadUrl = dataUrl.replace("image/png","image/octet-stream");//圖片地址
+      			var a = document.createElement("a"); //Create <a>
+      			a.href = downloadUrl; //Image Base64 Goes here
+      			a.download = Date.now() + ".png"; //File name Here
+      			a.click(); 
+      
       			});
       		} 
       	},

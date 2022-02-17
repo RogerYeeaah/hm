@@ -1,21 +1,36 @@
 
 <div class="header" id="header">
-  <div class="container">
-    <div class="logo-box">
-      <div class="logo" style="background-image: url(./img/logo.png)"></div>
-    </div>
+  <div class="container"><a class="logo-box" href="https://www.nesswellness.com/">
+      <div class="logo" style="background-image: url(./img/logo.png)"></div></a>
     <div class="function-box"><a href="javascript:;" @click="lenChange()"><img src="./img/icons/globe.png" alt=""/>{{ len }}</a></div>
     <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
       <transition name="slide">
         <ul class="menu" v-if="active">
-          <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
-          <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
+          <li><a href="#anchor-about">{{ menu[0] }}</a></li>
+          <li><a href="#anchor-resources">{{ menu[1] }}</a></li>
           <li><a href="form.html">{{ menu[2] }}</a></li>
         </ul>
       </transition>
     </div>
   </div>
   <script>
+    (function(d, s, id) {
+    	var js, fjs = d.getElementsByTagName(s)[0];
+    	if (d.getElementById(id)) return;
+    	js = d.createElement(s); js.id = id;
+    	js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    	fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+    
+    window.fbAsyncInit = function() {
+    	FB.init({
+    		appId      : '334437811929428',
+    		xfbml      : true,
+    		version    : 'v12.0'
+    	});
+    };
+    
     const header = Vue.createApp({
     	data() {
     		return {

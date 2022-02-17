@@ -1,6 +1,6 @@
 #header.header
 	.container
-		.logo-box
+		a.logo-box(href="https://www.nesswellness.com/")
 			.logo(style="background-image: url(./img/logo.png)")
 
 		.function-box
@@ -13,13 +13,30 @@
 			transition(name="slide")
 				ul.menu(v-if="active")
 					li
-						a(href="index.html#anchor-about") {{ menu[0] }}
+						a(href="#anchor-about") {{ menu[0] }}
 					li
-						a(href="index.html#anchor-resources") {{ menu[1] }}
+						a(href="#anchor-resources") {{ menu[1] }}
 					li
 						a(href="form.html") {{ menu[2] }}
 	
 	script.
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '334437811929428',
+				xfbml      : true,
+				version    : 'v12.0'
+			});
+		};
+
 		const header = Vue.createApp({
 			data() {
 				return {

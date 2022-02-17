@@ -110,7 +110,7 @@ body
 	position: relative
 	display: block
 	width: calc(100% - 40px)
-	max-width: 800px
+	max-width: 580px
 	height: auto
 	min-height: calc(100vh - 80px)
 	background: #fbfbfb
@@ -218,7 +218,7 @@ input:checked + .slider:before
 			bottom: 80px
 			width: 100%
 			height: 10px
-			background-image: linear-gradient(to top, #fbfbfb, transparent)
+			background-image: linear-gradient(to top, #fbfbfb, #fbfbfb00)
 			z-index: 99
 
 		&:before
@@ -227,7 +227,7 @@ input:checked + .slider:before
 			top: 0px
 			width: 100%
 			height: 10px
-			background-image: linear-gradient(to bottom, #fbfbfb, transparent)
+			background-image: linear-gradient(to bottom, #fbfbfb, #fbfbfb00)
 			z-index: 99
 
 		.swiper-wrapper
@@ -450,10 +450,49 @@ input:checked + .slider:before
 
 // form
 .form
+	.cover
+		position: absolute
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		top: 0
+		height: 100vh
+		width: 100vw
+		background: white
+		z-index: 999
+		font-size: 30px
+		font-weight: bold
+		text-align: center
+		opacity: 1
+
+		&.just-none
+			opacity: 0
+			pointer-events: none
+
+		p
+			padding: 0 20px
+			display: inline-block
+			background: white
+			color: #dcdbee
+			z-index: 1
+
+		&:after
+			position: absolute
+			left: 0
+			top: 50%
+			content: ''
+			width: 100vw
+			height: 1px
+			background: #dcdbee
+			transform: translateY(-50%)
+			animation: moving-line 3s ease-in-out infinite
+			z-index: 0
+
 	.title-box
 		.title
 			margin-bottom: 20px
 			font-size: 40px
+
 	form
 		padding: 0 20px
 
@@ -717,11 +756,12 @@ input:checked + .slider:before
 			flex-direction: column
 			justify-content: center
 			top: 0
-			right: -20px
+			right: 50%
 			width: 100vw
 			height: 100vh
 			background: white
 			text-align: center
+			transform: translateX(50%)
 			opacity: 1
 
 			li
@@ -986,7 +1026,8 @@ input:checked + .slider:before
 		> *
 			margin: 0 5px
 
-		a.download
+		a.download,
+		a.fbshare
 			display: inline-block
 			width: 40px
 			height: 40px
@@ -995,24 +1036,6 @@ input:checked + .slider:before
 
 			img
 				padding: 9px
-
-		a.fbshare
-			// padding: 12px
-			// display: inline-flex
-			// justify-content: center
-			// align-content: center
-			// color: white
-			// background: #026ae3
-			// border-radius: 30px
-
-			// span
-			// 	margin-right: 4px
-			// 	display: inline-block
-			// 	font-size: 14px
-
-			// img
-			// 	width: 15px
-			// 	height: 15px
 
 	.card
 		display: flex
@@ -1037,7 +1060,6 @@ input:checked + .slider:before
 		display: inline-block
 		padding-bottom: 70%
 
-	
 	.avr-score
 		margin-bottom: 80px
 		position: relative
@@ -1218,15 +1240,34 @@ input:checked + .slider:before
 			text-align: left
 
 	.cut-area
+		padding: 10px 400px
 		position: fixed
-		bottom: 0px
-		width: calc(100% - 80px)
-		height: auto
+		bottom: 0
+		top: 0
+		width: 1280px
+		height: 670px
 		left: 100%
 		background: white
-		
+		pointer-events: none
+
+		.result-canvas
+			margin: 0 auto
+			margin-bottom: 20px
+			height: 480px
+			width: 480px
+
+			canvas
+				padding: 0%
+
+		.name,
+		.title
+			padding: 0
+			text-align: left
+
+		.title
+			margin-bottom: 20px
+
 		.instagram
-			margin-bottom: 60px
 			display: flex
 			justify-content: center
 			align-items: center
@@ -1303,6 +1344,20 @@ input:checked + .slider:before
 	
 	100%
 		transform: scale(1)
+
+@keyframes moving-line
+	0%
+		left: 0
+		right: auto
+		width: 0vw
+
+	50%
+		width: 100vw
+
+	100%
+		left: auto
+		right: 0
+		width: 0vw
 
 // vue css
 .slide-enter-active

@@ -10,7 +10,8 @@
     <meta name="og:title" content="nesswellnesswheel">
     <meta name="og:site_name" content="nesswellnesswheel">
     <meta name="og:type" content="website">
-    <title>NesswellnessWheel - Know about your self</title>
+    <link rel="icon" href="img/icons/favicon.ico">
+    <title>NesswellnessWheel</title>
     <script src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <script src="./scripts/jquery/jquery.min.js"></script>
     <script src="./scripts/swiper/swiper-bundle.min.js"></script>
@@ -28,7 +29,7 @@
         </div>
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
-            <qs :qs="this"></qs>
+            <qs :qs="this" @updatequestion="updateQ"></qs>
           </div>
           <div class="process-box"><span class="current">{{ curQ }}</span><span>/ </span><span class="total">{{ totalCount }}</span><span> questions answered</span></div>
           <div class="swiper-next">Next</div>
@@ -49,7 +50,7 @@
     <script id="qs" type="text/x-template">
       <div class="swiper-slide" :class="index === qs.questions.length - 1 ? 'last-one':''" v-for="(items, index) in qs.questions" :key="index" :id="'page' + index">
         <div class="scroll-box">
-          <qc :qc="qs.questions[index]" :qcs="qs" :page="index+1"></qc>
+          <qc :qc="qs.questions[index]" :qcs="qs" :page="index+1" @updatequestion="updateQ"></qc>
         </div>
       </div>
     </script>
@@ -58,10 +59,10 @@
         <div class="question">{{ items.title }}</div>
         <div class="option-box">
           <p v-show="qcs.len === 'en'">Rarely</p>
-          <p v-show="qcs.len === '中'">很常</p>
-          <sp :sp="items" :qc="qc" :qcc="qcs" :sPage="page" :qIndex="index+1" @childEvent="parentEvent"></sp>
+          <p v-show="qcs.len === '中'">不常</p>
+          <sp :sp="items" :qc="qc" :qcc="qcs" :sPage="page" :qIndex="index+1" @childEvent="parentEvent" @updatequestion="updateQ"></sp>
           <p class="right" v-show="qcs.len === 'en'">Always</p>
-          <p class="right" v-show="qcs.len === '中'">不常</p>
+          <p class="right" v-show="qcs.len === '中'">很常</p>
         </div>
       </div>
     </script>
@@ -175,6 +176,10 @@
       			localStorage.fin = fin = fin.toFixed(2);
       		
       			console.log('all cate:', [emo, phy, spi, int, soc, env, occ, fin] ,'標準差 : ', math.std([emo, phy, spi, int, soc, env, occ, fin]).toFixed(5));
+      		},
+      		updateQ: function(count){            
+      			console.log('parent-top');
+      			this.curQ += count;
       		}
       	},
       	computed: {
@@ -190,7 +195,13 @@
       
       app.component('qs', {
       	template: '#qs',
-      	props:['qs']
+      	props:['qs'],
+      	methods: {          
+      		updateQ: function(){            
+      			console.log('parent-qs');
+      			this.$emit('updatequestion', 1);
+      		}
+      	}
       });
       
       app.component('qc', {
@@ -201,7 +212,13 @@
       			active: ''
       		}
       	},
-      	props:['qc', 'qcs', 'page']
+      	props:['qc', 'qcs', 'page'],
+      	methods: {          
+      		updateQ: function(){
+      			console.log('parent-qc');
+      			this.$emit('updatequestion', 1);
+      		}
+      	}
       });
       
       app.component('sp', {
@@ -211,7 +228,7 @@
       			activeClass: -1
       		}
       	},
-      	props:['sp', 'qc', 'qcc', 'qIndex', 'sPage', 'firstPosition'],
+      	props:['sp', 'qc', 'qcc', 'qIndex', 'sPage'],
       	methods: {
       		onAnswerClick: function(index, qIndex, sPage){
       			this.activeClass = index;
@@ -223,8 +240,11 @@
       			var hrefLink = '#anchor-' + sPage + '-' + qIndex;
       			var firstPosition = $(".swiper-slide[id=page" + rSpage + "] .scroll-box").scrollTop() + 20;
       
-      			//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
-      			console.log(firstPosition)
+      			
+      			if(document.getElementById(thisEle).getElementsByClassName('active').length < 1){              
+      				this.$emit('updatequestion', 1);
+      			}
+      			console.log(firstPosition);
       
       			$(".swiper-slide[id=page" + rSpage + "] .scroll-box").animate(
       				{
@@ -232,7 +252,7 @@
       				}, 300
       			);
       		},
-      		add: function(){
+      		add: function() {
       			this.$emit("childEvent", this.age);
       		}
       	}

@@ -10,7 +10,8 @@
     <meta name="og:title" content="nesswellnesswheel">
     <meta name="og:site_name" content="nesswellnesswheel">
     <meta name="og:type" content="website">
-    <title>NesswellnessWheel - Know about your self</title>
+    <link rel="icon" href="img/icons/favicon.ico">
+    <title>NesswellnessWheel</title>
     <script src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <script src="./scripts/jquery/jquery.min.js"></script>
     <script src="./scripts/chart/chart.min.js"></script>
@@ -22,22 +23,37 @@
   </head>
   <body>
     <div class="header" id="header">
-      <div class="container">
-        <div class="logo-box">
-          <div class="logo" style="background-image: url(./img/logo.png)"></div>
-        </div>
+      <div class="container"><a class="logo-box" href="https://www.nesswellness.com/">
+          <div class="logo" style="background-image: url(./img/logo.png)"></div></a>
         <div class="function-box"><a href="javascript:;" @click="lenChange()"><img src="./img/icons/globe.png" alt="">{{ len }}</a></div>
         <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
           <transition name="slide">
             <ul class="menu" v-if="active">
-              <li><a href="index.html#anchor-about">{{ menu[0] }}</a></li>
-              <li><a href="index.html#anchor-resources">{{ menu[1] }}</a></li>
+              <li><a href="#anchor-about">{{ menu[0] }}</a></li>
+              <li><a href="#anchor-resources">{{ menu[1] }}</a></li>
               <li><a href="form.html">{{ menu[2] }}</a></li>
             </ul>
           </transition>
         </div>
       </div>
       <script>
+        (function(d, s, id) {
+        	var js, fjs = d.getElementsByTagName(s)[0];
+        	if (d.getElementById(id)) return;
+        	js = d.createElement(s); js.id = id;
+        	js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        	fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
+        
+        window.fbAsyncInit = function() {
+        	FB.init({
+        		appId      : '334437811929428',
+        		xfbml      : true,
+        		version    : 'v12.0'
+        	});
+        };
+        
         const header = Vue.createApp({
         	data() {
         		return {
@@ -107,7 +123,7 @@
         <div class="divider"></div>
         <div class="article">
           <div v-for="(items, index) in info.article" key="index">
-            <p v-if="items.type === 'title'" :id="items.id === 'anchor'? '':items.anchor">{{ items.content }}</p><span v-if="items.type === 'article'">{{ items.content }}</span><a v-if="items.type === 'button'" :href="items.url">{{ items.content }}</a><span class="link" v-if="items.type === 'link'"><span v-html="items.content"></span></span>
+            <p v-if="items.type === 'title'" :id="items.anchor == 'undefined'? '':items.anchor">{{ items.content }}</p><span v-if="items.type === 'article'">{{ items.content }}</span><a v-if="items.type === 'button'" :href="items.url">{{ items.content }}</a><span class="link" v-if="items.type === 'link'"><span v-html="items.content"></span></span>
             <div class="simulator" v-if="items.type === 'svg'">
               <div class="amoeba"></div>
               <svg id="ePz7kJ65AYM1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 651.2 651.2" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
@@ -177,7 +193,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt=""> {{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'"></div>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
         <transition name="slideDown"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition>
       </li>
     </script>

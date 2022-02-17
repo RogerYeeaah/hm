@@ -10,6 +10,7 @@
     <meta name="og:title" content="nesswellnesswheel">
     <meta name="og:site_name" content="nesswellnesswheel">
     <meta name="og:type" content="website">
+    <link rel="icon" href="img/icons/favicon.ico">
     <title>NesswellnessWheel - Know about your self</title>
     <script src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
     <script src="./scripts/jquery/jquery.min.js"></script>
@@ -22,6 +23,9 @@
   </head>
   <body>
     <div class="form" id="app" action="question_page.html">
+      <div class="cover" :class="loading === false? 'just-none':''">
+        <p>loading</p>
+      </div>
       <div class="container">
         <div class="title-box t-C">
           <div class="title">Tell us a little about yourself first...</div>
@@ -69,7 +73,8 @@
       			date: '',
       			gender: '',
       			len: localStorage.len,
-      			personInfo: []
+      			personInfo: [],
+      			loading: false
       		}
       	},
       	created: function() {
@@ -110,7 +115,9 @@
       			}
       		},
       		dataPost: function() {
-      			console.log(this.email, this.name, this.date, this.gender)
+      			window.document.querySelector('body').style['overflow'] = 'hidden';
+      			this.loading = !this.loading;
+      
       			$.ajax({
       				type: "post",
       				url: "https://script.google.com/macros/s/AKfycbxVVzKa8l69upXg_caUucSd3Po7DAMLIQLwpNrQCCIbRO59Oel3dIYjyqmAkaS8fbXS/exec",

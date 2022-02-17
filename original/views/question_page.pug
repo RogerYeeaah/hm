@@ -11,7 +11,8 @@ html
 		meta(name="og:title" content="nesswellnesswheel")
 		meta(name="og:site_name" content="nesswellnesswheel")
 		meta(name="og:type" content="website")
-		title NesswellnessWheel - Know about your self
+		link(rel="icon" href="img/icons/favicon.ico")
+		title NesswellnessWheel
 
 		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
@@ -31,7 +32,7 @@ html
 					span.des Completed
 				.swiper.mySwiper
 					.swiper-wrapper
-						qs(:qs="this")
+						qs(:qs="this" @updatequestion="updateQ")
 
 					.process-box
 						span.current {{ curQ }}
@@ -49,17 +50,17 @@ html
 		script#qs(type="text/x-template")
 			.swiper-slide(:class="index === qs.questions.length - 1 ? 'last-one':''" v-for="(items, index) in qs.questions" :key="index" :id="'page' + index")
 				.scroll-box
-					qc(:qc="qs.questions[index]" :qcs="qs" :page="index+1")
+					qc(:qc="qs.questions[index]" :qcs="qs" :page="index+1" @updatequestion="updateQ")
 		
 		script#qc(type="text/x-template")
 			.q-card(v-for="(items, index) in qc" :key="index" :id="'anchor-' + page + '-' + index" :name="'anchor-' + page + '-' + index")
 				.question {{ items.title }}
 				.option-box
 					p(v-show="qcs.len === 'en'") Rarely
-					p(v-show="qcs.len === '中'") 很常
-					sp(:sp="items" :qc="qc" :qcc="qcs" :sPage="page" :qIndex="index+1" @childEvent="parentEvent")
+					p(v-show="qcs.len === '中'") 不常
+					sp(:sp="items" :qc="qc" :qcc="qcs" :sPage="page" :qIndex="index+1" @childEvent="parentEvent" @updatequestion="updateQ")
 					p.right(v-show="qcs.len === 'en'") Always
-					p.right(v-show="qcs.len === '中'") 不常
+					p.right(v-show="qcs.len === '中'") 很常
 
 		script#sp(type="text/x-template")
 			a.box(:class="activeClass == index ? 'option active':'option'" v-for="index in 7")
@@ -173,6 +174,10 @@ html
 						localStorage.fin = fin = fin.toFixed(2);
 					
 						console.log('all cate:', [emo, phy, spi, int, soc, env, occ, fin] ,'標準差 : ', math.std([emo, phy, spi, int, soc, env, occ, fin]).toFixed(5));
+					},
+					updateQ: function(count){            
+						console.log('parent-top');
+						this.curQ += count;
 					}
 				},
 				computed: {
@@ -188,7 +193,13 @@ html
 			
 			app.component('qs', {
 				template: '#qs',
-				props:['qs']
+				props:['qs'],
+				methods: {          
+					updateQ: function(){            
+						console.log('parent-qs');
+						this.$emit('updatequestion', 1);
+					}
+				}
 			});
 
 			app.component('qc', {
@@ -199,7 +210,13 @@ html
 						active: ''
 					}
 				},
-				props:['qc', 'qcs', 'page']
+				props:['qc', 'qcs', 'page'],
+				methods: {          
+					updateQ: function(){
+						console.log('parent-qc');
+						this.$emit('updatequestion', 1);
+					}
+				}
 			});
 
 			app.component('sp', {
@@ -209,7 +226,7 @@ html
 						activeClass: -1
 					}
 				},
-				props:['sp', 'qc', 'qcc', 'qIndex', 'sPage', 'firstPosition'],
+				props:['sp', 'qc', 'qcc', 'qIndex', 'sPage'],
 				methods: {
 					onAnswerClick: function(index, qIndex, sPage){
 						this.activeClass = index;
@@ -221,8 +238,11 @@ html
 						var hrefLink = '#anchor-' + sPage + '-' + qIndex;
 						var firstPosition = $(".swiper-slide[id=page" + rSpage + "] .scroll-box").scrollTop() + 20;
 
-						//- window.location.href = './question_page.html#anchor-' + sPage + '-' + qIndex
-						console.log(firstPosition)
+						
+						if(document.getElementById(thisEle).getElementsByClassName('active').length < 1){              
+							this.$emit('updatequestion', 1);
+						}
+						console.log(firstPosition);
 
 						$(".swiper-slide[id=page" + rSpage + "] .scroll-box").animate(
 							{
@@ -230,7 +250,7 @@ html
 							}, 300
 						);
 					},
-					add: function(){
+					add: function() {
 						this.$emit("childEvent", this.age);
 					}
 				}

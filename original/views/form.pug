@@ -11,6 +11,7 @@ html
 		meta(name="og:title" content="nesswellnesswheel")
 		meta(name="og:site_name" content="nesswellnesswheel")
 		meta(name="og:type" content="website")
+		link(rel="icon" href="img/icons/favicon.ico")
 		title NesswellnessWheel - Know about your self
 
 		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
@@ -25,6 +26,8 @@ html
 
 	body
 		#app.form(action="question_page.html")
+			.cover(:class="loading === false? 'just-none':''")
+				p loading
 			.container
 				.title-box.t-C
 					.title Tell us a little about yourself first...
@@ -60,7 +63,8 @@ html
 						date: '',
 						gender: '',
 						len: localStorage.len,
-						personInfo: []
+						personInfo: [],
+						loading: false
 					}
 				},
 				created: function() {
@@ -101,7 +105,9 @@ html
 						}
 					},
 					dataPost: function() {
-						console.log(this.email, this.name, this.date, this.gender)
+						window.document.querySelector('body').style['overflow'] = 'hidden';
+						this.loading = !this.loading;
+
 						$.ajax({
 							type: "post",
 							url: "https://script.google.com/macros/s/AKfycbxVVzKa8l69upXg_caUucSd3Po7DAMLIQLwpNrQCCIbRO59Oel3dIYjyqmAkaS8fbXS/exec",

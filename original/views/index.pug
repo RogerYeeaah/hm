@@ -10,7 +10,8 @@ html
 		meta(name="og:title" content="nesswellnesswheel")
 		meta(name="og:site_name" content="nesswellnesswheel")
 		meta(name="og:type" content="website")
-		title NesswellnessWheel - Know about your self
+		link(rel="icon" href="img/icons/favicon.ico")
+		title NesswellnessWheel
 
 		script(src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
@@ -38,7 +39,7 @@ html
 				.divider
 				.article
 					div(v-for="(items, index) in info.article" key="index")
-						p(v-if="items.type === 'title'" :id="items.id === 'anchor'? '':items.anchor") {{ items.content }}
+						p(v-if="items.type === 'title'" :id="items.anchor == 'undefined'? '':items.anchor") {{ items.content }}
 						span(v-if="items.type === 'article'") {{ items.content }}
 						a(v-if="items.type === 'button'" :href="items.url") {{ items.content }}
 						span.link(v-if="items.type === 'link'")
@@ -109,7 +110,7 @@ html
 				p
 					img(:src="items.logo", alt="")
 					|  {{ items.title }}
-				.arrow(:style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'")
+				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
 				transition(name="slideDown")
 					span(v-if="i === activeItem? show:!show") {{ items.info }}
 

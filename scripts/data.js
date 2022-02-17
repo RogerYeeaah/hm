@@ -357,6 +357,7 @@ var pageData = {
 				"B":"Unbalanced",
 			},
 			"about": {
+				"anchor": "anchor-about",
 				"title": "About the ness</br>Wellness Wheel",
 				"content": "The ness Wellness Wheel is a self assessment tool that allows you to visualize how balanced your life is. Through reflection on each of the eight dimensions of wellness (social, physical, emotional, occupational, spiritual, intellectual, environmental, and financial), we can use this tool to periodically evaluate how our wellbeing has changed over time and is impacting our goals and life."
 			},
@@ -365,6 +366,7 @@ var pageData = {
 				"content": "If one spoke (dimension) becomes the primary focus, and the others are neglected, our Wheel of Wellness feels out of balance, and so too, our lives. While we don't have to aim for high scores in each dimensions, we can aspire to create a wheel that is smooth and consistent, rather than sharp and jagged with big differences in highs and lows.</br> Remember that nobody is perfect, but we can aim to live a well-rounded, balanced life, by identifying the areas in which you are thriving, as well as paying attention to the areas in need of improvement."
 			},
 			"resources": {
+				"anchor": "anchor-resources",
 				"title": "More wellness</br>resources",
 				"content": "ness wellness offers events, experiences and classes and centered around wellness including: mindfulness, meditation, sound healing, wellness coaching, career coaching, as well as many others."
 			},
@@ -403,7 +405,7 @@ var pageData = {
 				{"type": "title", "anchor": "anchor-about", "content": "介紹我們"},
 				{"type": "article", "content": "ness Wellness 將健康生活視為一種聯盟，一個為了實踐理想及圓滿身心靈所建立的資源整合社群平台。目的是希望結合社群，空間和目標，聚集有共鳴的人們一起，共同分享和推廣理想及圓滿的生活方式，愛惜自己和自我成長，一起找到更健康且理想的自己。歡迎參觀我們的網站了解更多信息、活動和資源。"},
 				{"type": "button", "content": "測驗開始", "url": "form.html"},
-				{"type": "title", "content": "The ness Wellness Wheel"},
+				{"type": "title", "anchor": "anchor-resources", "content": "The ness Wellness Wheel"},
 				{"type": "article", "content": "The ness Wellness Wheel 是一種讓我們了解自己的生活是否達到整體平衡，以及健康的八個面向是否都被滿足照顧到的方式。"},
 				{"type": "article", "content": "如果當其中一個生活面向成為空間主軸，而忽略了其他部分，The ness Wellness Wheel 就會感覺失去平衡，我們的生活亦是如此。"},
 				{"type": "article", "content": "我們雖然不需要在每個生活面向都追求完美，但渴望創造一個圓滿和諧的生活樣貌，不帶有高低落差的劇烈起伏。"}, 
@@ -733,6 +735,7 @@ var pageData = {
 				"B":"失衡的",
 			},
 			"about": {
+				"anchor": "anchor-about",
 				"title": "About the ness</br>Wellness Wheel",
 				"content": "The ness Wellness Wheel 是個自我評估工具，讓你透過身心靈健康的八個面向（情緒、生理、心靈、智能、社交、環境、職涯、財務）進行反思，直觀的了解自己的生活平衡狀態。 我們可以使用該工具定期評估自己的狀態如何隨時間產生變化，及如何影響我們的生活與人生目標。"
 			},
@@ -741,6 +744,7 @@ var pageData = {
 				"content": "如果其中任何面向被忽略或過度關注，The ness Wellness Wheel 就會失衡，我們的生活亦是如此。雖然不需要在每個面向都追求完美，但創造一個 ⌜圓滿⌟ 的生活樣貌，不帶過度的起伏。請記得，沒有人是完美的，但我們可以透過瞭解自己的長處及短處，邁向全方位身心靈平衡的生活。"
 			},
 			"resources": {
+				"anchor": "anchor-resources",
 				"title": "More wellness</br>resources",
 				"content": "ness wellness offers events, experiences and classes and centered around wellness including: mindfulness, meditation, sound healing, wellness coaching, career coaching, as well as many others."
 			},

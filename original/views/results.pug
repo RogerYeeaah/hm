@@ -4,12 +4,13 @@ html
 		meta(charset="utf-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		meta(property="fb:app_id" content="334437811929428")
-		meta(name="og:url" content="http://uat.erduo.tw/wellness_wheel/index.html")
-		meta(name="og:image" content="./img/siteShare.png")
+		meta(name="og:url" content="http://uat.erduo.tw/wellness_wheel/results.php")
+		meta(name="og:image" content="http://uat.erduo.tw/wellness_wheel/resultimg/<?php echo $_GET['img']; ?>.png")
 		meta(name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.")
 		meta(name="og:title" content="nesswellnesswheel")
 		meta(name="og:site_name" content="nesswellnesswheel")
 		meta(name="og:type" content="website")
+		link(rel="icon" href="img/icons/favicon.ico")
 		title NesswellnessWheel
 
 		script(src="./scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
@@ -18,8 +19,8 @@ html
 		script(src="./scripts/chart/chartjs-plugin-datalabels.js")
 		script(src="./scripts/data.js")
 		script(src="./scripts/mathjs/math.min.js")
-		script(async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v12.0" nonce="3wIFGc8b")
-
+		script(src="./scripts/html2canvas/html2canvas.min.js")
+		
 		link(rel="stylesheet", href="./styles/reset.css")
 		link(rel="stylesheet", href="./styles/custom.css")
 		
@@ -32,16 +33,14 @@ html
 				p.name(v-if="this.len === '中'") {{ '嗨 ' + name }},
 				.title {{ results.title }}
 				div.result-canvas
-					//- .avg
-					//- 	span 7.5
 					canvas#polarChart
 				.function
 					label.switch(for="checkbox")
 						input(type="checkbox" id="checkbox" v-model="check" @click="chartSwitch(check)")
 						span.slider.round
-					a.fbshare(href="#")
-						iframe(src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&width=68&height=28&appId" width="68" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share")
-					a.download(href="#")
+					a.fbshare(href="javascript:void(0);" onclick="saveImg()")
+						img(src="./img/icons/facebook-w.png")
+					a.download(href="javascript:void(0)" @click="downloadImg()")
 						img(src="./img/icons/download-w.png")
 				p.ps {{ results.ps }}
 				.card.highest(v-for="(items, index) in this.maxIndex" key="index")
@@ -70,7 +69,7 @@ html
 					.content(v-if="this.balScore > 11" v-html="results.balContent.Unbalanced") 
 					.content(v-if="this.balScore <= 11" v-html="results.balContent.wellbalance") 
 
-				.about
+				.about(:id="results.about.anchor")
 					.title(v-html="results.about.title")
 					.content(v-html="results.about.content")
 				
@@ -81,7 +80,7 @@ html
 					.title(v-html="results.balance.title")
 					.content(v-html="results.balance.content")
 
-				.other
+				.other(:id="results.resources.anchor")
 					.title(v-html="results.resources.title")
 					.content {{ results.resources.content }}
 					ul.sp
@@ -89,10 +88,12 @@ html
 							.title {{ items.title }}
 							.img(:style="'background-image: url(' + items.img + ')'")
 
-				.cut-area
+				.cut-area#cut-area
+					p.name(v-if="this.len === 'en'") {{ 'Hi ' + name }},
+					p.name(v-if="this.len === '中'") {{ '嗨 ' + name }},
+					.title {{ results.title }}
+
 					div.result-canvas
-						//- .avg
-						//- 	span 7.5
 						canvas#polarChartCutArea
 
 					.instagram
@@ -105,11 +106,6 @@ html
 								a(href="https://www.instagram.com/ness.wellness") ness.wellness
 
 				include ./include/inline_footer
-
-			//- div.socialShare
-			//- 	div.sbutton.facebook-cresta-share.cresta-float-shadow#shareF
-			//- 		a(rel="nofollow" href="#" data-name="Partager sur Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL),'targetWindow','toolbar=no,loc');return false;") facebook
-			//- 			i.cs.c-icon-cresta-facebook
 
 		script#list(type="text/x-template")
 			li(v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}")
@@ -327,7 +323,21 @@ html
 						this.check = !this.check;
 						localStorage.check = this.check;
 						location. reload();
-					}
+					},
+					downloadImg: function() {
+						html2canvas(document.getElementById('cut-area')).then(function(canvas) {
+							// document.body.appendChild(canvas);
+							console.log('123')
+							var dataUrl = canvas.toDataURL("image/png");
+							// console.log('dataUrl:' + dataUrl);
+							// saveImg(dataUrl)
+							var downloadUrl = dataUrl.replace("image/png","image/octet-stream");//圖片地址
+							var a = document.createElement("a"); //Create <a>
+							a.href = downloadUrl; //Image Base64 Goes here
+							a.download = Date.now() + ".png"; //File name Here
+							a.click(); 
+						});
+					} 
 				},
 				computed: {
 					averScore() {
@@ -370,3 +380,41 @@ html
 			});
 
 			app.mount('#app');
+
+			function postToShare(fileName) {
+				// calling the API ...
+				var uri = 'http://uat.erduo.tw/wellness_wheel/results.php?img=' + fileName;
+				console.log(uri);
+				$.ajax({ 
+					type: "GET", 
+					url: uri,
+				});
+				var obj = {
+					method: 'share',
+					href: uri,
+					hashtag: "#nesswellnesswheel"    
+				};
+				FB.ui(obj);
+			}
+
+			function saveImg(){
+				html2canvas(document.getElementById('cut-area')).then(function(canvas) {
+					// document.body.appendChild(canvas);
+					var dataUrl = canvas.toDataURL("image/png");
+					// console.log('dataUrl:' + dataUrl);
+					$.ajax({ 
+						type: "POST", 
+						url: 'saveImg.php',
+						dataType: 'text',
+						data: {
+							img : dataUrl
+						},
+						async: false,
+						success(data){
+						console.log(data);
+						postToShare(data);
+						}
+					});
+				});
+				
+			}
