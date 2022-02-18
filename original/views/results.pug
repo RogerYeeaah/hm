@@ -42,6 +42,14 @@ html
 						img(src="./img/icons/facebook-w.png")
 					a.download(href="javascript:void(0)" @click="downloadImg()")
 						img(src="./img/icons/download-w.png")
+				.instagram
+					img(src="./img/icons/instagram-c.png" alt="")
+					.detail
+						p Tag us on your Wellness Wheel
+						p @
+							a(href="https://www.instagram.com/nesswellnesswheel") nesswellnesswheel
+							| @
+							a(href="https://www.instagram.com/ness.wellness") ness.wellness
 				p.ps {{ results.ps }}
 				.card.highest(v-for="(items, index) in this.maxIndex" key="index")
 					.img(:style="'background-image: url(./img/icons/' + items + '.png)'")
@@ -112,7 +120,7 @@ html
 				p
 					img(:src="items.logo", alt="")
 					| {{ items.title }}
-				.arrow(:style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'")
+				.arrow(:style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'")
 				transition(name="slideDown")
 					span(v-if="i === activeItem? show:!show") {{ items.info }}
 

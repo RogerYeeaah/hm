@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="fb:app_id" content="334437811929428">
     <meta name="og:url" content="http://uat.erduo.tw/wellness_wheel/index.html">
-    <meta name="og:image" content="./img/siteShare.png">
+    <meta name="og:image" content="http://uat.erduo.tw/wellness_wheel/img/siteShare.png">
     <meta name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.">
     <meta name="og:title" content="nesswellnesswheel">
     <meta name="og:site_name" content="nesswellnesswheel">
@@ -193,7 +193,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt=""> {{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'"></div>
         <transition name="slideDown"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition>
       </li>
     </script>

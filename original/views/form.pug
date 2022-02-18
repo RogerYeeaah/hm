@@ -6,13 +6,13 @@ html
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		meta(property="fb:app_id" content="334437811929428")
 		meta(name="og:url" content="http://uat.erduo.tw/wellness_wheel/index.html")
-		meta(name="og:image" content="./img/siteShare.png")
+		meta(name="og:image" content="http://uat.erduo.tw/wellness_wheel/img/siteShare.png")
 		meta(name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.")
 		meta(name="og:title" content="nesswellnesswheel")
 		meta(name="og:site_name" content="nesswellnesswheel")
 		meta(name="og:type" content="website")
 		link(rel="icon" href="img/icons/favicon.ico")
-		title NesswellnessWheel - Know about your self
+		title NesswellnessWheel
 
 		script(src="scripts/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8")
 		script(src="./scripts/jquery/jquery.min.js")
@@ -77,6 +77,7 @@ html
 						dateFormat: 'yy / mm / dd',
 						changeYear: true,
 						changeMonth: true,
+						yearRange : "1990:2022",
 						onSelect: function(date) {
 							self.date = date
 						}

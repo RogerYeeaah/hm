@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="fb:app_id" content="334437811929428">
     <meta name="og:url" content="http://uat.erduo.tw/wellness_wheel/results.php">
-    <meta name="og:image" content="http://uat.erduo.tw/wellness_wheel/resultimg/<?php echo $_GET['img']; ?>.png">
+    <?php
+      if(!empty($_GET) && $_GET['img'] != ""){
+        echo '<meta name="og:image" content="http://uat.erduo.tw/wellness_wheel/resultimg/'.$_GET['img'].'.png">';
+      }else{
+        echo '<meta name="og:image" content="http://uat.erduo.tw/wellness_wheel/img/siteShare.png">';
+      }
+    ?>    
     <meta name="og:description" content="The ness Wellness Wheel is a great way to view your life from a bird's eye perspective and identify where you are at this moment in time while also discovering where you want it to be.">
     <meta name="og:title" content="nesswellnesswheel">
     <meta name="og:site_name" content="nesswellnesswheel">
@@ -25,9 +31,9 @@
   <body class="result">
     <div class="header" id="header">
       <div class="container">
-	  	<a class="logo-box" href="https://www.nesswellness.com/">
+        <a class="logo-box" href="https://www.nesswellness.com/">
           <div class="logo" style="background-image: url(./img/logo.png)"></div>
-		</a>
+        </a>
         <div class="function-box"><a href="javascript:;" @click="lenChange()"><img src="./img/icons/globe.png" alt="">{{ len }}</a></div>
         <div class="hamburger" :class="active === false? '':'open'" @click="active = !active"><span></span>
           <transition name="slide">
@@ -126,6 +132,12 @@
         <div class="result-canvas">
           <canvas id="polarChart"></canvas>
         </div>
+        <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
+            <div class="detail">
+                <p>Tag us on your Wellness Wheel</p>
+                <p>@<a href="https://www.instagram.com/nesswellnesswheel">nesswellnesswheel</a>@<a href="https://www.instagram.com/ness.wellness">ness.wellness</a></p>
+            </div>
+        </div>
         <div class="function">
           <label class="switch" for="checkbox">
             <input type="checkbox" id="checkbox" v-model="check" @click="chartSwitch(check)"><span class="slider round"></span>
@@ -209,7 +221,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt="">{{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'"></div>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
         <transition name="slideDown"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition>
       </li>
     </script>
@@ -235,6 +247,7 @@
       		}
       	},
       	created: function() {
+          this.permissionCheck();
       		this.onCateCatch();
       		this.chartCheck();
       	},
@@ -394,7 +407,21 @@
       		this.minIndex = minIndex;
       	},
       	methods: {
-      		onCateCatch: function() {
+      		permissionCheck: function(){
+            if(localStorage.name == undefined || localStorage.name.length < 1 ||              
+              localStorage.emo == undefined || localStorage.emo.length < 1 ||
+              localStorage.phy == undefined || localStorage.phy.length < 1 ||
+              localStorage.spi == undefined || localStorage.spi.length < 1 ||
+              localStorage.int == undefined || localStorage.int.length < 1 ||
+              localStorage.soc == undefined || localStorage.soc.length < 1 ||
+              localStorage.env == undefined || localStorage.env.length < 1 ||
+              localStorage.occ == undefined || localStorage.occ.length < 1 ||
+              localStorage.fin == undefined || localStorage.fin.length < 1 
+              ){
+              window.location.href = './index.html';
+            }
+          },
+          onCateCatch: function() {
       			if(this.len === 'en') {
       				this.category = pageData.en.info.category;
       				this.results = pageData.en.results;
@@ -482,16 +509,15 @@
       	// calling the API ...
       	var uri = 'http://uat.erduo.tw/wellness_wheel/results.php?img=' + fileName;
       	console.log(uri);
-      	$.ajax({ 
-      		type: "GET", 
-      		url: uri,
-      	});
+
       	var obj = {
       		method: 'share',
       		href: uri,
       		hashtag: "#nesswellnesswheel"    
       	};
+
       	FB.ui(obj);
+        
       }
       
       function saveImg(){
@@ -514,6 +540,11 @@
       		});
       	});
       	
+      }
+
+      function reloadPage(){
+        console.log('size change');
+        history.go(0);
       }
     </script>
   </body>

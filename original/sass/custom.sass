@@ -10,7 +10,10 @@ img
 	max-width: 100%
 
 body
+	position: relative
+	display: inline-block
 	height: 100%
+	width: 100%
 	background-image: url(../img/cate-06.jpg)
 	background-size: cover
 	background-position: center
@@ -296,8 +299,8 @@ input:checked + .slider:before
 							display: inline-block
 							height: calc(((100vw - 92px) - (6*6px))/7)
 							width: calc(((100vw - 92px) - (6*6px))/7)
-							max-height: 102px
-							max-width: 102px
+							max-height: 69px
+							max-width: 69px
 							cursor: pointer
 							border-radius: 200px
 							border: 2px solid lightgray
@@ -316,48 +319,48 @@ input:checked + .slider:before
 							label
 								height: calc(((100vw - 92px) - (6*6px))/7 - 4px)
 								width: calc(((100vw - 92px) - (6*6px))/7 - 4px)
-								max-height: 99px
-								max-width: 99px
+								max-height: 65px
+								max-width: 65px
 								opacity: 0.5
 
 							& ~ .option
 								label
 									height: calc(((100vw - 92px) - (6*6px))/7 - 8px)
 									width: calc(((100vw - 92px) - (6*6px))/7 - 8px)
-									max-height: 95px
-									max-width: 95px
+									max-height: 61px
+									max-width: 61px
 									opacity: 0.6
 
 								& ~ .option
 									label
 										height: calc((100vw - 92px - 36px)/7 - 12px)
 										width: calc(((100vw - 92px) - (6*6px))/7 - 12px)
-										max-height: 91px
-										max-width: 91px
+										max-height: 57px
+										max-width: 57px
 										opacity: 0.7
 
 									& ~ .option
 										label
 											height: calc(((100vw - 92px) - (6*6px))/7 - 8px)
 											width: calc(((100vw - 92px) - (6*6px))/7 - 8px)
-											max-height: 95px
-											max-width: 95px
+											max-height: 61px
+											max-width: 61px
 											opacity: 0.8
 
 										& ~ .option
 											label
 												height: calc(((100vw - 92px) - (6*6px))/7 - 4px)
 												width: calc(((100vw - 92px) - (6*6px))/7 - 4px)
-												max-height: 99px
-												max-width: 99px
+												max-height: 65px
+												max-width: 65px
 												opacity: 0.9
 
 											& ~ .option
 												label
 													height: calc(((100vw - 92px) - (6*6px))/7)
 													width: calc(((100vw - 92px) - (6*6px))/7)
-													max-height: 102px
-													max-width: 102px
+													max-height: 69px
+													max-width: 69px
 													opacity: 1
 
 						&:first-of-type
@@ -456,7 +459,7 @@ input:checked + .slider:before
 		align-items: center
 		justify-content: center
 		top: 0
-		height: 100vh
+		height: 100%
 		width: 100vw
 		background: white
 		z-index: 999
@@ -1015,6 +1018,29 @@ input:checked + .slider:before
 			background-size: cover
 			z-index: 1
 
+	.instagram
+		margin-bottom: 40px
+		display: flex
+		justify-content: center
+		align-items: center
+		width: 100%
+		font-size: 12px
+
+		img
+			margin-right: 5px
+			width: 24px
+			height: 24px
+
+		a
+			margin-right: 5px
+			display: inline
+			text-decoration: underline
+			color: black
+		
+		.detail
+			p
+				line-height: 16px
+
 	.function
 		margin-bottom: 40px
 		position: relative
@@ -1288,6 +1314,10 @@ input:checked + .slider:before
 			.detail
 				p
 					line-height: 16px
+
+	.container .footer.inline .instagram
+		display: none
+
 
 //keyframe
 @keyframes morph

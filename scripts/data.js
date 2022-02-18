@@ -714,10 +714,10 @@ var pageData = {
 			"ps": "Let's take a look at how you're doing overall",
 			"averScore": "Average score: ",
 			"averContent" : {
-				"verywell": "Nice! Your total score is above average which means you rank high in most of the eight wellness dimensions.",
-				"prettywell": "Good job! Your wellness journey is off to a great start. You may see some areas in need of improvement, which is a good place to start. Take some time to reflect on how you can improve these areas or head to ness wellness for some inspiration and tips.",
-				"average": " No worries! It's important that we understand where you are on your wellness journey so that we can set goals in the right direction. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
-				"notwell": "That's OK! Wellness is a journey and it's important to be honest with yourself on where you are on your wellness journey. Choose one dimension to work on first. Many times, working on improving one will also positively affect the others. Everything is interconnected. For more ideas and inspiration, check out <a href='www.nesswellness.com'>www.nesswellness.com</a>",
+				"verywell": "太棒了!您的整體總分數遠高於平均值，代表您在身心靈健康八個面向中有傑出的表現!",
+				"prettywell": "做得好!您的身心靈健康旅程已經有好的開始。您或許看到一些可以做得更好的地方，這是一個很棒的起點。多花一些時間思考如何能夠改善，並且為身心靈健康找尋好的靈感和技巧。",
+				"average": "不錯喔!(別擔心!)我們已經了解自己處於身心靈健康旅程的位置，下一步就往正確的方向去設定目標!選定一個面向就出發開始吧!很多時候，身心靈發展都是相互影響的，只要努力改善一定會帶領正面積極的影響。如需更多想法與靈感，歡迎至 <a href='www.nesswellness.com'>www.nesswellness.com</a>",
+				"notwell": "沒關係!身心靈健康是一段旅程，重要的是我們可以真誠的了解自己的生活狀態。選定一個面向就出發開始吧!很多時候，身心靈發展都是相互影響的，只要努力改善一定會帶領正面積極的影響。如需更多想法與靈感，歡迎至 <a href='www.nesswellness.com'>www.nesswellness.com</a>",
 			},
 			"averRange":{
 				"A":"非常好",

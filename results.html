@@ -129,6 +129,12 @@
             <input type="checkbox" id="checkbox" v-model="check" @click="chartSwitch(check)"><span class="slider round"></span>
           </label><a class="fbshare" href="javascript:void(0);" onclick="saveImg()"><img src="./img/icons/facebook-w.png"></a><a class="download" href="javascript:void(0)" @click="downloadImg()"><img src="./img/icons/download-w.png"></a>
         </div>
+        <div class="instagram"><img src="./img/icons/instagram-c.png" alt="">
+          <div class="detail">
+            <p>Tag us on your Wellness Wheel</p>
+            <p>@<a href="https://www.instagram.com/nesswellnesswheel">nesswellnesswheel</a>@<a href="https://www.instagram.com/ness.wellness">ness.wellness</a></p>
+          </div>
+        </div>
         <p class="ps">{{ results.ps }}</p>
         <div class="card highest" v-for="(items, index) in this.maxIndex" key="index">
           <div class="img" :style="'background-image: url(./img/icons/' + items + '.png)'"></div><span>You scored highest on {{ items }} health</span>
@@ -207,7 +213,7 @@
     <script id="list" type="text/x-template">
       <li v-for="(items, i) in list" @click="openNot(i)" :key="i" :class="{active: i === activeItem}">
         <p><img :src="items.logo" alt="">{{ items.title }}</p>
-        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/down-arrow.png)':'background-image: url(./img/icons/up-arrow.png)'"></div>
+        <div class="arrow" :style="i === activeItem?'background-image: url(./img/icons/up-arrow.png)':'background-image: url(./img/icons/down-arrow.png)'"></div>
         <transition name="slideDown"><span v-if="i === activeItem? show:!show">{{ items.info }}</span></transition>
       </li>
     </script>
